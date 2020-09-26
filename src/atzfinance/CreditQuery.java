@@ -26,8 +26,11 @@ public class CreditQuery {
 		System.out.println("GET DONE");
 		
 	}
-
+        
 	private static void sendGET() throws IOException {
+            
+            System.out.println("Hello World from the 'CreditQuery' branch");
+                
 		URL obj = new URL(GET_URL);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 		con.setRequestMethod("GET");
