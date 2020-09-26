@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Reflection;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -31,13 +32,11 @@ public class Login extends Application {
     String pw = "password";
     String checkUser, checkPw;
 
-    public static void main(String[] args) {
-
-    }
-
     public static void startView(String[] args) {
         launch(args);
     }
+
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -111,6 +110,23 @@ public class Login extends Application {
             pf.setText("");
         });
         
+        
+        //Action for KeyPress Enter key
+        pf.setOnKeyPressed(event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                            checkUser = txtUserName.getText();
+            checkPw = pf.getText();
+            if (checkUser.equals(user) && checkPw.equals(pw)) {
+                lblMessage.setText("Congratulations!");
+                lblMessage.setTextFill(Color.GREEN);
+            } else {
+                lblMessage.setText("Incorrect user or pw.");
+                lblMessage.setTextFill(Color.RED);
+            }
+            txtUserName.setText("");
+            pf.setText("");
+            }
+        });
 
         //Add HBox and GridPane layout to BorderPane Layout
         bp.setTop(hb);
