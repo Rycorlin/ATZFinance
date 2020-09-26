@@ -6,7 +6,6 @@
 package atzfinance;
 
 import View.Login;
-import static javafx.application.Application.launch;
 
 /**
  *
