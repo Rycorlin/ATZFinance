@@ -28,15 +28,15 @@ import javafx.stage.Stage;
  */
 public class Login extends Application {
 
-    String user = "Myliu";
-    String pw = "password";
-    String checkUser, checkPw;
+    private String user = "Myliu";
+    private String pw = "password";
+    private String checkUser;
+    private String checkPw;
+    
 
     public static void startView(String[] args) {
-        launch(args);
+        Application.launch(args);
     }
-
-
 
     @Override
     public void start(Stage primaryStage) {
@@ -97,11 +97,13 @@ public class Login extends Application {
 
         //Action for btnLogin
         btnLogin.setOnAction((ActionEvent event) -> {
-            checkUser = txtUserName.getText();
-            checkPw = pf.getText();
-            if (checkUser.equals(user) && checkPw.equals(pw)) {
+            setCheckUser(txtUserName.getText());
+            setCheckPw(pf.getText());
+            if (getCheckUser().equals(getUser()) && getCheckPw().equals(getPw())) {
                 lblMessage.setText("Congratulations!");
                 lblMessage.setTextFill(Color.GREEN);
+                
+
             } else {
                 lblMessage.setText("Incorrect user or pw.");
                 lblMessage.setTextFill(Color.RED);
@@ -109,22 +111,23 @@ public class Login extends Application {
             txtUserName.setText("");
             pf.setText("");
         });
-        
-        
+
         //Action for KeyPress Enter key
         pf.setOnKeyPressed(event -> {
             if (event.getCode().equals(KeyCode.ENTER)) {
-                            checkUser = txtUserName.getText();
-            checkPw = pf.getText();
-            if (checkUser.equals(user) && checkPw.equals(pw)) {
-                lblMessage.setText("Congratulations!");
-                lblMessage.setTextFill(Color.GREEN);
-            } else {
-                lblMessage.setText("Incorrect user or pw.");
-                lblMessage.setTextFill(Color.RED);
-            }
-            txtUserName.setText("");
-            pf.setText("");
+                setCheckUser(txtUserName.getText());
+                setCheckPw(pf.getText());
+                if (getCheckUser().equals(getUser()) && getCheckPw().equals(getPw())) {
+                    lblMessage.setText("Congratulations!");
+                    lblMessage.setTextFill(Color.GREEN);
+                    
+                    HomeView hv = new HomeView(primaryStage);
+                } else {
+                    lblMessage.setText("Incorrect user or pw.");
+                    lblMessage.setTextFill(Color.RED);
+                }
+                txtUserName.setText("");
+                pf.setText("");
             }
         });
 
@@ -142,5 +145,61 @@ public class Login extends Application {
                  concat(scene.heightProperty().asString()));*/
         //primaryStage.setResizable(false);
         primaryStage.show();
+    }
+
+    /**
+     * @return the user
+     */
+    public String getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    /**
+     * @return the pw
+     */
+    public String getPw() {
+        return pw;
+    }
+
+    /**
+     * @param pw the pw to set
+     */
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
+
+    /**
+     * @return the checkUser
+     */
+    public String getCheckUser() {
+        return checkUser;
+    }
+
+    /**
+     * @param checkUser the checkUser to set
+     */
+    public void setCheckUser(String checkUser) {
+        this.checkUser = checkUser;
+    }
+
+    /**
+     * @return the checkPw
+     */
+    public String getCheckPw() {
+        return checkPw;
+    }
+
+    /**
+     * @param checkPw the checkPw to set
+     */
+    public void setCheckPw(String checkPw) {
+        this.checkPw = checkPw;
     }
 }
