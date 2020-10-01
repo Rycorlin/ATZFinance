@@ -48,6 +48,7 @@ public class UserView extends Application
         VBox root = new VBox();
         // Add the Table to the VBox
         root.getChildren().add(table);
+        
         // Set the Padding and Border for the VBox
         root.setStyle("-fx-padding: 10;" +
                 "-fx-border-style: solid inside;" +
