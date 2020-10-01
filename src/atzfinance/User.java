@@ -11,19 +11,24 @@ package atzfinance;
  */
 public class User {
 
-    private String fName;
-    private String lName;
+
+    private String firstName;
+    private String lastName;
     private String userName;
     private int socialSecurityNumber;
 
     /**
      *
-     * @param fName First name of the user
-     * @param lName Last name of the user
+     * @param firstName First name of the user
+     * @param lastName Last name of the user
+     * @param userName User name of the user account
+     * @param socialSecuritynumber Social security number of the suer
      */
-    public User(String fName, String lName) {
-        this.fName = fName;
-        this.lName = lName;
+    public User(String firstName, String lastName, String userName, Integer socialSecuritynumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.socialSecurityNumber = socialSecuritynumber;
 
     }
 
@@ -32,17 +37,17 @@ public class User {
      *
      * @return A string returning the first name of the user
      */
-    public String getfName() {
-        return fName;
+    public String getFirstName() {
+        return firstName;
     }
  
     /**
      * Sets the first name of the user
      *
-     * @param fName Sets the first name of the user
+     * @param firstName Sets the first name of the user
      */
-    public void setfName(String fName) {
-        this.fName = fName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     /**
@@ -50,18 +55,18 @@ public class User {
      *
      * @return A string returning the first name of the user
      */
-    public String getlName() {
-        return lName;
+    public String getLastName() {
+        return lastName;
     }
 
     /**
      * Sets the last name of the user
      *
-     * @param lName Sets the last name of the user
+     * @param lastName Sets the last name of the user
      *
      */
-    public void setlName(String lName) {
-        this.lName = lName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     /**

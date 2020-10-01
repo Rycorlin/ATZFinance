@@ -33,10 +33,7 @@ public class Login extends Application {
     private String checkUser;
     private String checkPw;
     
-
-    public static void startView(String[] args) {
-        Application.launch(args);
-    }
+    
 
     @Override
     public void start(Stage primaryStage) {
@@ -99,11 +96,10 @@ public class Login extends Application {
         btnLogin.setOnAction((ActionEvent event) -> {
             setCheckUser(txtUserName.getText());
             setCheckPw(pf.getText());
-            if (getCheckUser().equals(getUser()) && getCheckPw().equals(getPw())) {
-                lblMessage.setText("Congratulations!");
+            if (getCheckUser().equalsIgnoreCase(getUser()) && getCheckPw().equals(getPw())) {
+                //lblMessage.setText("Congratulations!");
                 lblMessage.setTextFill(Color.GREEN);
-                
-
+                HomeView hv = new HomeView(primaryStage);
             } else {
                 lblMessage.setText("Incorrect user or pw.");
                 lblMessage.setTextFill(Color.RED);
@@ -117,10 +113,9 @@ public class Login extends Application {
             if (event.getCode().equals(KeyCode.ENTER)) {
                 setCheckUser(txtUserName.getText());
                 setCheckPw(pf.getText());
-                if (getCheckUser().equals(getUser()) && getCheckPw().equals(getPw())) {
+                if (getCheckUser().equalsIgnoreCase(getUser()) && getCheckPw().equals(getPw())) {
                     lblMessage.setText("Congratulations!");
                     lblMessage.setTextFill(Color.GREEN);
-                    
                     HomeView hv = new HomeView(primaryStage);
                 } else {
                     lblMessage.setText("Incorrect user or pw.");

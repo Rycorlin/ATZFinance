@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package atzfinance;
+package Controller;
 
 import View.Login;
+import javafx.application.Application;
 
 /**
  *
@@ -15,15 +16,18 @@ public class ATZFinance {
 
     /**
      * @param args the command line arguments
+     * @throws java.lang.Exception
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // TODO code application logic here
         Login login = new Login();
+
+        Application.launch(Login.class, args);
         
-        login.startView(args);
         
         
         
+
     }
-    
+
 }

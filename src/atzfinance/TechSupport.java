@@ -14,10 +14,12 @@ public class TechSupport extends User {
      * 
      * @param fName First name of the tech support user
      * @param lName Last name of the tech support user
+     * @param userName
+     * @param socialSecurityNumber
      */
     
-    public TechSupport(String fName, String lName) {
-        super(fName, lName);
+    public TechSupport(String fName, String lName, String userName, Integer socialSecurityNumber) {
+        super(fName, lName, userName, socialSecurityNumber);
     }
 
     /**

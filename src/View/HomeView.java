@@ -1,0 +1,123 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package View;
+
+import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+/**
+ *
+ * @author rycor
+ */
+public class HomeView {
+
+    /* public static void startView(String[] args) {
+        //launch(args);
+    }*/
+    HomeView(Stage primaryStage) {
+        //Stage stage = new Stage();
+        Stage stage = primaryStage;
+        stage.setTitle("ATZ Finance Login");
+
+        BorderPane border = new BorderPane();
+
+        HBox hbox = new HBox();
+
+        hbox.setPadding(new Insets(15, 12, 15, 12));
+        hbox.setSpacing(5);
+        hbox.setStyle("-fx-background-color: #336699;");
+
+        Button buttonSummary = new Button("Account Summary");
+        buttonSummary.setPrefSize(150, 20);
+
+        Button buttonPayment = new Button("Make a Payment");
+        buttonPayment.setPrefSize(150, 20);
+        hbox.getChildren().addAll(buttonSummary, buttonPayment);
+
+        Button testOne = new Button("User list");
+        buttonPayment.setPrefSize(150, 20);
+
+        Button testTwo = new Button("Test 2");
+        buttonPayment.setPrefSize(150, 20);
+        hbox.getChildren().addAll(testOne, testTwo);
+
+        HBox.setHgrow(buttonSummary, Priority.ALWAYS);
+        HBox.setHgrow(buttonPayment, Priority.ALWAYS);
+
+        //bp.setPadding(new Insets(10, 50, 50, 50));
+        border.setTop(hbox);
+        border.setLeft(addVBox());
+
+        
+
+        //Action for btnLogin
+        testOne.setOnAction((ActionEvent event) -> {
+
+                //System.out.print("test");
+                //UserView uv = new UserView(stage, border, hbox);
+                UserView uv = new UserView();
+                
+                uv.start(stage);
+
+        });
+
+        Scene scene = new Scene(border);
+        stage.setScene(scene);
+        stage.show();
+
+        //Adding GridPane
+        GridPane gridPane = new GridPane();
+        gridPane.setPadding(new Insets(20, 20, 20, 20));
+        gridPane.setHgap(5);
+        gridPane.setVgap(5);
+
+    }
+
+    public static VBox addVBox() {
+        VBox vbox = new VBox();
+        vbox.setPadding(new Insets(10));
+        vbox.setSpacing(8);
+
+        Text title = new Text("Data");
+        title.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        vbox.getChildren().add(title);
+
+        Hyperlink options[] = new Hyperlink[]{
+            new Hyperlink("Loan 1"),
+            new Hyperlink("Loan 2"),
+            new Hyperlink("Loan 3"),
+            new Hyperlink("Loan 4")};
+
+        for (int i = 0; i < 4; i++) {
+            VBox.setMargin(options[i], new Insets(0, 0, 0, 8));
+            vbox.getChildren().add(options[i]);
+        }
+
+        return vbox;
+    }
+
+    //    primaryStage.show();
+}

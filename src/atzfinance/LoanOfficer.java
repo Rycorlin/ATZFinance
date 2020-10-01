@@ -23,10 +23,12 @@ public class LoanOfficer extends User {
      * @param employeeID Employee ID for the loan officer
      * @param fName First name of the loan officer
      * @param lName Last name of the loan officer
+     * @param userName
+     * @param socialSecurity
      *
      */
-    public LoanOfficer(int employeeID, String fName, String lName) {
-        super(fName, lName);
+    public LoanOfficer(int employeeID, String fName, String lName, String userName, Integer socialSecurity) {
+        super(fName, lName, userName, socialSecurity);
         this.employeeID = employeeID;
     }
 
