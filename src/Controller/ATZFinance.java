@@ -8,6 +8,8 @@ package Controller;
 import View.Login;
 import javafx.application.Application;
 
+//TEST COMMENT
+
 /**
  *
  * The controller class
