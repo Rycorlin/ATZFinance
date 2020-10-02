@@ -1,5 +1,6 @@
 package View;
 
+import Controller.LoginController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -32,11 +33,16 @@ public class Login extends Application {
     private String pw = "password";
     private String checkUser;
     private String checkPw;
-    
-    
+    private LoginController loginController;
+
+    private Label lblUserName, lblPassword, lblMessage;
+    private TextField txtUserName;
+    private PasswordField pf;
+    private Button btnLogin;
 
     @Override
     public void start(Stage primaryStage) {
+        loginController = new LoginController(this);
         primaryStage.setTitle("ATZ Finance Login");
 
         BorderPane bp = new BorderPane();
@@ -53,12 +59,12 @@ public class Login extends Application {
         gridPane.setVgap(5);
 
         //Implementing Nodes for GridPane
-        Label lblUserName = new Label("Username");
-        final TextField txtUserName = new TextField();
-        Label lblPassword = new Label("Password");
-        final PasswordField pf = new PasswordField();
-        Button btnLogin = new Button("Login");
-        final Label lblMessage = new Label();
+        lblUserName = new Label("Username");
+        txtUserName = new TextField();
+        lblPassword = new Label("Password");
+        pf = new PasswordField();
+        btnLogin = new Button("Login");
+        lblMessage = new Label();
 
         //Adding Nodes to GridPane layout
         gridPane.add(lblUserName, 0, 0);
@@ -96,16 +102,7 @@ public class Login extends Application {
         btnLogin.setOnAction((ActionEvent event) -> {
             setCheckUser(txtUserName.getText());
             setCheckPw(pf.getText());
-            if (getCheckUser().equalsIgnoreCase(getUser()) && getCheckPw().equals(getPw())) {
-                //lblMessage.setText("Congratulations!");
-                lblMessage.setTextFill(Color.GREEN);
-                HomeView hv = new HomeView(primaryStage);
-            } else {
-                lblMessage.setText("Incorrect user or pw.");
-                lblMessage.setTextFill(Color.RED);
-            }
-            txtUserName.setText("");
-            pf.setText("");
+            loginController.login(getCheckUser(), getCheckPw(), primaryStage);
         });
 
         //Action for KeyPress Enter key
@@ -113,16 +110,7 @@ public class Login extends Application {
             if (event.getCode().equals(KeyCode.ENTER)) {
                 setCheckUser(txtUserName.getText());
                 setCheckPw(pf.getText());
-                if (getCheckUser().equalsIgnoreCase(getUser()) && getCheckPw().equals(getPw())) {
-                    lblMessage.setText("Congratulations!");
-                    lblMessage.setTextFill(Color.GREEN);
-                    HomeView hv = new HomeView(primaryStage);
-                } else {
-                    lblMessage.setText("Incorrect user or pw.");
-                    lblMessage.setTextFill(Color.RED);
-                }
-                txtUserName.setText("");
-                pf.setText("");
+                loginController.login(getCheckUser(), getCheckPw(), primaryStage);
             }
         });
 
@@ -196,5 +184,47 @@ public class Login extends Application {
      */
     public void setCheckPw(String checkPw) {
         this.checkPw = checkPw;
+    }
+
+    /**
+     * @return username Label object
+     */
+    public Label getLblUserName() {
+        return lblUserName;
+    }
+
+    /**
+     * @return password Label object
+     */
+    public Label getLblPassword() {
+        return lblPassword;
+    }
+
+    /**
+     * @return message Label object
+     */
+    public Label getLblMessage() {
+        return lblMessage;
+    }
+
+    /**
+     * @return username TextField object
+     */
+    public TextField getTxtUserName() {
+        return txtUserName;
+    }
+
+    /**
+     * @return PasswordField object
+     */
+    public PasswordField getPf() {
+        return pf;
+    }
+
+    /**
+     * @return login Button object
+     */
+    public Button getBtnLogin() {
+        return btnLogin;
     }
 }

@@ -37,7 +37,7 @@ public class HomeView {
     /* public static void startView(String[] args) {
         //launch(args);
     }*/
-    HomeView(Stage primaryStage) {
+    public HomeView(Stage primaryStage) {
         //Stage stage = new Stage();
         Stage stage = primaryStage;
         stage.setTitle("ATZ Finance Login");
