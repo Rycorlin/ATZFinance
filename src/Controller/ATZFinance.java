@@ -24,8 +24,8 @@ public class ATZFinance {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
 //        Login login = new Login();
-//        LoginController loginController = new LoginController(login);
-        Application.launch(Login.class, args);
+        LoginController loginController = new LoginController(args);
+        
         
         
         
