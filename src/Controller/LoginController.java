@@ -1,7 +1,7 @@
 package Controller;
 
 import View.HomeView;
-import View.Login;
+import View.LoginView;
 import javafx.application.Application;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -10,15 +10,15 @@ public class LoginController {
 
     private String user = "Myliu";
     private String pw = "password";
-    private Login loginView;
+    private LoginView loginView;
     private HomeView hv;
 
-    public LoginController(Login login) {
+    public LoginController(LoginView login) {
         loginView = login;
     }
         public LoginController(String[] args) {
             
-        Application.launch(Login.class, args);
+        Application.launch(LoginView.class, args);
     }
 
     public void login(String username, String password, Stage primaryStage) {

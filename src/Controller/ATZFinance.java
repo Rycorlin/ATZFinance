@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import View.Login;
+import View.LoginView;
 import javafx.application.Application;
 
 //TEST COMMENT

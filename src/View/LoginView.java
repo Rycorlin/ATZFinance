@@ -27,7 +27,7 @@ import javafx.stage.Stage;
  *
  * The login screen for ATZ Finance
  */
-public class Login extends Application {
+public class LoginView extends Application {
 
     private String user = "Myliu";
     private String pw = "password";
