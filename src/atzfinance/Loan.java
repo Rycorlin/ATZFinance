@@ -16,7 +16,6 @@ public class Loan {
     private int term_Length_In_Months;
     private double balance_due;
 
-
     /**
      * This is the default constructor for the Loan class
      */

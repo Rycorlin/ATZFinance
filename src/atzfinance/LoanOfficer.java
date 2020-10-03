@@ -39,7 +39,6 @@ public class LoanOfficer extends User {
      * @param historicalLoans will show loans that have been paid in full under their directive
      * @param employeeID will be used for export purposes so that it can be filed properly
      */
-
     public String getPerformanceMetrics() {
         //TODO: Find a way to accurately portray a metric for performance.
         //This will be using all three of the Loan Officer paramaters (numLoansActive, historicalLoans, and employeeID

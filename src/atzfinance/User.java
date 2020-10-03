@@ -11,7 +11,6 @@ package atzfinance;
  */
 public class User {
 
-
     private String firstName;
     private String lastName;
     private String userName;
@@ -40,7 +39,7 @@ public class User {
     public String getFirstName() {
         return firstName;
     }
- 
+
     /**
      * Sets the first name of the user
      *

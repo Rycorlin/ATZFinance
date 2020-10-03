@@ -71,16 +71,14 @@ public class HomeView {
         border.setTop(hbox);
         border.setLeft(addVBox());
 
-        
-
         //Action for btnLogin
         testOne.setOnAction((ActionEvent event) -> {
 
-                //System.out.print("test");
-                //UserView uv = new UserView(stage, border, hbox);
-                UserView uv = new UserView();
-                
-                uv.start(stage);
+            //System.out.print("test");
+            //UserView uv = new UserView(stage, border, hbox);
+            UserView uv = new UserView();
+
+            uv.start(stage);
 
         });
 

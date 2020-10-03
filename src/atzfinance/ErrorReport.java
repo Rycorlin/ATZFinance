@@ -1,11 +1,11 @@
 package atzfinance;
 
 /**
- * 
+ *
  * A class that generates reports
  */
-
 public class ErrorReport {
+
     private User user;
     private String message;
 
