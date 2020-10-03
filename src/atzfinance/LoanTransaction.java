@@ -12,9 +12,9 @@ package atzfinance;
 public class LoanTransaction {
 
     Loan loan;
-
-    LoanTransaction() {
-
+    
+    LoanTransaction(Loan loan) {
+        this.loan = loan;
     }
 
     //TODO: Write a Loan type check function to check type of loan received as

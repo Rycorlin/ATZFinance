@@ -5,8 +5,10 @@
  */
 package Controller;
 
+import atzfinance.CreditQuery;
 import atzfinance.Customer;
 import atzfinance.IncidentReport;
+import atzfinance.Loan;
 import atzfinance.User;
 
 /**
@@ -33,6 +35,8 @@ public class TestHarness {
         
         ////// CUSTOMER TESTING ////////////////////////////////////////////////////////////////////
         Customer c1 = new Customer();
+        CreditQuery cq = new CreditQuery();
+        //Integer creditScore = Integer.parseInt(cq.getScore());
         c1.setcustomerID(1);
         c1.setNumLoansActive(2);
         c1.setCreditScore(420);
@@ -45,20 +49,57 @@ public class TestHarness {
         ////////////////////////////////////////////////////////////////////////////////////////////
         
         ////// INCIDENT REPORT TESTING /////////////////////////////////////////////////////////////
-        IncidentReport incidentReport1 = new IncidentReport(u2, "Tdawg spilled coffee on Ryan's TPS report");
+        // Default
+        IncidentReport incidentReport1 = new IncidentReport();
+        // user, string args
         IncidentReport incidentReport2 = new IncidentReport(u1, "Ryan put Tdawg's stapler in a bowl of jello");
         
         System.out.println("<<IncidentReport TESTING>>");
-        System.out.print("Incident Report 1 Print: ");
-        incidentReport1.printReport();
+        // set, get user
+        incidentReport1.setUser(u2);
+        System.out.println("Incident 1 User Information, through incident report object: " + incidentReport1.getUser().getFirstName());
+        
+        // set, get message
+        incidentReport1.setMessage("Tdawg spilled coffee on Ryan's TPS report");
+        System.out.println("Incident Report 1 Message: " + incidentReport1.getMessage());
+        
+        // printReport
         System.out.print("Incident Report 2 Print: ");
         incidentReport2.printReport();
-        System.out.println("Incident 2 User Information, through incident report object: " + incidentReport2.getUser().getFirstName());
         
-        
+        // setMessage again, new report.
+        incidentReport2.setMessage("This is a new message...");
+        System.out.println("New message: " + incidentReport2.getMessage());
         
         System.out.println("-------------------------------");
+        ////////////////////////////////////////////////////////////////////////////////////////////
         
+        
+        
+        ////// LOAN TESTING ////////////////////////////////////////////////////////////////////////
+        Loan l1 = new Loan(10.5, 72, 15000);
+        Loan l2 = new Loan(15.0, 60, 12000);
+        Loan l3 = new Loan(24.3, 120, 50000);
+        System.out.println("<<Loan TESTING>>");
+        System.out.println("Loan 1 Terms: Interest Rate = " + l1.getInterest_Rate() + "% ,Term in Months: " + l1.getTerm_Length_In_Months() + " ,Balance Due: " + l1.getBalanceDue());
+        System.out.println("Loan 2 Terms: Interest Rate = " + l2.getInterest_Rate() + "% ,Term in Months: " + l2.getTerm_Length_In_Months() + " ,Balance Due: " + l2.getBalanceDue());
+        System.out.println("Loan 3 Terms: Interest Rate = " + l3.getInterest_Rate() + "% ,Term in Months: " + l3.getTerm_Length_In_Months() + " ,Balance Due: " + l3.getBalanceDue());
+        
+        // New Loan object with changed balance (immutable)
+        Loan newBalanceLoan = l3.setBalanceDue(45000);
+        System.out.println("New Balance Loan Terms: Interest Rate = " + newBalanceLoan.getInterest_Rate() + "% ,Term in Months: " + newBalanceLoan.getTerm_Length_In_Months() + " ,Balance Due: " + newBalanceLoan.getBalanceDue());
+        newBalanceLoan.setInterest_Rate(22.10);
+        newBalanceLoan.setTerm_Length_In_Months(119);
+        System.out.println("New Balance Loan Interest Rate & Length changed: Interest Rate = " + newBalanceLoan.getInterest_Rate() + "% ,Term in Months: " + newBalanceLoan.getTerm_Length_In_Months() + " ,Balance Due: " + newBalanceLoan.getBalanceDue());
+        System.out.println("-------------------------------");
+        ////////////////////////////////////////////////////////////////////////////////////////////
+    
+        
+        ////// CREDIT QUERY TESTING ////////////////////////////////////////////////////////////////
+        CreditQuery cq2 = new CreditQuery();
+        int creditScore = cq2.getScore();
+        System.out.println("Credit score: " + creditScore);
+        ////////////////////////////////////////////////////////////////////////////////////////////
         
         
         System.out.println("<<Login Controller TESTING>>");

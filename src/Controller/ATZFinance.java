@@ -22,7 +22,8 @@ public class ATZFinance {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
 //        Login login = new Login();
-
+//        CreditQuery cq = new CreditQuery();
+//        cq.creditQuery();
         LoginController loginController = new LoginController(args);
         
 
