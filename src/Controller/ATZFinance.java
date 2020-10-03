@@ -7,7 +7,7 @@ package Controller;
 import atzfinance.CreditQuery;
 import View.LoginView;
 import javafx.application.Application;
-
+// Gitignore test
 
 /**
  *
