@@ -8,8 +8,8 @@ import javafx.stage.Stage;
 
 public class LoginController {
 
-    private String user = "Myliu";
-    private String pw = "password";
+    private String user = "";
+    private String pw = "";
     private LoginView loginView;
     private HomeView hv;
 
@@ -18,8 +18,8 @@ public class LoginController {
         Application.launch(LoginView.class, args);
     }
 
-    public LoginController(LoginView login) {
-        loginView = login;
+    public LoginController(LoginView loginview) {
+        loginView = loginview;
     }
 
     public void login(String username, String password, Stage primaryStage) {
