@@ -27,8 +27,8 @@ public class TechSupport extends User {
      * @param user A user object used for reports
      * @return Returns a report for a user
      */
-    public List<ErrorReport> searchErrorReports(User user) {
-        List<ErrorReport> errorReports = new ArrayList<>();
+    public List<IncidentReport> searchErrorReports(User user) {
+        List<IncidentReport> errorReports = new ArrayList<>();
         //search for reports that match user
         return errorReports;
     }

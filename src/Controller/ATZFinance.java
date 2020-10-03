@@ -8,11 +8,6 @@ import atzfinance.CreditQuery;
 import View.LoginView;
 import javafx.application.Application;
 
-//TEST COMMENT
-//Test cOmMeNtxx
-//TEST EdddEGGGY LORD
-// Gitignore test
-
 
 /**
  *
