@@ -8,8 +8,8 @@ import javafx.stage.Stage;
 
 public class LoginController {
 
-    private String user = "Myliu";
-    private String pw = "password";
+    private String user = "";
+    private String pw = "";
     private LoginView loginView;
     private HomeView hv;
 
@@ -18,20 +18,25 @@ public class LoginController {
         Application.launch(LoginView.class, args);
     }
 
-    public LoginController(LoginView login) {
-        loginView = login;
+    public LoginController(LoginView loginView) {
+        this.loginView = loginView;
     }
 
-    public void login(String username, String password, Stage primaryStage) {
+    public boolean login(String username, String password, Stage primaryStage) {
         if (username.equalsIgnoreCase(user) && password.equals(pw)) {
-
             loginView.getLblMessage().setTextFill(Color.GREEN);
             hv = new HomeView(primaryStage);
+            return true;
         } else {
             loginView.getLblMessage().setText("Incorrect user or pw.");
             loginView.getLblMessage().setTextFill(Color.RED);
         }
         loginView.getTxtUserName().setText("");
         loginView.getPf().setText("");
+        return false;
+    }
+
+    public boolean login(String username, String password) {
+        return username.equalsIgnoreCase(user) && password.equals(pw);
     }
 }

@@ -9,6 +9,10 @@ public class IncidentReport {
     private User user;
     private String message;
     
+    public IncidentReport(){
+
+    }
+    
     public IncidentReport(User user, String message) {
         this.user = user;
         this.message = message;

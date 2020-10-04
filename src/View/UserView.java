@@ -8,11 +8,18 @@ package View;
 import atzfinance.User;
 import atzfinance.UserTable;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import static View.HomeView.homeviewVBox;
 
 /**
  *
@@ -24,9 +31,41 @@ public class UserView extends Application {
         Application.launch(args);
     }
 
+    
+    
     @SuppressWarnings("unchecked")
     @Override
     public void start(Stage stage) {
+        
+        
+        // Adding bottom bar and back button
+        BorderPane borderpane = new BorderPane();
+        HBox hbox = new HBox();
+        
+        hbox.setPadding(new Insets(15, 12, 15, 12));
+        hbox.setSpacing(5);
+        hbox.setStyle("-fx-background-color: #336699;");
+        
+        Button backButton = new Button("Back");
+        backButton.setPrefSize(150, 20);
+        hbox.getChildren().addAll(backButton);
+        
+        HBox.setHgrow(backButton, Priority.ALWAYS);
+        
+        borderpane.setBottom(hbox);
+        
+        
+        // Return to HomeView
+        backButton.setOnAction((ActionEvent event) -> {
+            // Why is this line of code necessary?
+            HomeView hv = new HomeView(stage);
+            
+            backButton.getScene().setRoot(homeviewVBox());  
+        });
+        
+        
+        
+        
         // Create a TableView with a list of persons
         TableView<User> table = new TableView<>();
         // Add rows to the TableView
@@ -44,8 +83,8 @@ public class UserView extends Application {
 
         // Create the VBox
         VBox root = new VBox();
-        // Add the Table to the VBox
-        root.getChildren().add(table);
+        // Add the Table, and the borderpane to the VBox
+        root.getChildren().addAll(table, borderpane);
 
         // Set the Padding and Border for the VBox
         root.setStyle("-fx-padding: 10;"
@@ -55,6 +94,8 @@ public class UserView extends Application {
                 + "-fx-border-radius: 5;"
                 + "-fx-border-color: blue;");
 
+        
+        
         // Create the Scene
         Scene scene = new Scene(root);
         // Add the Scene to the Stage

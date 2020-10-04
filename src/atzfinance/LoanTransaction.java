@@ -13,8 +13,13 @@ public class LoanTransaction {
 
     Loan loan;
 
-    public void LoanTransaction(Loan loan) {
-       this.loan = loan;
+    public LoanTransaction(Loan loan) {
+        this.loan = loan;
+
+    }
+    public LoanTransaction() {
+        
+
     }
     
     //TODO: Write a Loan type check function to check type of loan received as

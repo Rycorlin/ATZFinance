@@ -5,6 +5,9 @@
  */
 package View;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -57,28 +60,45 @@ public class HomeView {
         buttonPayment.setPrefSize(150, 20);
         hbox.getChildren().addAll(buttonSummary, buttonPayment);
 
-        Button testOne = new Button("User list");
+        Button userListButton = new Button("User list");
         buttonPayment.setPrefSize(150, 20);
 
-        Button testTwo = new Button("Test 2");
+        Button testTwoButton = new Button("Test 2");
         buttonPayment.setPrefSize(150, 20);
-        hbox.getChildren().addAll(testOne, testTwo);
+        hbox.getChildren().addAll(userListButton, testTwoButton);
 
         HBox.setHgrow(buttonSummary, Priority.ALWAYS);
         HBox.setHgrow(buttonPayment, Priority.ALWAYS);
 
         //bp.setPadding(new Insets(10, 50, 50, 50));
         border.setTop(hbox);
-        border.setLeft(addVBox());
+        border.setLeft(homeviewVBox());
 
         //Action for btnLogin
-        testOne.setOnAction((ActionEvent event) -> {
+        userListButton.setOnAction((ActionEvent event) -> {
 
             //System.out.print("test");
             //UserView uv = new UserView(stage, border, hbox);
             UserView uv = new UserView();
 
             uv.start(stage);
+
+        });
+        
+        //Action for btnLogin
+        buttonSummary.setOnAction((ActionEvent event) -> {
+
+            //System.out.print("test");
+            //UserView uv = new UserView(stage, border, hbox);
+            SummaryView sv = new SummaryView();
+
+            
+            try {
+                // Go to Summary View
+                sv.start(stage);
+            } catch (IOException ex) {
+                Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         });
 
@@ -94,7 +114,7 @@ public class HomeView {
 
     }
 
-    public static VBox addVBox() {
+    public static VBox homeviewVBox() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10));
         vbox.setSpacing(8);

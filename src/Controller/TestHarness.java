@@ -5,6 +5,8 @@
  */
 package Controller;
 
+import View.LoginView;
+import atzfinance.CreditQuery;
 import atzfinance.Customer;
 import atzfinance.IncidentReport;
 import atzfinance.Loan;
@@ -36,6 +38,8 @@ public class TestHarness
 
         ////// CUSTOMER TESTING ////////////////////////////////////////////////////////////////////
         Customer c1 = new Customer();
+        CreditQuery cq = new CreditQuery();
+        //Integer creditScore = Integer.parseInt(cq.getScore());
         c1.setcustomerID(1);
         c1.setNumLoansActive(2);
         c1.setCreditScore(420);
@@ -46,20 +50,26 @@ public class TestHarness
         System.out.println("Customer 1 Credit Score: " + c1.getCreditScore());
         System.out.println("-------------------------------");
         ////////////////////////////////////////////////////////////////////////////////////////////
-
-        ////// LOAN TESTING /////////////////////////////////////////////////////////////
-        Loan l1 = new Loan(10, 72, 15000);
-        Loan l2 = new Loan(15, 60, 12000);
-        Loan l3 = new Loan(24, 120, 50000);
-
+     
+         ////// LOAN TESTING ////////////////////////////////////////////////////////////////////////
+        Loan l1 = new Loan(10.5, 72, 15000);
+        Loan l2 = new Loan(15.0, 60, 12000);
+        Loan l3 = new Loan(24.3, 120, 50000);
         System.out.println("<<Loan TESTING>>");
         System.out.println("Loan 1 Terms: Interest Rate = " + l1.getInterest_Rate() + "% ,Term in Months: " + l1.getTerm_Length_In_Months() + " ,Balance Due: " + l1.getBalanceDue());
         System.out.println("Loan 2 Terms: Interest Rate = " + l2.getInterest_Rate() + "% ,Term in Months: " + l2.getTerm_Length_In_Months() + " ,Balance Due: " + l2.getBalanceDue());
         System.out.println("Loan 3 Terms: Interest Rate = " + l3.getInterest_Rate() + "% ,Term in Months: " + l3.getTerm_Length_In_Months() + " ,Balance Due: " + l3.getBalanceDue());
-        System.out.println("-------------------------------");
 
+        l3.setBalanceDue(45000);
+        System.out.println("New Balance Loan Terms: Interest Rate = " + l3.getInterest_Rate() + "% ,Term in Months: " + l3.getTerm_Length_In_Months() + " ,Balance Due: " + l3.getBalanceDue());
+        l3.setInterest_Rate(22.10);
+        l3.setTerm_Length_In_Months(119);
+        System.out.println("New Balance Loan Interest Rate & Length changed: Interest Rate = " + l3.getInterest_Rate() + "% ,Term in Months: " + l3.getTerm_Length_In_Months() + " ,Balance Due: " + l3.getBalanceDue());
+        System.out.println("-------------------------------");
+      
+       
         ////////////////////////////////////////////////////////////////////////////////////////////
-        ////// LOAN TRANSACTION TESTING /////////////////////////////////////////////////////////////
+        ////// LOAN TRANSACTION TESTING ////////////////////////////////////////////////////////////
         System.out.println("<<Loan Transation TESTING>>");
         System.out.println("***Customer side of making a payment***");
         System.out.println("The Loan Balance for Loan 1 is " + l1.getBalanceDue());
@@ -75,23 +85,54 @@ public class TestHarness
         System.out.println("The new balance = " + l2.getBalanceDue());
 
         System.out.println("-------------------------------");
-        ////////////////////////////////////////////////////////////////////////////////////////////
 
+        ////////////////////////////////////////////////////////////////////////////////////////////
         ////// INCIDENT REPORT TESTING /////////////////////////////////////////////////////////////
-        IncidentReport incidentReport1 = new IncidentReport(u2, "Tdawg spilled coffee on Ryan's TPS report");
+        // Default
+        IncidentReport incidentReport1 = new IncidentReport();
+        // user, string args
         IncidentReport incidentReport2 = new IncidentReport(u1, "Ryan put Tdawg's stapler in a bowl of jello");
 
         System.out.println("<<IncidentReport TESTING>>");
-        System.out.print("Incident Report 1 Print: ");
-        incidentReport1.printReport();
+        // set, get user
+        incidentReport1.setUser(u2);
+        System.out.println("Incident 1 User Information, through incident report object: " + incidentReport1.getUser().getFirstName());
+
+        // set, get message
+        incidentReport1.setMessage("Tdawg spilled coffee on Ryan's TPS report");
+        System.out.println("Incident Report 1 Message: " + incidentReport1.getMessage());
+
+        // printReport
         System.out.print("Incident Report 2 Print: ");
         incidentReport2.printReport();
-        System.out.println("Incident 2 User Information, through incident report object: " + incidentReport2.getUser().getFirstName());
+
+        // setMessage again, new report.
+        incidentReport2.setMessage("This is a new message...");
+        System.out.println("New message: " + incidentReport2.getMessage());
 
         System.out.println("-------------------------------");
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
-        System.out.println("<<Login Controller TESTING>>");
-        LoginController loginController = new LoginController(args);
+ 
+
+        ////// CREDIT QUERY TESTING ////////////////////////////////////////////////////////////////
+        CreditQuery cq2 = new CreditQuery();
+        int creditScore = cq2.getScore();
+        System.out.println("Credit score: " + creditScore);
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        ////// LOGIN CONTROLLER TESTING ////////////////////////////////////////////////////////////////
+        System.out.println("\n<<Login Controller TESTING>>");
+        LoginController loginController = new LoginController(new LoginView());
+
+        System.out.println("Testing login with correct credentials...");
+        System.out.println(loginController.login("", ""));
+        System.out.println("Testing login with incorrect credentials...");
+        System.out.println(loginController.login("user", "pass"));
+
+        //launches the GUI
+        loginController = new LoginController(args);
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
     }
 }
