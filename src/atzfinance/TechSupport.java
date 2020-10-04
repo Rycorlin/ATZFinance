@@ -28,7 +28,7 @@ public class TechSupport extends User {
      * @return Returns a report for a user
      */
     public List<IncidentReport> searchErrorReports(User user) {
-        List<IncidentReport> errorReports = new ArrayList<>();
+        ArrayList<IncidentReport> errorReports = new ArrayList<>();
         //search for reports that match user
         return errorReports;
     }
