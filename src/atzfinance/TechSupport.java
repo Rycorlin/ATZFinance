@@ -29,13 +29,13 @@ public class TechSupport extends User {
      * @param user A user object used for reports
      * @return Returns a report for a user
      */
-    public List<IncidentReport> searchErrorReports(User user) {
+    public ArrayList<IncidentReport> searchErrorReports(User user) {
         searchReports = shellReport.getIncidentReportArray();
-        List<IncidentReport> errorReports = new ArrayList<>();
-            for( IncidentReport incident : searchReports){
-                if (user.equals(incident.getUser())){
-                    errorReports.add(incident);
-                }
+        ArrayList<IncidentReport> errorReports = new ArrayList<>();
+        for( IncidentReport incident : searchReports){
+            if (user.equals(incident.getUser())){
+                errorReports.add(incident);
+            }
         }
         return errorReports;
     }
