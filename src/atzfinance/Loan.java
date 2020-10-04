@@ -19,8 +19,10 @@ public class Loan {
     /**
      * This is the default constructor for the Loan class
      */
-    public Loan() {
-
+    public Loan(long interest_Rate, int term_length_In_months, double balance_due) {
+        this.interest_Rate = interest_Rate;
+        this.term_Length_In_Months = term_Length_In_Months;
+        this.balance_due = balance_due;
     }
 
     /**

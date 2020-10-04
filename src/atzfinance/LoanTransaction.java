@@ -13,10 +13,10 @@ public class LoanTransaction {
 
     Loan loan;
 
-    LoanTransaction() {
-
+    public void LoanTransaction(Loan loan) {
+       this.loan = loan;
     }
-
+    
     //TODO: Write a Loan type check function to check type of loan received as
     // argument and initialize loan object to that type, proceed with below 
     // functions as normal depending on this loan type.
@@ -39,6 +39,6 @@ public class LoanTransaction {
      */
     public void creditAccount(Loan loan, double credit) {
         double tempBalance = loan.getBalanceDue();
-        loan.setBalanceDue(tempBalance + credit);
+        loan.setBalanceDue(tempBalance - credit);
     }
 }
