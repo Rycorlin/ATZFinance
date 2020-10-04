@@ -13,6 +13,8 @@ import atzfinance.Loan;
 import atzfinance.User;
 import atzfinance.LoanOfficer;
 import java.util.ArrayList;
+import atzfinance.TechSupport;
+
 
 /**
  *
@@ -114,6 +116,14 @@ public class TestHarness {
         CreditQuery cq2 = new CreditQuery();
         int creditScore = cq2.getScore();
         System.out.println("Credit score: " + creditScore);
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        
+        ////// TECH SUPPORT TESTING ////////////////////////////////////////////////////////////////
+        TechSupport ts1 = new TechSupport("Ryan", "OHagan", "rjo2880", 978685536);
+        ArrayList<IncidentReport> testResults = ts1.searchErrorReports(u3);
+        for (IncidentReport report : testResults){
+            System.out.println("Name: " + report.getUser().getFirstName() + report.getUser().getLastName() +  " Message: " + report.getMessage());
+        }
         ////////////////////////////////////////////////////////////////////////////////////////////
 
         ////// LOGIN CONTROLLER TESTING ////////////////////////////////////////////////////////////////
