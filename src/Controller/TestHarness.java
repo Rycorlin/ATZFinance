@@ -11,6 +11,8 @@ import atzfinance.Customer;
 import atzfinance.IncidentReport;
 import atzfinance.Loan;
 import atzfinance.User;
+import atzfinance.LoanOfficer;
+import java.util.ArrayList;
 
 /**
  *
@@ -93,6 +95,18 @@ public class TestHarness {
         newBalanceLoan.setTerm_Length_In_Months(119);
         System.out.println("New Balance Loan Interest Rate & Length changed: Interest Rate = " + newBalanceLoan.getInterest_Rate() + "% ,Term in Months: " + newBalanceLoan.getTerm_Length_In_Months() + " ,Balance Due: " + newBalanceLoan.getBalanceDue());
         System.out.println("-------------------------------");
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        
+        ////// LOAN OFFICER TESTING ////////////////////////////////////////////////////////////////
+        LoanOfficer lo1 = new LoanOfficer(12345, "Ryan", "OHagan", "rjo2880", 978685536);
+        lo1.setNumLoansActive(10);
+        ArrayList<Loan> historicalLoanTest = new ArrayList<Loan>();
+        Loan loanTest1 = new Loan(.75, 1, 10.00);
+        historicalLoanTest.add(loanTest1);
+        lo1.setHistoricalLoans(historicalLoanTest);
+        System.out.println("Performance Data " + lo1.getPerformanceMetrics());
+        System.out.println("GetActiveLoans: " + lo1.getNumLoansActive());
+        System.out.println("Get Historical Loans: " + lo1.getHistoricalLoans());
         ////////////////////////////////////////////////////////////////////////////////////////////
     
         
