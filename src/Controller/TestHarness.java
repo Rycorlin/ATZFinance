@@ -11,7 +11,11 @@ import atzfinance.Customer;
 import atzfinance.IncidentReport;
 import atzfinance.Loan;
 import atzfinance.User;
+import atzfinance.LoanOfficer;
+import java.util.ArrayList;
+import atzfinance.TechSupport;
 import atzfinance.LoanTransaction;
+
 
 /**
  *
@@ -113,12 +117,31 @@ public class TestHarness
         System.out.println("-------------------------------");
         ////////////////////////////////////////////////////////////////////////////////////////////
 
- 
+        
+        ////// LOAN OFFICER TESTING ////////////////////////////////////////////////////////////////
+        LoanOfficer lo1 = new LoanOfficer(12345, "Ryan", "OHagan", "rjo2880", 978685536);
+        lo1.setNumLoansActive(10);
+        ArrayList<Loan> historicalLoanTest = new ArrayList<Loan>();
+        Loan loanTest1 = new Loan(.75, 1, 10.00);
+        historicalLoanTest.add(loanTest1);
+        lo1.setHistoricalLoans(historicalLoanTest);
+        System.out.println("Performance Data " + lo1.getPerformanceMetrics());
+        System.out.println("GetActiveLoans: " + lo1.getNumLoansActive());
+        System.out.println("Get Historical Loans: " + lo1.getHistoricalLoans());
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
         ////// CREDIT QUERY TESTING ////////////////////////////////////////////////////////////////
         CreditQuery cq2 = new CreditQuery();
         int creditScore = cq2.getScore();
         System.out.println("Credit score: " + creditScore);
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        
+        ////// TECH SUPPORT TESTING ////////////////////////////////////////////////////////////////
+        TechSupport ts1 = new TechSupport("Ryan", "OHagan", "rjo2880", 978685536);
+        ArrayList<IncidentReport> testResults = ts1.searchErrorReports(u3);
+        for (IncidentReport report : testResults){
+            System.out.println("Name: " + report.getUser().getFirstName() + report.getUser().getLastName() +  " Message: " + report.getMessage());
+        }
         ////////////////////////////////////////////////////////////////////////////////////////////
 
         ////// LOGIN CONTROLLER TESTING ////////////////////////////////////////////////////////////////

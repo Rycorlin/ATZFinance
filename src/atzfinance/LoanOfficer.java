@@ -40,9 +40,8 @@ public class LoanOfficer extends User {
      * @param employeeID will be used for export purposes so that it can be filed properly
      */
     public String getPerformanceMetrics() {
-        //TODO: Find a way to accurately portray a metric for performance.
-        //This will be using all three of the Loan Officer paramaters (numLoansActive, historicalLoans, and employeeID
-        return "placeholder";
+        String performanceData = "Performance data for EMPL ID: " + employeeID + "/# of Active Loans: " + numLoansActive + "/# of Historical Loans: " + historicalLoans.size();
+        return performanceData;
     }
 
     /**
