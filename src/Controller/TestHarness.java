@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import View.LoginView;
 import atzfinance.CreditQuery;
 import atzfinance.Customer;
 import atzfinance.IncidentReport;
@@ -100,13 +101,19 @@ public class TestHarness {
         int creditScore = cq2.getScore();
         System.out.println("Credit score: " + creditScore);
         ////////////////////////////////////////////////////////////////////////////////////////////
-        
-        
-        System.out.println("<<Login Controller TESTING>>");
-        LoginController loginController = new LoginController(args);
-        
-        
-        
+
+        ////// LOGIN CONTROLLER TESTING ////////////////////////////////////////////////////////////////
+        System.out.println("\n<<Login Controller TESTING>>");
+        LoginController loginController = new LoginController(new LoginView());
+
+        System.out.println("Testing login with correct credentials...");
+        System.out.println(loginController.login("", ""));
+        System.out.println("Testing login with incorrect credentials...");
+        System.out.println(loginController.login("user", "pass"));
+
+        //launches the GUI
+        loginController = new LoginController(args);
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
     }
 }
