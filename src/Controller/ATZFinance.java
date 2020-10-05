@@ -20,9 +20,7 @@ public class ATZFinance {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
-        LoginController loginController = new LoginController(args);
-        
-
+        LoginController loginController = new LoginController(args); 
     }
 
 }

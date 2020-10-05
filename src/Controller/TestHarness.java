@@ -15,6 +15,9 @@ import atzfinance.LoanOfficer;
 import java.util.ArrayList;
 import atzfinance.TechSupport;
 import atzfinance.LoanTransaction;
+import atzfinance.UserTable;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 
 
 /**
@@ -84,8 +87,8 @@ public class TestHarness
 
         System.out.println("***Employee side of crediting an account***");
         LoanTransaction lt2 = new LoanTransaction();
-        lt2.creditAccount(l2, 2000.0);
-        System.out.println("The account has been credited $2000.");
+        lt2.increaseBalance(l2, 2000.0);
+        System.out.println("The account has been increased by $2000.");
         System.out.println("The new balance = " + l2.getBalanceDue());
 
         System.out.println("-------------------------------");
@@ -156,6 +159,32 @@ public class TestHarness
         //launches the GUI
         loginController = new LoginController(args);
         ////////////////////////////////////////////////////////////////////////////////////////////
-
+        
+        
+        ////// USER TABLE TESTING //////////////////////////////////////////////////////////////////
+        System.out.println("Creating new table...");
+        TableView<User> table = new TableView<>(); 
+        
+        System.out.println("Adding list of persons to new table");
+        table.getItems().addAll(UserTable.getPersonList());
+        System.out.println("First name of first person on list should be Ryan. Result:" + table.getItems().get(0).getFirstName());
+        
+        
+        System.out.println("\nAdding First Name Column to Table");
+        table.getColumns().addAll(UserTable.getFirstNameColumn());
+        System.out.println("First name of 2nd person on list should be Ted.  Result: "+table.getColumns().get(0).getCellData(1).toString());
+        
+        System.out.println("\nAdding Last Name Column to Table");
+        table.getColumns().addAll(UserTable.getLastNameColumn());
+        System.out.println("Last name of 1st person on list should be Milici.  Result: "+table.getColumns().get(1).getCellData(0).toString());
+        
+        System.out.println("\nAdding Username Column to Table");
+        table.getColumns().addAll(UserTable.getUserNameColumn());
+        System.out.println("Username of 3rd person on list should be Jman.  Result: "+table.getColumns().get(2).getCellData(2).toString());
+        
+        System.out.println("\nAdding Social Security Column to Table");
+        table.getColumns().addAll(UserTable.getSocialSecurityColumn());
+        System.out.println("Social Security Number of 1st person on list should be 12312412.  Result: "+table.getColumns().get(3).getCellData(0).toString());
+        ////////////////////////////////////////////////////////////////////////////////////////////
     }
 }
