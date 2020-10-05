@@ -19,28 +19,25 @@ import atzfinance.UserTable;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 
-
 /**
  *
  * @author rycor
  */
-public class TestHarness
-{
+public class TestHarness {
 
-    public static void main(String[] args) throws Exception
-    {
+    public static void main(String[] args) throws Exception {
 
         ////// USER TESTING ////////////////////////////////////////////////////////////////////////
         User u1 = new User("Ryan", "Milici", "Myliu", 12312412);
         User u2 = new User("Ted", "Tedson", "Tdawg", 223412);
         User u3 = new User("John", "Johnson", "Jman", 00123);
 
-        System.out.println("<<USER TESTING>>");
+        System.out.println("<<User TESTING>>");
         System.out.println("Testing User First Name: " + u1.getFirstName());
         System.out.println("Testing User Last Name: " + u1.getLastName());
         System.out.println("Testing User's User Name: " + u1.getUserName());
         System.out.println("Testing User Social Security: " + u1.getSocialSecurityNumber());
-        System.out.println("-------------------------------");
+        System.out.println("--------------------------------------------------------------");        
         ////////////////////////////////////////////////////////////////////////////////////////////
 
         ////// CUSTOMER TESTING ////////////////////////////////////////////////////////////////////
@@ -55,10 +52,10 @@ public class TestHarness
         System.out.println("Customer 1 User ID: " + c1.getcustomerID());
         System.out.println("Customer 1 Number of loans active: " + c1.getNumLoansActive());
         System.out.println("Customer 1 Credit Score: " + c1.getCreditScore());
-        System.out.println("-------------------------------");
+        System.out.println("--------------------------------------------------------------");
         ////////////////////////////////////////////////////////////////////////////////////////////
-     
-         ////// LOAN TESTING ////////////////////////////////////////////////////////////////////////
+
+        ////// LOAN TESTING ///////////////////////////////////////////////////////////////////////
         Loan l1 = new Loan(10.5, 72, 15000);
         Loan l2 = new Loan(15.0, 60, 12000);
         Loan l3 = new Loan(24.3, 120, 50000);
@@ -72,10 +69,9 @@ public class TestHarness
         l3.setInterest_Rate(22.10);
         l3.setTerm_Length_In_Months(119);
         System.out.println("New Balance Loan Interest Rate & Length changed: Interest Rate = " + l3.getInterest_Rate() + "% ,Term in Months: " + l3.getTerm_Length_In_Months() + " ,Balance Due: " + l3.getBalanceDue());
-        System.out.println("-------------------------------");
-      
-       
+        System.out.println("--------------------------------------------------------------");
         ////////////////////////////////////////////////////////////////////////////////////////////
+
         ////// LOAN TRANSACTION TESTING ////////////////////////////////////////////////////////////
         System.out.println("<<Loan Transation TESTING>>");
         System.out.println("***Customer side of making a payment***");
@@ -91,16 +87,16 @@ public class TestHarness
         System.out.println("The account has been increased by $2000.");
         System.out.println("The new balance = " + l2.getBalanceDue());
 
-        System.out.println("-------------------------------");
-
+        System.out.println("--------------------------------------------------------------");
         ////////////////////////////////////////////////////////////////////////////////////////////
+
         ////// INCIDENT REPORT TESTING /////////////////////////////////////////////////////////////
+        System.out.println("<<IncidentReport TESTING>>");
         // Default
         IncidentReport incidentReport1 = new IncidentReport();
         // user, string args
         IncidentReport incidentReport2 = new IncidentReport(u1, "Ryan put Tdawg's stapler in a bowl of jello");
 
-        System.out.println("<<IncidentReport TESTING>>");
         // set, get user
         incidentReport1.setUser(u2);
         System.out.println("Incident 1 User Information, through incident report object: " + incidentReport1.getUser().getFirstName());
@@ -117,11 +113,11 @@ public class TestHarness
         incidentReport2.setMessage("This is a new message...");
         System.out.println("New message: " + incidentReport2.getMessage());
 
-        System.out.println("-------------------------------");
+        System.out.println("--------------------------------------------------------------");
         ////////////////////////////////////////////////////////////////////////////////////////////
 
-        
         ////// LOAN OFFICER TESTING ////////////////////////////////////////////////////////////////
+        System.out.println("<<LoanOfficer TESTING>>");
         LoanOfficer lo1 = new LoanOfficer(12345, "Ryan", "OHagan", "rjo2880", 978685536);
         lo1.setNumLoansActive(10);
         ArrayList<Loan> historicalLoanTest = new ArrayList<Loan>();
@@ -131,24 +127,29 @@ public class TestHarness
         System.out.println("Performance Data " + lo1.getPerformanceMetrics());
         System.out.println("GetActiveLoans: " + lo1.getNumLoansActive());
         System.out.println("Get Historical Loans: " + lo1.getHistoricalLoans());
+        System.out.println("--------------------------------------------------------------");
         ////////////////////////////////////////////////////////////////////////////////////////////
 
         ////// CREDIT QUERY TESTING ////////////////////////////////////////////////////////////////
+        System.out.println("<<CreditQuery TESTING>>");
         CreditQuery cq2 = new CreditQuery();
         int creditScore = cq2.getScore();
         System.out.println("Credit score: " + creditScore);
-        ////////////////////////////////////////////////////////////////////////////////////////////
-        
-        ////// TECH SUPPORT TESTING ////////////////////////////////////////////////////////////////
-        TechSupport ts1 = new TechSupport("Ryan", "OHagan", "rjo2880", 978685536);
-        ArrayList<IncidentReport> testResults = ts1.searchErrorReports(u3);
-        for (IncidentReport report : testResults){
-            System.out.println("Name: " + report.getUser().getFirstName() + report.getUser().getLastName() +  " Message: " + report.getMessage());
-        }
+        System.out.println("--------------------------------------------------------------");
         ////////////////////////////////////////////////////////////////////////////////////////////
 
-        ////// LOGIN CONTROLLER TESTING ////////////////////////////////////////////////////////////////
-        System.out.println("\n<<Login Controller TESTING>>");
+        ////// TECH SUPPORT TESTING ////////////////////////////////////////////////////////////////
+        System.out.println("<<TechSupport TESTING>>");
+        TechSupport ts1 = new TechSupport("Ryan", "OHagan", "rjo2880", 978685536);
+        ArrayList<IncidentReport> testResults = ts1.searchErrorReports(u3);
+        for (IncidentReport report : testResults) {
+            System.out.println("Name: " + report.getUser().getFirstName() + report.getUser().getLastName() + " Message: " + report.getMessage());
+        }
+        System.out.println("--------------------------------------------------------------");
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        ////// LOGIN CONTROLLER TESTING ////////////////////////////////////////////////////////////
+        System.out.println("\n<<LoginController TESTING>>");
         LoginController loginController = new LoginController(new LoginView());
 
         System.out.println("Testing login with correct credentials...");
@@ -158,33 +159,34 @@ public class TestHarness
 
         //launches the GUI
         loginController = new LoginController(args);
+        System.out.println("--------------------------------------------------------------");
         ////////////////////////////////////////////////////////////////////////////////////////////
-        
-        
+
         ////// USER TABLE TESTING //////////////////////////////////////////////////////////////////
-        System.out.println("Creating new table...");
-        TableView<User> table = new TableView<>(); 
-        
+        System.out.println("<<UserTable TESTING>>");
+        TableView<User> table = new TableView<>();
+
         System.out.println("Adding list of persons to new table");
         table.getItems().addAll(UserTable.getPersonList());
         System.out.println("First name of first person on list should be Ryan. Result:" + table.getItems().get(0).getFirstName());
-        
-        
+
         System.out.println("\nAdding First Name Column to Table");
         table.getColumns().addAll(UserTable.getFirstNameColumn());
-        System.out.println("First name of 2nd person on list should be Ted.  Result: "+table.getColumns().get(0).getCellData(1).toString());
-        
+        System.out.println("First name of 2nd person on list should be Ted.  Result: " + table.getColumns().get(0).getCellData(1).toString());
+
         System.out.println("\nAdding Last Name Column to Table");
         table.getColumns().addAll(UserTable.getLastNameColumn());
-        System.out.println("Last name of 1st person on list should be Milici.  Result: "+table.getColumns().get(1).getCellData(0).toString());
-        
+        System.out.println("Last name of 1st person on list should be Milici.  Result: " + table.getColumns().get(1).getCellData(0).toString());
+
         System.out.println("\nAdding Username Column to Table");
         table.getColumns().addAll(UserTable.getUserNameColumn());
-        System.out.println("Username of 3rd person on list should be Jman.  Result: "+table.getColumns().get(2).getCellData(2).toString());
-        
+        System.out.println("Username of 3rd person on list should be Jman.  Result: " + table.getColumns().get(2).getCellData(2).toString());
+
         System.out.println("\nAdding Social Security Column to Table");
         table.getColumns().addAll(UserTable.getSocialSecurityColumn());
-        System.out.println("Social Security Number of 1st person on list should be 12312412.  Result: "+table.getColumns().get(3).getCellData(0).toString());
+        System.out.println("Social Security Number of 1st person on list should be 12312412.  Result: " + table.getColumns().get(3).getCellData(0).toString());
+        System.out.println("--------------------------------------------------------------");
         ////////////////////////////////////////////////////////////////////////////////////////////
+
     }
 }
