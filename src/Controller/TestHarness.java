@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import atzfinance.TechSupport;
 import atzfinance.LoanTransaction;
 import atzfinance.UserTable;
-import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 
 /**
@@ -120,7 +119,7 @@ public class TestHarness {
         System.out.println("<<LoanOfficer TESTING>>");
         LoanOfficer lo1 = new LoanOfficer(12345, "Ryan", "OHagan", "rjo2880", 978685536);
         lo1.setNumLoansActive(10);
-        ArrayList<Loan> historicalLoanTest = new ArrayList<Loan>();
+        ArrayList<Loan> historicalLoanTest = new ArrayList<>();
         Loan loanTest1 = new Loan(.75, 1, 10.00);
         historicalLoanTest.add(loanTest1);
         lo1.setHistoricalLoans(historicalLoanTest);
@@ -141,9 +140,14 @@ public class TestHarness {
         ////// TECH SUPPORT TESTING ////////////////////////////////////////////////////////////////
         System.out.println("<<TechSupport TESTING>>");
         TechSupport ts1 = new TechSupport("Ryan", "OHagan", "rjo2880", 978685536);
-        ArrayList<IncidentReport> testResults = ts1.searchErrorReports(u3);
-        for (IncidentReport report : testResults) {
-            System.out.println("Name: " + report.getUser().getFirstName() + report.getUser().getLastName() + " Message: " + report.getMessage());
+        
+        ArrayList<IncidentReport> testReportList = new ArrayList<>();
+        testReportList.add(incidentReport1);//THESE ARE INCIDENT REPORTS CREATED ABOVE IN THE INCIDENT REPORT TESTING!
+        testReportList.add(incidentReport2);//THESE ARE INCIDENT REPORTS CREATED ABOVE IN THE INCIDENT REPORT TESTING!
+        
+        ArrayList<IncidentReport> testResults = ts1.getUserIncidentReports(u1,testReportList);
+        for (IncidentReport report : testResults){
+            System.out.println("Name: " + report.getUser().getFirstName() +" "+ report.getUser().getLastName() +  " Message: " + report.getMessage());
         }
         System.out.println("--------------------------------------------------------------");
         ////////////////////////////////////////////////////////////////////////////////////////////
