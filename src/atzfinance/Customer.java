@@ -6,13 +6,17 @@ import java.util.ArrayList;
  *
  * Contains customers that may have active loans
  */
-public class Customer {
+public class Customer extends User{
 
     private int customerID;
     private int numLoansActive;
     private ArrayList<Loan> activeLoanArray = new ArrayList<Loan>();
     private int creditScore;
 
+    public Customer(String firstName, String lastName, String userName, Integer socialSecurityNumber)
+    {
+        super(firstName,lastName,userName,socialSecurityNumber);
+    }
     /**
      * Returns the customer ID
      *
