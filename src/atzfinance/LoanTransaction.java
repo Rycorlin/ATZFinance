@@ -44,7 +44,11 @@ public class LoanTransaction {
      * @param loan is the loan we are crediting.
      * @param credit is the amount credited to the account.
      */
+
     public void creditAccount(LoanTemplate loan, double credit) {
+        double tempBalance = loan.setAmount();
+}
+    public void increaseBalance(LoanTemplate loan, double credit) {
         double tempBalance = loan.setAmount();
         loan.setBalanceDue(tempBalance - credit);
     }

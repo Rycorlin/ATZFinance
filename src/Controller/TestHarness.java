@@ -79,7 +79,7 @@ public class TestHarness
         System.out.println(" ");
 
         System.out.println("***Employee side of crediting an account***");
-        System.out.println("The Initial Loan Balance for Car Loan 1 is " + cl1.setAmount());
+        System.out.println("The Initial Loan Balance for Car Loan 1 is " + pl1.setAmount());
         LoanTransaction lt2 = new LoanTransaction();
         lt2.creditAccount(cl1, 2000.0);
         System.out.println("The account has been credited $2000.");

@@ -7,9 +7,9 @@ import java.util.*;
  * A sub user class that handles tech-support users
  */
 public class TechSupport extends User {
-    private ArrayList<IncidentReport> searchReports = new ArrayList<>();
+
     private User nullTest = new User("nullTest", "nullTest", "nullTest", 123456789);
-    private IncidentReport shellReport = new IncidentReport(nullTest, "shell");
+
     /**
      *
      *
@@ -29,8 +29,8 @@ public class TechSupport extends User {
      * @param user A user object used for reports
      * @return Returns a report for a user
      */
-    public ArrayList<IncidentReport> searchErrorReports(User user) {
-        searchReports = shellReport.getIncidentReportArray();
+
+    public ArrayList<IncidentReport> getUserIncidentReports(User user, ArrayList<IncidentReport> searchReports) {
         ArrayList<IncidentReport> errorReports = new ArrayList<>();
         for( IncidentReport incident : searchReports){
             if (user.equals(incident.getUser())){
