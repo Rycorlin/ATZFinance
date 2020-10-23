@@ -1,8 +1,14 @@
 package Controller;
 
+import View.CreateAccountView;
 import View.HomeView;
 import View.LoginView;
+import atzfinance.Customer;
+import atzfinance.User;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -12,9 +18,10 @@ public class LoginController {
     private String pw = "";
     private LoginView loginView;
     private HomeView hv;
+    private CreateAccountView newAccount;
 
     public LoginController(String[] args) {
-        
+
         Application.launch(LoginView.class, args);
     }
 
@@ -39,4 +46,26 @@ public class LoginController {
     public boolean login(String username, String password) {
         return username.equalsIgnoreCase(user) && password.equals(pw);
     }
+
+    //From loginview open up new CreateAccountView UI when creating new account
+    public void createAcount(Stage primaryStage) throws Exception {
+        newAccount = new CreateAccountView();
+        newAccount.start(primaryStage);
+
+        //Action on click "Create Account" for new account sends to LoginController
+        newAccount.register.setOnAction((ActionEvent event) -> {
+            
+            User newUser = new User(newAccount.getFirstName(), newAccount.getLastName(), newAccount.getUsername(), 10);
+            
+            System.out.println(newUser.getFirstName());
+            System.out.println(newUser.getLastName());
+            System.out.println(newUser.getUserName());
+            
+            
+          //  this.login(user, user, primaryStage); Do we setup auto login after register or send them to LoginView to login
+
+        });
+
+    }
+
 }
