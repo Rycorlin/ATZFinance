@@ -66,7 +66,7 @@ public class UserView extends Application {
         
         
         
-        // Create a TableView with a list of persons
+        // Create a TableView with a list of customers
         TableView<User> table = new TableView<>();
         // Add rows to the TableView
         table.getItems().addAll(UserTable.getPersonList());
