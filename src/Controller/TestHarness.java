@@ -43,7 +43,7 @@ public class TestHarness
         ////////////////////////////////////////////////////////////////////////////////////////////
 
         ////// CUSTOMER TESTING ////////////////////////////////////////////////////////////////////
-        Customer c1 = new Customer();
+        /*Customer c1 = new Customer();
         CreditQuery cq = new CreditQuery();
         //Integer creditScore = Integer.parseInt(cq.getScore());
         c1.setcustomerID(1);
@@ -54,7 +54,7 @@ public class TestHarness
         System.out.println("Customer 1 User ID: " + c1.getcustomerID());
         System.out.println("Customer 1 Number of loans active: " + c1.getNumLoansActive());
         System.out.println("Customer 1 Credit Score: " + c1.getCreditScore());
-        System.out.println("-------------------------------");
+        System.out.println("-------------------------------");*/
         ////////////////////////////////////////////////////////////////////////////////////////////
      
          ////// LOANTEMPLATE TESTING ////////////////////////////////////////////////////////////////////////
@@ -135,11 +135,11 @@ public class TestHarness
         
         ////// TECH SUPPORT TESTING ////////////////////////////////////////////////////////////////
         TechSupport ts1 = new TechSupport("Ryan", "OHagan", "rjo2880", 978685536);
-        ArrayList<IncidentReport> testResults = ts1.searchErrorReports(u3);
-        testResults.forEach((report) ->
-        {
-            System.out.println("Name: " + report.getUser().getFirstName() + report.getUser().getLastName() +  " Message: " + report.getMessage());
-        }); ////////////////////////////////////////////////////////////////////////////////////////////
+       // ArrayList<IncidentReport> testResults = ts1.searchErrorReports(u3);
+       // testResults.forEach((report) ->
+        //{
+        //    System.out.println("Name: " + report.getUser().getFirstName() + report.getUser().getLastName() +  " Message: " + report.getMessage());
+        //}); ////////////////////////////////////////////////////////////////////////////////////////////
 
         ////// LOGIN CONTROLLER TESTING ////////////////////////////////////////////////////////////////
         System.out.println("\n<<Login Controller TESTING>>");
