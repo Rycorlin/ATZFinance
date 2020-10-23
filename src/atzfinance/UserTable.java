@@ -5,6 +5,9 @@
  */
 package atzfinance;
 
+import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.Iterator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -18,11 +21,40 @@ public class UserTable {
 
     // Returns an observable list of persons
     public static ObservableList<User> getPersonList() {
-        User u1 = new User("Ryan", "Milici", "Myliu", 12312412);
-        User u2 = new User("Ted", "Tedson", "Tdawg", 223412);
-        User u3 = new User("John", "Johnson", "Jman", 00123);
+        Customer u0 = new Customer("Ryan", "Milici", "Myliu", 12312412, false);
+        Customer u1 = new Customer("Ted", "Tedson", "Tdawg", 223412, true);
+        Customer u2 = new Customer("John", "Johnson", "Jman", 00123, false);
+        Customer u3 = new Customer("Rick", "Roll", "MrLate", 2232114, true);
 
-        return FXCollections.<User>observableArrayList(u1, u2, u3);
+        ArrayList<Customer> customerList = new ArrayList<>();
+
+        ArrayList<Customer> lateCustomers = new ArrayList<>();
+        
+
+        customerList.add(u0);
+        customerList.add(u1);
+        customerList.add(u2);
+        customerList.add(u3);
+
+        for (Customer u : customerList) {
+            if (u.isLatePayment() == true) {
+                lateCustomers.add(u);
+            }
+        }
+
+        Iterator<Customer> iter = lateCustomers.iterator();
+
+        while (iter.hasNext()) {
+            Customer element = iter.next();
+            System.out.println(element.getFirstName() + " " + element.getLastName() + " -- Late!!");
+        }
+        System.out.println();
+
+        lateCustomers.addAll(FXCollections.observableArrayList());
+        
+        
+        //return lateCustomers.addAll(FXCollections.observableArrayList());
+        return FXCollections.<User>observableArrayList(u0, u1, u2, u3);
     }
 
     // Returns User First Name TableColumn
