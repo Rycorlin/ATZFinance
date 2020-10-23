@@ -11,9 +11,9 @@ package atzfinance;
  */
 public class LoanTransaction {
 
-    Loan loan;
+    LoanTemplate loan;
 
-    public LoanTransaction(Loan loan) {
+    public LoanTransaction(LoanTemplate loan) {
         this.loan = loan;
 
     }
@@ -31,8 +31,10 @@ public class LoanTransaction {
      * @param loan is the loan we are making a payment on.
      * @param payment is the amount being paid on the loan.
      */
-    public void makePayment(Loan loan, double payment) {
-        double tempBalance = loan.getBalanceDue();
+    //"Loan" will have to be changed to a specific loan type ie personal or car
+    
+    public void makePayment(LoanTemplate loan, double payment) {
+        double tempBalance = loan.setAmount();
         loan.setBalanceDue(tempBalance - payment);
     }
 
@@ -42,8 +44,8 @@ public class LoanTransaction {
      * @param loan is the loan we are crediting.
      * @param credit is the amount credited to the account.
      */
-    public void creditAccount(Loan loan, double credit) {
-        double tempBalance = loan.getBalanceDue();
+    public void creditAccount(LoanTemplate loan, double credit) {
+        double tempBalance = loan.setAmount();
         loan.setBalanceDue(tempBalance - credit);
     }
 }

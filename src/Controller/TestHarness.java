@@ -9,12 +9,14 @@ import View.LoginView;
 import atzfinance.CreditQuery;
 import atzfinance.Customer;
 import atzfinance.IncidentReport;
-import atzfinance.Loan;
 import atzfinance.User;
 import atzfinance.LoanOfficer;
+import atzfinance.LoanTemplate;
 import java.util.ArrayList;
 import atzfinance.TechSupport;
 import atzfinance.LoanTransaction;
+import atzfinance.carLoan;
+import atzfinance.personalLoan;
 
 
 /**
@@ -55,20 +57,14 @@ public class TestHarness
         System.out.println("-------------------------------");
         ////////////////////////////////////////////////////////////////////////////////////////////
      
-         ////// LOAN TESTING ////////////////////////////////////////////////////////////////////////
-        Loan l1 = new Loan(10.5, 72, 15000);
-        Loan l2 = new Loan(15.0, 60, 12000);
-        Loan l3 = new Loan(24.3, 120, 50000);
+         ////// LOANTEMPLATE TESTING ////////////////////////////////////////////////////////////////////////
         System.out.println("<<Loan TESTING>>");
-        System.out.println("Loan 1 Terms: Interest Rate = " + l1.getInterest_Rate() + "% ,Term in Months: " + l1.getTerm_Length_In_Months() + " ,Balance Due: " + l1.getBalanceDue());
-        System.out.println("Loan 2 Terms: Interest Rate = " + l2.getInterest_Rate() + "% ,Term in Months: " + l2.getTerm_Length_In_Months() + " ,Balance Due: " + l2.getBalanceDue());
-        System.out.println("Loan 3 Terms: Interest Rate = " + l3.getInterest_Rate() + "% ,Term in Months: " + l3.getTerm_Length_In_Months() + " ,Balance Due: " + l3.getBalanceDue());
-
-        l3.setBalanceDue(45000);
-        System.out.println("New Balance Loan Terms: Interest Rate = " + l3.getInterest_Rate() + "% ,Term in Months: " + l3.getTerm_Length_In_Months() + " ,Balance Due: " + l3.getBalanceDue());
-        l3.setInterest_Rate(22.10);
-        l3.setTerm_Length_In_Months(119);
-        System.out.println("New Balance Loan Interest Rate & Length changed: Interest Rate = " + l3.getInterest_Rate() + "% ,Term in Months: " + l3.getTerm_Length_In_Months() + " ,Balance Due: " + l3.getBalanceDue());
+        System.out.println("Personal Loan Example");
+        personalLoan pl1 = new personalLoan(718, 2, 3);
+        System.out.println("your personal loan interest rate is " + pl1.setInterestRate() + "%, your term length is " + pl1.setTerm() + "months, your amount borrowed is " + pl1.setAmount());
+        System.out.println("Car Loan Example");
+        carLoan cl1 = new carLoan(615, 3, 2);
+        System.out.println("your car loan is for $" + cl1.setAmount() + " at an interest rate of " + cl1.setInterestRate() + "% for " + cl1.setTerm() + "months");
         System.out.println("-------------------------------");
       
        
@@ -76,17 +72,18 @@ public class TestHarness
         ////// LOAN TRANSACTION TESTING ////////////////////////////////////////////////////////////
         System.out.println("<<Loan Transation TESTING>>");
         System.out.println("***Customer side of making a payment***");
-        System.out.println("The Loan Balance for Loan 1 is " + l1.getBalanceDue());
+        System.out.println("The Loan Balance for Perosnal Loan 1 is " + pl1.setAmount());
         LoanTransaction lt1 = new LoanTransaction();
-        lt1.makePayment(l1, 200.0);
-        System.out.println("Thank you for your $200 payment. Your new balance = " + l1.getBalanceDue());
+        lt1.makePayment(pl1, 200.0);
+        System.out.println("Thank you for your $200 payment. Your new balance = " + pl1.getBalanceDue());
         System.out.println(" ");
 
         System.out.println("***Employee side of crediting an account***");
+        System.out.println("The Initial Loan Balance for Car Loan 1 is " + cl1.setAmount());
         LoanTransaction lt2 = new LoanTransaction();
-        lt2.creditAccount(l2, 2000.0);
+        lt2.creditAccount(cl1, 2000.0);
         System.out.println("The account has been credited $2000.");
-        System.out.println("The new balance = " + l2.getBalanceDue());
+        System.out.println("The new balance = " + cl1.getBalanceDue());
 
         System.out.println("-------------------------------");
 
@@ -121,8 +118,8 @@ public class TestHarness
         ////// LOAN OFFICER TESTING ////////////////////////////////////////////////////////////////
         LoanOfficer lo1 = new LoanOfficer(12345, "Ryan", "OHagan", "rjo2880", 978685536);
         lo1.setNumLoansActive(10);
-        ArrayList<Loan> historicalLoanTest = new ArrayList<Loan>();
-        Loan loanTest1 = new Loan(.75, 1, 10.00);
+        ArrayList<LoanTemplate> historicalLoanTest = new ArrayList<>();
+        personalLoan loanTest1 = new personalLoan(719, 1, 3);
         historicalLoanTest.add(loanTest1);
         lo1.setHistoricalLoans(historicalLoanTest);
         System.out.println("Performance Data " + lo1.getPerformanceMetrics());
@@ -139,10 +136,10 @@ public class TestHarness
         ////// TECH SUPPORT TESTING ////////////////////////////////////////////////////////////////
         TechSupport ts1 = new TechSupport("Ryan", "OHagan", "rjo2880", 978685536);
         ArrayList<IncidentReport> testResults = ts1.searchErrorReports(u3);
-        for (IncidentReport report : testResults){
+        testResults.forEach((report) ->
+        {
             System.out.println("Name: " + report.getUser().getFirstName() + report.getUser().getLastName() +  " Message: " + report.getMessage());
-        }
-        ////////////////////////////////////////////////////////////////////////////////////////////
+        }); ////////////////////////////////////////////////////////////////////////////////////////////
 
         ////// LOGIN CONTROLLER TESTING ////////////////////////////////////////////////////////////////
         System.out.println("\n<<Login Controller TESTING>>");

@@ -10,7 +10,7 @@ public class Customer {
 
     private int customerID;
     private int numLoansActive;
-    private ArrayList<Loan> activeLoanArray = new ArrayList<Loan>();
+    private ArrayList<LoanTemplate> activeLoanArray = new ArrayList<>();
     private int creditScore;
 
     /**
@@ -49,11 +49,11 @@ public class Customer {
         numLoansActive = newLoanNum;
     }
 
-    public ArrayList<Loan> getActiveLoanArray() {
+    public ArrayList<LoanTemplate> getActiveLoanArray() {
         return activeLoanArray;
     }
 
-    public void setActiveLoanArray(ArrayList<Loan> loanArray) {
+    public void setActiveLoanArray(ArrayList<LoanTemplate> loanArray) {
         activeLoanArray = loanArray;
     }
 

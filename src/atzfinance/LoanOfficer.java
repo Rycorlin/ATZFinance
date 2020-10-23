@@ -16,7 +16,7 @@ public class LoanOfficer extends User {
 
     private int employeeID;
     private int numLoansActive;
-    private ArrayList<Loan> historicalLoans = new ArrayList<Loan>();
+    private ArrayList<LoanTemplate> historicalLoans = new ArrayList<>();
 
     /**
      *
@@ -75,14 +75,14 @@ public class LoanOfficer extends User {
     /**
      * @return the historicalLoans
      */
-    public ArrayList<Loan> getHistoricalLoans() {
+    public ArrayList<LoanTemplate> getHistoricalLoans() {
         return historicalLoans;
     }
 
     /**
      * @param historicalLoans the historicalLoans to set
      */
-    public void setHistoricalLoans(ArrayList<Loan> historicalLoans) {
+    public void setHistoricalLoans(ArrayList<LoanTemplate> historicalLoans) {
         this.historicalLoans = historicalLoans;
     }
 
