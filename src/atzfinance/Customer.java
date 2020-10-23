@@ -12,10 +12,13 @@ public class Customer extends User{
     private int numLoansActive;
     private ArrayList<LoanTemplate> activeLoanArray = new ArrayList<>();
     private int creditScore;
+    private boolean latePayment = false;
 
-    public Customer(String firstName, String lastName, String userName, Integer socialSecurityNumber)
+    public Customer(String firstName, String lastName, String userName, Integer socialSecurityNumber, boolean latePayment)
     {
         super(firstName,lastName,userName,socialSecurityNumber);
+        this.latePayment = latePayment;
+        
     }
 
     
@@ -80,4 +83,24 @@ public class Customer extends User{
     public void setCreditScore(int newCreditScore) {
         creditScore = newCreditScore;
     }
+
+    /**
+     * @return the latePayment
+     */
+    public boolean isLatePayment() {
+        return latePayment;
+    }
+
+    /**
+     * @param latePayment the latePayment to set
+     */
+    public void setLatePayment(boolean latePayment) {
+        this.latePayment = latePayment;
+    }
+    
+    public String fullName()
+    {
+        return "";
+    }
+    
 }
