@@ -1,6 +1,8 @@
 package View;
 
 import Controller.LoginController;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -8,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -66,6 +69,9 @@ public class LoginView extends Application {
         btnLogin = new Button("Login");
         lblMessage = new Label();
 
+        Hyperlink newAccount = new Hyperlink("Create Account");
+        newAccount.setTextFill(Color.CHARTREUSE);
+
         //Adding Nodes to GridPane layout
         gridPane.add(lblUserName, 0, 0);
         gridPane.add(txtUserName, 1, 0);
@@ -73,6 +79,7 @@ public class LoginView extends Application {
         gridPane.add(pf, 1, 1);
         gridPane.add(btnLogin, 2, 1);
         gridPane.add(lblMessage, 1, 2);
+        gridPane.add(newAccount, 1, 2);
 
         //Reflection for gridPane
         Reflection r = new Reflection();
@@ -103,6 +110,20 @@ public class LoginView extends Application {
             setCheckUser(txtUserName.getText());
             setCheckPw(pf.getText());
             loginController.login(getCheckUser(), getCheckPw(), primaryStage);
+            loginController.login(user, user);
+
+        });
+        
+        //Action on click "Create Account" for new account sends to LoginController
+        newAccount.setOnAction((ActionEvent event) -> {
+            
+            try {
+                loginController.createAcount(primaryStage);
+            } catch (Exception ex) {
+                Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+
         });
 
         //Action for KeyPress Enter key
