@@ -38,7 +38,7 @@ public class User {
     {
         if(userType == "Customer")
         {
-            Customer newCustomer = new Customer(previousUser.firstName,previousUser.lastName,previousUser.userName,previousUser.socialSecurityNumber);       
+            Customer newCustomer = new Customer(previousUser.firstName,previousUser.lastName,previousUser.userName,previousUser.socialSecurityNumber, false);       //Ryan M. added Boolean just to keep moving along my code must fix later
             return newCustomer;
         }
         
