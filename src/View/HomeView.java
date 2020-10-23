@@ -10,22 +10,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -56,19 +48,19 @@ public class HomeView {
         Button buttonSummary = new Button("Account Summary");
         buttonSummary.setPrefSize(150, 20);
 
-        Button buttonPayment = new Button("Make a Payment");
-        buttonPayment.setPrefSize(150, 20);
-        hbox.getChildren().addAll(buttonSummary, buttonPayment);
+        //Button buttonPayment = new Button("Make a Payment");
+        //buttonPayment.setPrefSize(150, 20);
+        hbox.getChildren().addAll(buttonSummary);
 
         Button userListButton = new Button("User list");
-        buttonPayment.setPrefSize(150, 20);
+        //buttonPayment.setPrefSize(150, 20);
 
         Button testTwoButton = new Button("Test 2");
-        buttonPayment.setPrefSize(150, 20);
+        //buttonPayment.setPrefSize(150, 20);
         hbox.getChildren().addAll(userListButton, testTwoButton);
 
         HBox.setHgrow(buttonSummary, Priority.ALWAYS);
-        HBox.setHgrow(buttonPayment, Priority.ALWAYS);
+        //HBox.setHgrow(buttonPayment, Priority.ALWAYS);
 
         //bp.setPadding(new Insets(10, 50, 50, 50));
         border.setTop(hbox);
