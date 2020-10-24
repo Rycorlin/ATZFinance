@@ -143,15 +143,15 @@ public class TestHarness
 
         ////// LOGIN CONTROLLER TESTING ////////////////////////////////////////////////////////////////
         System.out.println("\n<<Login Controller TESTING>>");
-        LoginController loginController = new LoginController(new LoginView());
+        //LoginController loginController = new LoginController(new LoginView());
 
         System.out.println("Testing login with correct credentials...");
-        System.out.println(loginController.login("", ""));
+        //System.out.println(loginController.login("", ""));
         System.out.println("Testing login with incorrect credentials...");
-        System.out.println(loginController.login("user", "pass"));
+       // System.out.println(loginController.login("user", "pass"));
 
         //launches the GUI
-        loginController = new LoginController(args);
+        //loginController = new LoginController(args);
         ////////////////////////////////////////////////////////////////////////////////////////////
 
     }
