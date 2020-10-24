@@ -72,8 +72,7 @@ public class UserView extends Application {
         table.getItems().addAll(UserTable.getPersonList());
         // Add columns to the TableView
         table.getColumns().addAll(UserTable.getFirstNameColumn(),
-                UserTable.getLastNameColumn(), UserTable.getUserNameColumn(),
-                UserTable.getSocialSecurityColumn());
+                UserTable.getLastNameColumn(), UserTable.getUserNameColumn());
 
         // Set the column resize policy to constrained resize policy
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
