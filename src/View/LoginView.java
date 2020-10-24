@@ -45,7 +45,7 @@ public class LoginView extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        loginController = new LoginController(this);
+        loginController = new LoginController(this, primaryStage);
         primaryStage.setTitle("ATZ Finance Login");
 
         BorderPane bp = new BorderPane();
