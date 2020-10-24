@@ -18,11 +18,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @author rycor
  */
 public class UserTable {
-    private ArrayList<User> userList;
+    private static ArrayList<User> userList;
     
     public UserTable()
     {
-        userList = new ArrayList<User>();
+        userList = new ArrayList<>();
     }
     
     public void addUser(User user)
@@ -76,7 +76,7 @@ public class UserTable {
         lateCustomers.addAll(FXCollections.observableArrayList());
         
         //return userList.addAll(FXCollections.observableArrayList());
-        return FXCollections.<User>observableArrayList(u0, u1, u2, u3);
+        return FXCollections.<User>observableArrayList(getUserList().get(0));
     }
 
     // Returns User First Name TableColumn
@@ -109,6 +109,16 @@ public class UserTable {
         PropertyValueFactory<User, Integer> socialCellValueFactory = new PropertyValueFactory<>("socialSecurityNumber");
         socialCol.setCellValueFactory(socialCellValueFactory);
         return socialCol;
+    }
+
+    public static ArrayList<User> getUserList()
+    {
+        return userList;
+    }
+
+    public void setUserList(ArrayList<User> userList)
+    {
+        this.userList = userList;
     }
 
 }
