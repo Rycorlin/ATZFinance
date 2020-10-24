@@ -5,8 +5,8 @@
  */
 package View;
 
-import atzfinance.User;
-import atzfinance.UserTable;
+import Model.User;
+import Model.UserTable;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;

@@ -1,4 +1,4 @@
-package atzfinance;
+package Model;
 
 /**
  *

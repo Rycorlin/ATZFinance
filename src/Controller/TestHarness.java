@@ -6,17 +6,17 @@
 package Controller;
 
 import View.LoginView;
-import atzfinance.CreditQuery;
-import atzfinance.Customer;
-import atzfinance.IncidentReport;
-import atzfinance.User;
-import atzfinance.LoanOfficer;
-import atzfinance.LoanTemplate;
+import Model.CreditQuery;
+import Model.Customer;
+import Model.IncidentReport;
+import Model.User;
+import Model.LoanOfficer;
+import Model.LoanTemplate;
 import java.util.ArrayList;
-import atzfinance.TechSupport;
-import atzfinance.LoanTransaction;
-import atzfinance.carLoan;
-import atzfinance.personalLoan;
+import Model.TechSupport;
+import Model.LoanTransaction;
+import Model.carLoan;
+import Model.personalLoan;
 
 
 /**

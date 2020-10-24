@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Controller;
-import atzfinance.CreditQuery;
+import Model.CreditQuery;
 import View.LoginView;
 import javafx.application.Application;
 // Gitignore test
@@ -20,6 +20,7 @@ public class ATZFinance {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
+        
         LoginController loginController = new LoginController(args); 
     }
 

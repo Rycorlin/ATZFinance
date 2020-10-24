@@ -3,8 +3,9 @@ package Controller;
 import View.CreateAccountView;
 import View.HomeView;
 import View.LoginView;
-import atzfinance.Customer;
-import atzfinance.User;
+import Model.Customer;
+import Model.User;
+import Model.UserTable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -19,6 +20,7 @@ public class LoginController {
     private LoginView loginView;
     private HomeView hv;
     private CreateAccountView newAccount;
+    private UserTable uTable = new UserTable();
 
     public LoginController(String[] args) {
 
@@ -56,13 +58,17 @@ public class LoginController {
         newAccount.register.setOnAction((ActionEvent event) -> {
             
             User newUser = new User(newAccount.getFirstName(), newAccount.getLastName(), newAccount.getUsername(), 10);
+            uTable.addUser(newUser);
             
-            System.out.println(newUser.getFirstName());
-            System.out.println(newUser.getLastName());
-            System.out.println(newUser.getUserName());
+            System.out.println(uTable.getUser(0).getFirstName());
+            System.out.println(uTable.getSize());
+            
+            //System.out.println(newUser.getFirstName());
+            //System.out.println(newUser.getLastName());
+            //System.out.println(newUser.getUserName());
             
             
-          //  this.login(user, user, primaryStage); Do we setup auto login after register or send them to LoginView to login
+            this.login(user, user, primaryStage); //Do we setup auto login after register or send them to LoginView to login
 
         });
 

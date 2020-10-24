@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package atzfinance;
+package Model;
 
 import java.util.ArrayList;
 import static java.util.Collections.list;
@@ -18,9 +18,33 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @author rycor
  */
 public class UserTable {
-
+    private ArrayList<User> userList;
+    
+    public UserTable()
+    {
+        userList = new ArrayList<User>();
+    }
+    
+    public void addUser(User user)
+    {
+        userList.add(user);
+    }
+    
+    public User getUser(int i)
+    {
+        return userList.get(i);
+    }
+    
+    public int getSize()
+    {
+        return userList.size();
+    }
+   
     // Returns an observable list of persons
     public static ObservableList<User> getPersonList() {
+        
+        
+        
         Customer u0 = new Customer("Ryan", "Milici", "Myliu", 12312412, false);
         Customer u1 = new Customer("Ted", "Tedson", "Tdawg", 223412, true);
         Customer u2 = new Customer("John", "Johnson", "Jman", 00123, false);
@@ -52,9 +76,9 @@ public class UserTable {
 
         lateCustomers.addAll(FXCollections.observableArrayList());
         
-        
+        return 
         //return lateCustomers.addAll(FXCollections.observableArrayList());
-        return FXCollections.<User>observableArrayList(u0, u1, u2, u3);
+        //return FXCollections.<User>observableArrayList(u0, u1, u2, u3);
     }
 
     // Returns User First Name TableColumn

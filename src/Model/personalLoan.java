@@ -1,20 +1,20 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package atzfinance;
+package Model;
 
 /**
  *
  * @author xxani
  */
-public class carLoan extends LoanTemplate
+public class personalLoan extends LoanTemplate
 {
 
-    private double balance_due;
+    
 
-    public carLoan(int creditScore, int TermLengthOption, int loanAmountOption)
+    public personalLoan(int creditScore, int TermLengthOption, int loanAmountOption)
     {
         this.creditScore = creditScore;
         this.TermLengthOption = TermLengthOption;
@@ -25,28 +25,23 @@ public class carLoan extends LoanTemplate
     private int loanAmountOption;
     private double interestRate;
     private int term_Length_In_Months;
-  
+    private double balance_due;
+    
 
     public double getInterestRate(int creditScore)
     {
-        if (creditScore >= 0 || creditScore <= 589)
+        if (creditScore >= 0 || creditScore <= 629)
         {
-            return 15.24;
-        } else if (creditScore >= 590 || creditScore <= 619)
+            return 32;
+        } else if (creditScore >= 630 || creditScore <= 689)
         {
-            return 14.08;
-        } else if (creditScore >= 620 || creditScore <= 659)
-        {
-            return 9.72;
-        } else if (creditScore >= 660 || creditScore <= 689)
-        {
-            return 7.02;
+            return 19.9;
         } else if (creditScore >= 690 || creditScore <= 719)
         {
-            return 4.95;
+            return 15.5;
         } else if (creditScore >= 720)
         {
-            return 3.60;
+            return 12.5;
         }
         return 0;
     }
@@ -56,21 +51,19 @@ public class carLoan extends LoanTemplate
         switch (TermLengthOption)
         {
             case 1:
-                return 36;
+                return 12;
             case 2:
-                return 48;
+                return 36;
             case 3:
                 return 60;
             case 4:
                 return 72;
             case 5:
-                return 84;
-            case 6:
                 return 96;
-            case 7:
-                return 108;
-            case 8:
+            case 6:
                 return 120;
+            case 7:
+                return 180;
             default:
                 break;
         }
@@ -82,29 +75,21 @@ public class carLoan extends LoanTemplate
         switch (loanAmountOption)
         {
             case 1:
-                return 5000;
+                return 500;
             case 2:
-                return 10000;
+                return 1000;
             case 3:
-                return 15000;
+                return 2000;
             case 4:
-                return 20000;
+                return 3000;
             case 5:
-                return 25000;
+                return 5000;
             case 6:
-                return 30000;
+                return 10000;
             case 7:
-                return 35000;
+                return 15000;
             case 8:
-                return 40000;
-            case 9:
-                return 45000;
-            case 10:
-                return 50000;
-            case 11:
-                return 55000;
-            case 12:
-                return 60000;
+                return 20000;
             default:
                 break;
         }
@@ -184,9 +169,8 @@ public class carLoan extends LoanTemplate
         return balance_due;
     }
 
-     public void setBalanceDue(double balance) {
+    @Override
+    public void setBalanceDue(double balance) {
        balance_due = balance;
     }
-
-  
 }
