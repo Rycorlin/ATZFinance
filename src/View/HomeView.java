@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -30,8 +31,10 @@ import javafx.stage.Stage;
  */
 public class HomeView {
 
-public Button logoutButton;
-    
+    public Button logoutButton;
+
+    private LoanTransactionView loanTransactionView = new LoanTransactionView();
+
     public HomeView(Stage primaryStage) {
         //Stage stage = new Stage();
         Stage stage = primaryStage;
@@ -45,7 +48,7 @@ public Button logoutButton;
         hbox.setPadding(new Insets(15, 12, 15, 12));
         hbox.setSpacing(5);
         hbox.setStyle("-fx-background-color: #336699;");
-        
+
         hboxBot.setPadding(new Insets(15, 12, 15, 12));
         hboxBot.setSpacing(5);
         hboxBot.setStyle("-fx-background-color: #336699;");
@@ -53,15 +56,15 @@ public Button logoutButton;
 
         Button buttonSummary = new Button("Account Summary");
         buttonSummary.setPrefSize(150, 20);
-        
+
         logoutButton = new Button("Log off");
-        
+
         logoutButton.setPrefSize(150, 20);
 
         //Button buttonPayment = new Button("Make a Payment");
         //buttonPayment.setPrefSize(150, 20);
         hbox.getChildren().addAll(buttonSummary);
-        
+
         hboxBot.getChildren().addAll(logoutButton);
 
         Button userListButton = new Button("User list");
@@ -76,8 +79,43 @@ public Button logoutButton;
 
         //bp.setPadding(new Insets(10, 50, 50, 50));
         border.setTop(hbox);
-        border.setLeft(homeviewVBox());
         
+        // Moved this hyperlink stuff into Homeview so I can use the 
+        // stage to start my LoanTransactionView.
+        VBox v = homeviewVBox();
+        
+        
+        Hyperlink options[] = new Hyperlink[]{
+            new Hyperlink("Loan 1"),
+            new Hyperlink("Loan 2"),
+            new Hyperlink("Loan 3"),
+            new Hyperlink("Loan 4")};
+
+        for (Hyperlink link : options) {
+            link.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    LoanTransactionView ltv = new LoanTransactionView();
+                    try {
+                        // Go to Summary View
+                        ltv.start(stage);
+                    } catch (IOException ex) {
+                        Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+        }
+
+        System.out.println(options[0].getText());
+        for (int i = 0; i < 4; i++) {
+            VBox.setMargin(options[i], new Insets(0, 0, 0, 8));
+            v.getChildren().add(options[i]);
+        }
+        
+        
+        
+        border.setLeft(v);
+
         border.setBottom(hboxBot);
 
         //Action for btnLogin
@@ -90,27 +128,25 @@ public Button logoutButton;
             uv.start(stage);
 
         });
-        
-                //Action for btnLogin
+
+        //Action for btnLogin
         logoutButton.setOnAction((ActionEvent event) -> {
 
             //System.out.print("test");
             //UserView uv = new UserView(stage, border, hbox);
             LoginView lv = new LoginView();
 
-           lv.start(primaryStage);
+            lv.start(primaryStage);
 
         });
-        
-        
+
         //Action for btnLogin
         buttonSummary.setOnAction((ActionEvent event) -> {
 
             //System.out.print("test");
             //UserView uv = new UserView(stage, border, hbox);
-            SummaryView sv = new SummaryView();
+            AccountSummaryView sv = new AccountSummaryView();
 
-            
             try {
                 // Go to Summary View
                 sv.start(stage);
@@ -136,24 +172,13 @@ public Button logoutButton;
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10));
         vbox.setSpacing(8);
-
+        
         Text title = new Text("Data");
         title.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         vbox.getChildren().add(title);
 
-        Hyperlink options[] = new Hyperlink[]{
-            new Hyperlink("Loan 1"),
-            new Hyperlink("Loan 2"),
-            new Hyperlink("Loan 3"),
-            new Hyperlink("Loan 4")};
-
-        for (int i = 0; i < 4; i++) {
-            VBox.setMargin(options[i], new Insets(0, 0, 0, 8));
-            vbox.getChildren().add(options[i]);
-        }
 
         return vbox;
     }
 
-    //    primaryStage.show();
 }
