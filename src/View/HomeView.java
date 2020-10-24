@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -29,9 +30,8 @@ import javafx.stage.Stage;
  */
 public class HomeView {
 
-    /* public static void startView(String[] args) {
-        //launch(args);
-    }*/
+public Button logoutButton;
+    
     public HomeView(Stage primaryStage) {
         //Stage stage = new Stage();
         Stage stage = primaryStage;
@@ -40,17 +40,29 @@ public class HomeView {
         BorderPane border = new BorderPane();
 
         HBox hbox = new HBox();
+        HBox hboxBot = new HBox();
 
         hbox.setPadding(new Insets(15, 12, 15, 12));
         hbox.setSpacing(5);
         hbox.setStyle("-fx-background-color: #336699;");
+        
+        hboxBot.setPadding(new Insets(15, 12, 15, 12));
+        hboxBot.setSpacing(5);
+        hboxBot.setStyle("-fx-background-color: #336699;");
+        hboxBot.setAlignment(Pos.BOTTOM_LEFT);
 
         Button buttonSummary = new Button("Account Summary");
         buttonSummary.setPrefSize(150, 20);
+        
+        logoutButton = new Button("Log off");
+        
+        logoutButton.setPrefSize(150, 20);
 
         //Button buttonPayment = new Button("Make a Payment");
         //buttonPayment.setPrefSize(150, 20);
         hbox.getChildren().addAll(buttonSummary);
+        
+        hboxBot.getChildren().addAll(logoutButton);
 
         Button userListButton = new Button("User list");
         //buttonPayment.setPrefSize(150, 20);
@@ -65,6 +77,8 @@ public class HomeView {
         //bp.setPadding(new Insets(10, 50, 50, 50));
         border.setTop(hbox);
         border.setLeft(homeviewVBox());
+        
+        border.setBottom(hboxBot);
 
         //Action for btnLogin
         userListButton.setOnAction((ActionEvent event) -> {
@@ -76,6 +90,18 @@ public class HomeView {
             uv.start(stage);
 
         });
+        
+                //Action for btnLogin
+        logoutButton.setOnAction((ActionEvent event) -> {
+
+            //System.out.print("test");
+            //UserView uv = new UserView(stage, border, hbox);
+            LoginView lv = new LoginView();
+
+           lv.start(primaryStage);
+
+        });
+        
         
         //Action for btnLogin
         buttonSummary.setOnAction((ActionEvent event) -> {
