@@ -41,10 +41,9 @@ public class UserTable {
     }
    
     // Returns an observable list of persons
-    public static ObservableList<User> getPersonList() {
+    public static ObservableList<User> getPersonList() { 
         
-        
-        
+ 
         Customer u0 = new Customer("Ryan", "Milici", "Myliu", 12312412, false);
         Customer u1 = new Customer("Ted", "Tedson", "Tdawg", 223412, true);
         Customer u2 = new Customer("John", "Johnson", "Jman", 00123, false);
@@ -76,9 +75,8 @@ public class UserTable {
 
         lateCustomers.addAll(FXCollections.observableArrayList());
         
-        return 
-        //return lateCustomers.addAll(FXCollections.observableArrayList());
-        //return FXCollections.<User>observableArrayList(u0, u1, u2, u3);
+        //return userList.addAll(FXCollections.observableArrayList());
+        return FXCollections.<User>observableArrayList(u0, u1, u2, u3);
     }
 
     // Returns User First Name TableColumn
