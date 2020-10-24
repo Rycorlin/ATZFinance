@@ -18,65 +18,30 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @author rycor
  */
 public class UserTable {
-    private static ArrayList<User> userList;
-    
-    public UserTable()
-    {
-        userList = new ArrayList<>();
+
+    private static ArrayList<User> userList = new ArrayList<>();
+
+    public  UserTable() {
+        //userList = new ArrayList<>();
     }
-    
-    public void addUser(User user)
-    {
+
+    public void addUser(User user) {
         userList.add(user);
     }
-    
-    public User getUser(int i)
-    {
+
+    public User getUser(int i) {
         return userList.get(i);
     }
-    
-    public int getSize()
-    {
+
+    public int getSize() {
         return userList.size();
     }
-   
+
     // Returns an observable list of persons
-    public static ObservableList<User> getPersonList() { 
-        
- 
-        Customer u0 = new Customer("Ryan", "Milici", "Myliu", 12312412, false);
-        Customer u1 = new Customer("Ted", "Tedson", "Tdawg", 223412, true);
-        Customer u2 = new Customer("John", "Johnson", "Jman", 00123, false);
-        Customer u3 = new Customer("Rick", "Roll", "MrLate", 2232114, true);
+    public static ObservableList<User> getPersonList() {
 
-        ArrayList<Customer> customerList = new ArrayList<>();
-
-        ArrayList<Customer> lateCustomers = new ArrayList<>();
-        
-
-        customerList.add(u0);
-        customerList.add(u1);
-        customerList.add(u2);
-        customerList.add(u3);
-
-        for (Customer u : customerList) {
-            if (u.isLatePayment() == true) {
-                lateCustomers.add(u);
-            }
-        }
-
-        Iterator<Customer> iter = lateCustomers.iterator();
-
-        while (iter.hasNext()) {
-            Customer element = iter.next();
-            System.out.println(element.getFirstName() + " " + element.getLastName() + " -- Late!!");
-        }
-        System.out.println();
-
-        lateCustomers.addAll(FXCollections.observableArrayList());
-        
         //return userList.addAll(FXCollections.observableArrayList());
-        return FXCollections.<User>observableArrayList(getUserList().get(0));
+        return FXCollections.<User>observableArrayList(getUserList());
     }
 
     // Returns User First Name TableColumn
@@ -111,13 +76,11 @@ public class UserTable {
         return socialCol;
     }
 
-    public static ArrayList<User> getUserList()
-    {
+    public static ArrayList<User> getUserList() {
         return userList;
     }
 
-    public void setUserList(ArrayList<User> userList)
-    {
+    public void setUserList(ArrayList<User> userList) {
         this.userList = userList;
     }
 
