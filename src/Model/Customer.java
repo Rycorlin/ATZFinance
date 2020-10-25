@@ -14,9 +14,9 @@ public class Customer extends User{
     private int creditScore;
     private boolean latePayment = false;
 
-    public Customer(String firstName, String lastName, String userName, Integer socialSecurityNumber, boolean latePayment)
+    public Customer(String firstName, String lastName, String userName, String password, boolean latePayment)
     {
-        super(firstName,lastName,userName,socialSecurityNumber);
+        super(firstName,lastName,userName,password);
         this.latePayment = latePayment;
         
     }
