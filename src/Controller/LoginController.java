@@ -38,6 +38,12 @@ public class LoginController {
 
     public boolean login(String username, String password, Stage primaryStage) {
         ArrayList<User> userList = uTable.getUsers();
+        
+        //Error if no users exist
+        if (userList.size() < 1) {
+            loginView.getLblMessage().setText("Incorrect user or pw.");
+            loginView.getLblMessage().setTextFill(Color.RED);
+        }
 
         for (int i = 0; i < userList.size(); i++) {
 
