@@ -77,6 +77,10 @@ public class CreateAccountView extends Application {
     {
         return userName.getText();
     }
+    public String getPassword()
+    {
+        return password.getText();
+    }
     
     
 

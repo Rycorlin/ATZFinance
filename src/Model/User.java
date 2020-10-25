@@ -14,7 +14,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String userName;
-    private int socialSecurityNumber;
+    private String password;
+    
 
     /**
      *
@@ -23,11 +24,11 @@ public class User {
      * @param userName User name of the user account
      * @param socialSecuritynumber Social security number of the suer
      */
-    public User(String firstName, String lastName, String userName, Integer socialSecuritynumber) {
+    public User(String firstName, String lastName, String userName, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
-        this.socialSecurityNumber = socialSecuritynumber;
+        this.password = password;
 
     }
     
@@ -38,20 +39,20 @@ public class User {
     {
         if(userType == "Customer")
         {
-            Customer newCustomer = new Customer(previousUser.firstName,previousUser.lastName,previousUser.userName,previousUser.socialSecurityNumber, false);       //Ryan M. added Boolean just to keep moving along my code must fix later
-            return newCustomer;
+            //Customer newCustomer = new Customer(previousUser.firstName,previousUser.lastName,previousUser.userName,previousUser.socialSecurityNumber, false);       //Ryan M. added Boolean just to keep moving along my code must fix later
+           // return newCustomer;
         }
         
         if(userType == "TechSupport")
         {
-            TechSupport newTS = new TechSupport(previousUser.firstName,previousUser.lastName,previousUser.userName,previousUser.socialSecurityNumber);
-            return newTS;
+           // TechSupport newTS = new TechSupport(previousUser.firstName,previousUser.lastName,previousUser.userName,previousUser.socialSecurityNumber);
+           // return newTS;
         }
         
         if(userType == "LoanOfficer")
         {
-            int employeeID = 0; //This will likely be a sequential number in the future, just leaving it as zero to properly create the factory method.
-            LoanOfficer newLO = new LoanOfficer(employeeID,previousUser.firstName,previousUser.lastName,previousUser.userName,previousUser.socialSecurityNumber);
+           // int employeeID = 0; //This will likely be a sequential number in the future, just leaving it as zero to properly create the factory method.
+          //  LoanOfficer newLO = new LoanOfficer(employeeID,previousUser.firstName,previousUser.lastName,previousUser.userName,previousUser.socialSecurityNumber);
             
         }
         return null;
@@ -101,18 +102,7 @@ public class User {
      *
      * @return An integer returning the social security number of the user
      */
-    public int getSocialSecurityNumber() {
-        return socialSecurityNumber;
-    }
 
-    /**
-     * Sets the social security number for the user
-     *
-     * @param socialSecurityNumber Sets the social security number of the user
-     */
-    public void setSocialSecurityNumber(int socialSecurityNumber) {
-        this.socialSecurityNumber = socialSecurityNumber;
-    }
 
     /**
      * Returns the user name for the user
@@ -130,6 +120,20 @@ public class User {
      */
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

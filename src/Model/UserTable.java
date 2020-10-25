@@ -79,9 +79,15 @@ public class UserTable {
     public static ArrayList<User> getUserList() {
         return userList;
     }
+    
+    public ArrayList<User> getUsers()
+    {
+        return userList;
+    }
 
     public void setUserList(ArrayList<User> userList) {
         this.userList = userList;
     }
+    
 
 }

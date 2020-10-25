@@ -37,6 +37,7 @@ public class LoginView extends Application {
     private String checkUser;
     private String checkPw;
     private LoginController loginController;
+    private Hyperlink newAccount;
 
     private Label lblUserName, lblPassword, lblMessage;
     private TextField txtUserName;
@@ -69,8 +70,9 @@ public class LoginView extends Application {
         btnLogin = new Button("Login");
         lblMessage = new Label();
 
-        Hyperlink newAccount = new Hyperlink("Create Account");
-        newAccount.setTextFill(Color.CHARTREUSE);
+        setNewAccount(new Hyperlink("Create Account"));
+        getNewAccountHyperLink().setTextFill(Color.CHARTREUSE);
+        
 
         //Adding Nodes to GridPane layout
         gridPane.add(lblUserName, 0, 0);
@@ -79,7 +81,7 @@ public class LoginView extends Application {
         gridPane.add(pf, 1, 1);
         gridPane.add(btnLogin, 2, 1);
         gridPane.add(lblMessage, 1, 2);
-        gridPane.add(newAccount, 1, 2);
+        gridPane.add(getNewAccountHyperLink(), 1, 5);
 
         //Reflection for gridPane
         Reflection r = new Reflection();
@@ -115,7 +117,7 @@ public class LoginView extends Application {
         });
         
         //Action on click "Create Account" for new account sends to LoginController
-        newAccount.setOnAction((ActionEvent event) -> {
+        getNewAccountHyperLink().setOnAction((ActionEvent event) -> {
             
             try {
                 loginController.createAcount(primaryStage);
@@ -248,4 +250,20 @@ public class LoginView extends Application {
     public Button getBtnLogin() {
         return btnLogin;
     }
+
+    /**
+     * @return the newAccount
+     */
+    public Hyperlink getNewAccountHyperLink() {
+        return newAccount;
+    }
+
+    /**
+     * @param newAccount the newAccount to set
+     */
+    public void setNewAccount(Hyperlink newAccount) {
+        this.newAccount = newAccount;
+    }
+    
+
 }

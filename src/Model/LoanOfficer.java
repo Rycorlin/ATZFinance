@@ -27,8 +27,8 @@ public class LoanOfficer extends User {
      * @param socialSecurity
      *
      */
-    public LoanOfficer(int employeeID, String fName, String lName, String userName, Integer socialSecurity) {
-        super(fName, lName, userName, socialSecurity);
+    public LoanOfficer(int employeeID, String fName, String lName, String userName, String password) {
+        super(fName, lName, userName, password);
         this.employeeID = employeeID;
     }
 
