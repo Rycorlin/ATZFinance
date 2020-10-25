@@ -30,15 +30,15 @@ public class TestHarness
     {
 
         ////// USER TESTING ////////////////////////////////////////////////////////////////////////
-        User u1 = new User("Ryan", "Milici", "Myliu", 12312412);
-        User u2 = new User("Ted", "Tedson", "Tdawg", 223412);
-        User u3 = new User("John", "Johnson", "Jman", 00123);
+        User u1 = new User("Ryan", "Milici", "Myliu", "test");
+        User u2 = new User("Ted", "Tedson", "Tdawg", "test");
+        User u3 = new User("John", "Johnson", "Jman", "test");
 
         System.out.println("<<USER TESTING>>");
         System.out.println("Testing User First Name: " + u1.getFirstName());
         System.out.println("Testing User Last Name: " + u1.getLastName());
         System.out.println("Testing User's User Name: " + u1.getUserName());
-        System.out.println("Testing User Social Security: " + u1.getSocialSecurityNumber());
+        System.out.println("Testing User Social Security: ");
         System.out.println("-------------------------------");
         ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -116,7 +116,7 @@ public class TestHarness
 
         
         ////// LOAN OFFICER TESTING ////////////////////////////////////////////////////////////////
-        LoanOfficer lo1 = new LoanOfficer(12345, "Ryan", "OHagan", "rjo2880", 978685536);
+        LoanOfficer lo1 = new LoanOfficer(12345, "Ryan", "OHagan", "rjo2880", "test");
         lo1.setNumLoansActive(10);
         ArrayList<LoanTemplate> historicalLoanTest = new ArrayList<>();
         personalLoan loanTest1 = new personalLoan(719, 1, 3);
@@ -134,7 +134,7 @@ public class TestHarness
         ////////////////////////////////////////////////////////////////////////////////////////////
         
         ////// TECH SUPPORT TESTING ////////////////////////////////////////////////////////////////
-        TechSupport ts1 = new TechSupport("Ryan", "OHagan", "rjo2880", 978685536);
+        TechSupport ts1 = new TechSupport("Ryan", "OHagan", "rjo2880", "test");
        // ArrayList<IncidentReport> testResults = ts1.searchErrorReports(u3);
        // testResults.forEach((report) ->
         //{
