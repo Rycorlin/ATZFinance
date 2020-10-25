@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -36,13 +37,22 @@ public class LoginController {
     }
 
     public boolean login(String username, String password, Stage primaryStage) {
-        if (username.equalsIgnoreCase(user) && password.equals(pw)) {
-            loginView.getLblMessage().setTextFill(Color.GREEN);
-            hv = new HomeView(primaryStage);
-            return true;
-        } else {
-            loginView.getLblMessage().setText("Incorrect user or pw.");
-            loginView.getLblMessage().setTextFill(Color.RED);
+        ArrayList<User> userList = uTable.getUsers();
+
+        for (int i = 0; i < userList.size(); i++) {
+
+            if (uTable.getUser(i).getUserName().equalsIgnoreCase(loginView.getCheckUser()) && uTable.getUser(i).getPassword().equals(loginView.getCheckPw())) {
+                loginView.getLblMessage().setTextFill(Color.GREEN);
+                hv = new HomeView(primaryStage);
+                System.out.println("YES");
+                return true;
+
+            } else {
+
+                loginView.getLblMessage().setText("Incorrect user or pw.");
+                loginView.getLblMessage().setTextFill(Color.RED);
+
+            }
         }
         loginView.getTxtUserName().setText("");
         loginView.getPf().setText("");
@@ -52,10 +62,9 @@ public class LoginController {
     public boolean login(String username, String password) {
         return username.equalsIgnoreCase(user) && password.equals(pw);
     }
-    
-    
+
     //Done in HomeView atm because cant get button to work from here - RM
-   /* public void logoff()
+    /* public void logoff()
     {
        
        
@@ -69,7 +78,6 @@ public class LoginController {
        });
         
     }*/
-
     //From loginview open up new CreateAccountView UI when creating new account
     public void createAcount(Stage primaryStage) throws Exception {
         newAccount = new CreateAccountView();
@@ -78,7 +86,7 @@ public class LoginController {
         //Action on click "Create Account" for new account sends to LoginController
         newAccount.register.setOnAction((ActionEvent event) -> {
 
-            User newUser = new User(newAccount.getFirstName(), newAccount.getLastName(), newAccount.getUsername(), 10);
+            User newUser = new User(newAccount.getFirstName(), newAccount.getLastName(), newAccount.getUsername(), newAccount.getPassword());
 
             uTable.addUser(newUser);
 
@@ -88,7 +96,11 @@ public class LoginController {
             //System.out.println(newUser.getFirstName());
             //System.out.println(newUser.getLastName());
             //System.out.println(newUser.getUserName());
-            this.login(user, user, primaryStage); //Do we setup auto login after register or send them to LoginView to login
+            //this.login(uTable.getUser(0).getUserName(), uTable.getUser(0).getPassword(), primaryStage); //Do we setup auto login after register or send them to LoginView to login
+            hv = new HomeView(primaryStage);
+            System.out.println("YES");
+
+            System.out.println("working");
 
         });
 
