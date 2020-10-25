@@ -29,13 +29,15 @@ import javafx.stage.Stage;
  *
  * @author rycor
  */
-public class HomeView {
+public class HomeView
+{
 
     public Button logoutButton;
 
     private LoanTransactionView loanTransactionView = new LoanTransactionView();
 
-    public HomeView(Stage primaryStage) {
+    public HomeView(Stage primaryStage)
+    {
         //Stage stage = new Stage();
         Stage stage = primaryStage;
         stage.setTitle("ATZ Finance Login");
@@ -74,32 +76,43 @@ public class HomeView {
         //buttonPayment.setPrefSize(150, 20);
         hbox.getChildren().addAll(userListButton, testTwoButton);
 
+        //Apply For Loan
+        Button applyForLoanButton = new Button("Apply For Loan");
+        //buttonPayment.setPrefSize(150, 20);
+        hbox.getChildren().addAll(applyForLoanButton);
+
         HBox.setHgrow(buttonSummary, Priority.ALWAYS);
         //HBox.setHgrow(buttonPayment, Priority.ALWAYS);
 
         //bp.setPadding(new Insets(10, 50, 50, 50));
         border.setTop(hbox);
-        
+
         // Moved this hyperlink stuff into Homeview so I can use the 
         // stage to start my LoanTransactionView.
         VBox v = homeviewVBox();
-        
-        
-        Hyperlink options[] = new Hyperlink[]{
+
+        Hyperlink options[] = new Hyperlink[]
+        {
             new Hyperlink("Loan 1"),
             new Hyperlink("Loan 2"),
             new Hyperlink("Loan 3"),
-            new Hyperlink("Loan 4")};
+            new Hyperlink("Loan 4")
+        };
 
-        for (Hyperlink link : options) {
-            link.setOnAction(new EventHandler<ActionEvent>() {
+        for (Hyperlink link : options)
+        {
+            link.setOnAction(new EventHandler<ActionEvent>()
+            {
                 @Override
-                public void handle(ActionEvent e) {
+                public void handle(ActionEvent e)
+                {
                     LoanTransactionView ltv = new LoanTransactionView();
-                    try {
+                    try
+                    {
                         // Go to Summary View
                         ltv.start(stage);
-                    } catch (IOException ex) {
+                    } catch (IOException ex)
+                    {
                         Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
@@ -107,19 +120,19 @@ public class HomeView {
         }
 
         System.out.println(options[0].getText());
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++)
+        {
             VBox.setMargin(options[i], new Insets(0, 0, 0, 8));
             v.getChildren().add(options[i]);
         }
-        
-        
-        
+
         border.setLeft(v);
 
         border.setBottom(hboxBot);
 
         //Action for btnLogin
-        userListButton.setOnAction((ActionEvent event) -> {
+        userListButton.setOnAction((ActionEvent event) ->
+        {
 
             //System.out.print("test");
             //UserView uv = new UserView(stage, border, hbox);
@@ -130,7 +143,8 @@ public class HomeView {
         });
 
         //Action for btnLogin
-        logoutButton.setOnAction((ActionEvent event) -> {
+        logoutButton.setOnAction((ActionEvent event) ->
+        {
 
             //System.out.print("test");
             //UserView uv = new UserView(stage, border, hbox);
@@ -141,16 +155,34 @@ public class HomeView {
         });
 
         //Action for btnLogin
-        buttonSummary.setOnAction((ActionEvent event) -> {
+        buttonSummary.setOnAction((ActionEvent event) ->
+        {
 
             //System.out.print("test");
             //UserView uv = new UserView(stage, border, hbox);
             AccountSummaryView sv = new AccountSummaryView();
 
-            try {
+            try
+            {
                 // Go to Summary View
                 sv.start(stage);
-            } catch (IOException ex) {
+            } catch (IOException ex)
+            {
+                Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        });
+
+        applyForLoanButton.setOnAction((ActionEvent event) ->
+        {
+
+            ApplyForLoanView apv = new ApplyForLoanView();
+
+            try
+            {
+                apv.start(stage);
+            } catch (Exception ex)
+            {
                 Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
             }
 
@@ -168,15 +200,15 @@ public class HomeView {
 
     }
 
-    public static VBox homeviewVBox() {
+    public static VBox homeviewVBox()
+    {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10));
         vbox.setSpacing(8);
-        
+
         Text title = new Text("Data");
         title.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         vbox.getChildren().add(title);
-
 
         return vbox;
     }
