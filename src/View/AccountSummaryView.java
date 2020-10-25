@@ -33,7 +33,7 @@ import javax.imageio.ImageIO;
  *
  * @author taren
  */
-class SummaryView {
+class AccountSummaryView {
 
     public void start(Stage stage) throws IOException {
 
