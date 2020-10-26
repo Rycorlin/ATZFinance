@@ -73,17 +73,18 @@ public class TestHarness
         System.out.println("<<Loan Transation TESTING>>");
         System.out.println("***Customer side of making a payment***");
         System.out.println("The Loan Balance for Perosnal Loan 1 is " + pl1.setAmount());
-        LoanTransaction lt1 = new LoanTransaction();
-        lt1.makePayment(pl1, 200.0);
+        
+        LoanTemplate loanTemplate = null;
+        //LoanTransaction lt = new LoanTransaction();
+        LoanTransaction lt = null;
+        lt = lt.getInstanceOfLoanTransaction();
+        lt.makePayment(pl1, 200.0);
         System.out.println("Thank you for your $200 payment. Your new balance = " + pl1.getBalanceDue());
         System.out.println(" ");
 
         System.out.println("***Employee side of crediting an account***");
         System.out.println("The Initial Loan Balance for Car Loan 1 is " + pl1.setAmount());
-        LoanTransaction lt2 = new LoanTransaction();
-        lt2.creditAccount(cl1, 2000.0);
-        System.out.println("The account has been credited $2000.");
-        System.out.println("The new balance = " + cl1.getBalanceDue());
+  
 
         System.out.println("-------------------------------");
 

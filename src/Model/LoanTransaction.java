@@ -12,15 +12,17 @@ package Model;
 public class LoanTransaction {
 
     LoanTemplate loan;
-
-    public LoanTransaction(LoanTemplate loan) {
-        this.loan = loan;
-
+    private static LoanTransaction loanTransaction;
+    
+    private LoanTransaction(){}
+    
+    
+    
+    public LoanTransaction getInstanceOfLoanTransaction(/*LoanTemplate loanTemp*/){
+       // loanTransaction.loan = loanTemp;
+        return loanTransaction;
     }
-    public LoanTransaction() {
-        
-
-    }
+    
     
     //TODO: Write a Loan type check function to check type of loan received as
     // argument and initialize loan object to that type, proceed with below 

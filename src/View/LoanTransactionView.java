@@ -52,13 +52,13 @@ public class LoanTransactionView implements ItemListener {
         hbox.getChildren().addAll(backButton);
 
         HBox.setHgrow(backButton, Priority.ALWAYS);
-
+        
+        // Pay loan Button
         final Button payLoanButton = new Button("Pay Loan");
-        final Label notification = new Label();
+        // Text field for payment total
         final TextField paymentField = new TextField("");
-//        final TextArea text = new TextArea("");
 
-
+        // Combo box for Month
         final ComboBox monthComboBox = new ComboBox();
         monthComboBox.getItems().addAll(
                 "January",
@@ -76,21 +76,26 @@ public class LoanTransactionView implements ItemListener {
         );
         monthComboBox.setValue("January");
 
+        // Days in month, Combo box for days
+        final ComboBox dayComboBox = new ComboBox();
         YearMonth yearMonth = YearMonth.of(2020, Month.JANUARY);
         int daysInMonth = yearMonth.lengthOfMonth();
-        final ComboBox dayComboBox = new ComboBox();
 
-        final ComboBox yearComboBox = new ComboBox();
-
+        // Populate days
         for (int i = 1; i < daysInMonth + 1; i++) {
             dayComboBox.getItems().addAll(i);
         }
 
+        // Default day = 1
         dayComboBox.setValue("1");
+
+        // Combo box for Year (Always stays at current year)
+        final ComboBox yearComboBox = new ComboBox();
 
         // add year
         yearComboBox.getItems().addAll(yearMonth.getYear());
         yearComboBox.setValue(yearMonth.getYear());
+
         
         
         GridPane grid = new GridPane();
@@ -98,28 +103,27 @@ public class LoanTransactionView implements ItemListener {
         grid.setVgap(4);
         grid.setHgap(10);
         grid.setPadding(new Insets(5, 5, 5, 5));
-        //grid.add(bDateFld, 0, 0);  // column=1, row=2
 
+        // Select date
         grid.add(new Label("Select Date: "), 0, 0);
         grid.add(monthComboBox, 1, 0);
         grid.add(dayComboBox, 2, 0);
         grid.add(yearComboBox, 3, 0);
 
+        // Input payment amount
         grid.add(new Label("Payment Amount: "), 0, 1);
         grid.add(paymentField, 1, 1, 3, 1);
+        // Pay loan
         grid.add(payLoanButton, 0, 3);
-        grid.add(notification, 1, 3, 3, 1);
 
         // Set borderpane Top to grid.
         borderpane.setTop(grid);
-
+        // Borderpane Bottom = hbox
         borderpane.setBottom(hbox);
 
-        // Return to HomeView
+        // Return to HomeView on back button click
         backButton.setOnAction((ActionEvent event) -> {
-            // Why is this line of code necessary?
             HomeView hv = new HomeView(stage);
-
             backButton.getScene().setRoot(homeviewVBox());
         });
 
@@ -143,11 +147,10 @@ public class LoanTransactionView implements ItemListener {
         Scene scene = new Scene(root);
         // Add the Scene to the Stage
         stage.setScene(scene);
-        // Set the Title of the Stage
-        stage.setTitle("Account Summary");
+        // Set the Title of the Stage to Pay Loan
+        stage.setTitle("Pay Loan");
         // Display the Stage
         stage.show();
-
     }
 
     @Override
