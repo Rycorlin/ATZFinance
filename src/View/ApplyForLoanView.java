@@ -5,6 +5,7 @@
  */
 package View;
 
+import Model.LoanApplication;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -20,6 +21,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.*;
+
 /**
  *
  * @author xxanim
@@ -34,7 +39,7 @@ public class ApplyForLoanView extends Application
     private ChoiceBox loanType;
     private ChoiceBox loanAmount;
     public Button apply;
-
+    LoanApplication loanApp;
 
     @Override
     public void start(Stage primaryStage) throws Exception
@@ -59,13 +64,51 @@ public class ApplyForLoanView extends Application
                 new Label("Loan Amount"),
                 loanAmount = new ChoiceBox(),
                 apply = new Button("APPLY"));
-        root.getChildren().addAll(vBox);
 
         loanType.setItems(FXCollections.observableArrayList("Personal Loan", "Car Loan"));
         loanAmount.setItems(FXCollections.observableArrayList("500", "1000", "2000", "3000", "4000", "5000", "6000", "7000", "8000", "10000", "15000", "20000", "30000", "40000"));
 
+
+        //read from autosave
+        try {
+            ObjectInputStream oin = new ObjectInputStream(new FileInputStream("loanappsave.ser"));
+            loanApp = (LoanApplication) oin.readObject();
+            firstName.setText(loanApp.getfName());
+            lastName.setText(loanApp.getlName());
+            loanType.setValue(loanApp.getLoanType());
+            loanAmount.setValue(loanApp.getLoanAmount());
+        } catch (Exception e) {
+            loanApp = new LoanApplication();
+        }
+
+        firstName.textProperty().addListener((observable, oldValue, newValue) -> {
+            loanApp.setfName(newValue);
+            save();
+        });
+        lastName.textProperty().addListener((observable, oldValue, newValue) -> {
+            loanApp.setlName(newValue);
+            save();
+        });
+//        loanType.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+//            loanApp.setLoanType(newValue);
+//            save();
+//        });
+        loanType.valueProperty().addListener((observable, oldValue, newValue) -> {
+            loanApp.setLoanType(newValue.toString());
+            save();
+        });
+        loanAmount.valueProperty().addListener((observable, oldValue, newValue) -> {
+            loanApp.setLoanAmount(newValue.toString());
+            save();
+        });
+
+        root.getChildren().addAll(vBox);
+
         apply.setOnAction((ActionEvent event) ->
         {
+
+            loanApp = new LoanApplication();
+            save();
 
             Stage tyStage = new Stage();
             tyStage.initModality(Modality.APPLICATION_MODAL);
@@ -89,6 +132,16 @@ public class ApplyForLoanView extends Application
             HomeView hv = new HomeView(primaryStage);
 
         });
+    }
+
+    private void save() {
+        try {
+            ObjectOutputStream ous = new ObjectOutputStream(new FileOutputStream("loanappsave.ser"));
+            ous.writeObject(loanApp);
+            ous.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public StackPane getRoot()
