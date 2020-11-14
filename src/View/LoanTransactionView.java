@@ -9,6 +9,7 @@ import static View.HomeView.homeviewVBox;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.Month;
 import java.time.YearMonth;
 import javafx.event.ActionEvent;
@@ -103,12 +104,18 @@ public class LoanTransactionView implements ItemListener {
         grid.setVgap(4);
         grid.setHgap(10);
         grid.setPadding(new Insets(5, 5, 5, 5));
-
+        
+        DatePicker d = new DatePicker(); 
         // Select date
         grid.add(new Label("Select Date: "), 0, 0);
-        grid.add(monthComboBox, 1, 0);
-        grid.add(dayComboBox, 2, 0);
-        grid.add(yearComboBox, 3, 0);
+        
+        
+        
+        grid.add(d, 1, 0);
+        
+        //grid.add(monthComboBox, 1, 0);
+        //grid.add(dayComboBox, 2, 0);
+        //grid.add(yearComboBox, 3, 0);
 
         // Input payment amount
         grid.add(new Label("Payment Amount: "), 0, 1);
@@ -121,6 +128,18 @@ public class LoanTransactionView implements ItemListener {
         // Borderpane Bottom = hbox
         borderpane.setBottom(hbox);
 
+        
+        // String (needs to be converted to double) to store the payment made.
+        String paymentAmount = paymentField.getText();
+        // THIS LocalDate variable will need to be stored as a payment in the LOAN object. We need to modify the loan
+        // object to handle this. (Include a list of payments and their dates within the loan object? Or a dictionary with Dictionary<Payment, Date>?
+        // Something like this.
+        LocalDate i = d.getValue(); 
+        
+        payLoanButton.setOnAction((ActionEvent event) -> {
+            // Store the payment amount and the date of payment.
+        });
+        
         // Return to HomeView on back button click
         backButton.setOnAction((ActionEvent event) -> {
             HomeView hv = new HomeView(stage);
