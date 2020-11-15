@@ -86,30 +86,7 @@ public class LoginController {
     }*/
     //From loginview open up new CreateAccountView UI when creating new account
     public void createAcount(Stage primaryStage) throws Exception {
-        newAccount = new CreateAccountView();
+        newAccount = new CreateAccountView(uTable);
         newAccount.start(primaryStage);
-
-        //Action on click "Create Account" for new account sends to LoginController
-        newAccount.register.setOnAction((ActionEvent event) -> {
-
-            User newUser = new User(newAccount.getFirstName(), newAccount.getLastName(), newAccount.getUsername(), newAccount.getPassword());
-
-            uTable.addUser(newUser);
-
-            System.out.println(uTable.getUser(0).getFirstName());
-            System.out.println(uTable.getSize());
-
-            //System.out.println(newUser.getFirstName());
-            //System.out.println(newUser.getLastName());
-            //System.out.println(newUser.getUserName());
-            //this.login(uTable.getUser(0).getUserName(), uTable.getUser(0).getPassword(), primaryStage); //Do we setup auto login after register or send them to LoginView to login
-            hv = new HomeView(primaryStage);
-            System.out.println("YES");
-
-            System.out.println("working");
-
-        });
-
     }
-
 }

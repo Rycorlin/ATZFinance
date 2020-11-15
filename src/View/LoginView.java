@@ -110,6 +110,8 @@ public class LoginView extends Application {
         //Action for btnLogin
         btnLogin.setOnAction((ActionEvent event) -> {
             setCheckUser(txtUserName.getText());
+//            verifyPassword(pj.);
+
             setCheckPw(pf.getText());
             loginController.login(getCheckUser(), getCheckPw(), primaryStage);
             loginController.login(user, user);
