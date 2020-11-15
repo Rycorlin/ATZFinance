@@ -42,7 +42,7 @@ public class ApplyForLoanView extends Application
     private TextField state;
     private TextField zip;
     private ChoiceBox loanType;
-    private ChoiceBox loanAmount;
+    private TextField loanAmount;
     public Button apply;
     LoanApplication loanApp;
 
@@ -76,13 +76,12 @@ public class ApplyForLoanView extends Application
                 zip = new TextField(),
                 new Label("Loan Type"),
                 loanType = new ChoiceBox(),
-                new Label("Loan Amount"),
-                loanAmount = new ChoiceBox(),
+                new Label("Please Enter Desired Loan Amount"),
+                loanAmount = new TextField(),
                 apply = new Button("APPLY"));
 
         loanType.setItems(FXCollections.observableArrayList("Personal Loan", "Car Loan"));
-        loanAmount.setItems(FXCollections.observableArrayList("500", "1000", "2000", "3000", "4000", "5000", "6000", "7000", "8000", "10000", "15000", "20000", "30000", "40000"));
-
+        
 
         //read from autosave
         try {
@@ -96,7 +95,7 @@ public class ApplyForLoanView extends Application
             state.setText(loanApp.getState());
             zip.setText((loanApp.getZipCode()));
             loanType.setValue(loanApp.getLoanType());
-            loanAmount.setValue(loanApp.getLoanAmount());
+            loanAmount.setText(loanApp.getLoanAmount());
         } catch (Exception e) {
             loanApp = new LoanApplication();
         }
@@ -117,8 +116,8 @@ public class ApplyForLoanView extends Application
             loanApp.setLoanType(newValue.toString());
             save();
         });
-        loanAmount.valueProperty().addListener((observable, oldValue, newValue) -> {
-            loanApp.setLoanAmount(newValue.toString());
+        loanAmount.textProperty().addListener((observable, oldValue, newValue) -> {
+            loanApp.setlName(newValue);
             save();
         });
 
@@ -214,12 +213,12 @@ public class ApplyForLoanView extends Application
         this.loanType = loanType;
     }
 
-    public ChoiceBox getloanAmount()
+    public TextField getloanAmount()
     {
         return loanAmount;
     }
 
-    public void setloanAmount(ChoiceBox ploanAmount)
+    public void setloanAmount(TextField ploanAmount)
     {
         this.loanAmount = ploanAmount;
     }
