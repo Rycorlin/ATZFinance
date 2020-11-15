@@ -7,6 +7,9 @@ package View;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import Controller.CreateAccountController;
+import Model.UserTable;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -28,11 +31,18 @@ public class CreateAccountView extends Application {
     private StackPane root = new StackPane();
     private Stage stage;
     private TextField firstName;
+    private CreateAccountController createAccountController;
+    private UserTable uTable;
     public TextField lastName;
     public TextField userName;
     public PasswordField password;
     public PasswordField confirmPass;
     public Button register;
+
+    public CreateAccountView(UserTable uTable) {
+        super();
+        this.uTable = uTable;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -61,8 +71,8 @@ public class CreateAccountView extends Application {
                 register = new Button("REGISTER"));
         root.getChildren().addAll(vBox);
 
-
-
+        //create conroller and pass user table to it
+        createAccountController = new CreateAccountController(this, primaryStage, uTable);
     }
     
     public String getFirstName()
