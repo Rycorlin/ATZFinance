@@ -95,4 +95,15 @@ public class UserTable {
     public static void setUsernameSet(HashSet<String> usernameSet) { UserTable.usernameSet = usernameSet; }
 
     public static HashSet<String> getUsernameSet() { return usernameSet; }
+    
+    public static ArrayList<String> getUsernames() 
+    { 
+      ArrayList<String> userArray = new ArrayList<>();
+      for (User user: userList){
+          String temp = user.getFirstName() + " "+ user.getLastName() + " (" + user.getUserName() + ")";
+          
+          userArray.add(temp);
+      }
+      return userArray;
+     }
 }
