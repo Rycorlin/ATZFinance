@@ -44,6 +44,7 @@ public class ApplyForLoanView extends Application
     private ChoiceBox loanType;
     private TextField loanAmount;
     public Button apply;
+    public Button back;
     LoanApplication loanApp;
 
     @Override
@@ -78,7 +79,8 @@ public class ApplyForLoanView extends Application
                 loanType = new ChoiceBox(),
                 new Label("Please Enter Desired Loan Amount"),
                 loanAmount = new TextField(),
-                apply = new Button("APPLY"));
+                apply = new Button("APPLY"),
+                back = new Button("BACK"));
 
         loanType.setItems(FXCollections.observableArrayList("Personal Loan", "Car Loan"));
         
@@ -148,6 +150,12 @@ public class ApplyForLoanView extends Application
             tyStage.setScene(tyScene);
             tyStage.showAndWait();
 
+            HomeView hv = new HomeView(primaryStage);
+
+        });
+        
+         back.setOnAction((ActionEvent event) ->
+        {
             HomeView hv = new HomeView(primaryStage);
 
         });
