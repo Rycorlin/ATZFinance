@@ -31,7 +31,7 @@ public class TechSupport extends User {
      */
 
     public ArrayList<IncidentReport> getUserIncidentReports(User user, ArrayList<IncidentReport> searchReports) {
-        ArrayList<IncidentReport> errorReports = new ArrayList<>();
+        ArrayList<IncidentReport> errorReports = new ArrayList<IncidentReport>();
         for( IncidentReport incident : searchReports){
             if (user.equals(incident.getUser())){
                 errorReports.add(incident);

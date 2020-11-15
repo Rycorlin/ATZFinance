@@ -19,10 +19,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class UserTable {
 
-    private static ArrayList<User> userList = new ArrayList<>();
+    private static ArrayList<User> userList = new ArrayList<User>();
 
     public  UserTable() {
-        //userList = new ArrayList<>();
+        //userList = new ArrayList<User>();
     }
 
     public void addUser(User user) {
