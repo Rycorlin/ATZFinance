@@ -52,7 +52,7 @@ public class ApplyForLoanView extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Scene scene = new Scene(root, 400, 700);
+        Scene scene = new Scene(root, 400, 775);
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setTitle("ATZ Loan Application");
@@ -66,6 +66,8 @@ public class ApplyForLoanView extends Application {
         vBox.setPadding(new Insets(10, 10, 10, 10));
 
         vBox.getChildren().addAll(
+                new Label("Choose User"),
+                combo_box,
                 new Label("First Name"),
                 firstName = new TextField(),
                 new Label("Last Name"),
