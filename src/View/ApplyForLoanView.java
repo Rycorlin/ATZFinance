@@ -6,6 +6,7 @@
 package View;
 
 import Model.LoanApplication;
+import Model.UserTable;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -24,6 +25,8 @@ import javafx.stage.Stage;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
+import javafx.event.EventHandler;
+import javafx.scene.control.ComboBox;
 
 /**
  *
@@ -45,6 +48,7 @@ public class ApplyForLoanView extends Application {
     private Button apply;
     private Button back;
     private LoanApplication loanApp;
+    private UserTable userTbl;
 
     @Override
     public void start(Stage primaryStage) {
@@ -52,6 +56,9 @@ public class ApplyForLoanView extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setTitle("ATZ Loan Application");
+        
+        ComboBox combo_box = 
+                     new ComboBox(FXCollections.observableArrayList(userTbl.getUsernames()));       
 
         VBox vBox = new VBox();
 
@@ -81,6 +88,23 @@ public class ApplyForLoanView extends Application {
                 back = new Button("BACK"));
 
         loanType.setItems(FXCollections.observableArrayList("Personal Loan", "Car Loan"));
+        
+        EventHandler<ActionEvent> comboHandler = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) 
+        {
+            for (String string: userTbl.getUsernames())
+            {
+                if ( (string.contains(combo_box.getValue().toString())))
+                {
+                  int temp = userTbl.getUsernames().indexOf(string);
+                  firstName.setText(userTbl.getUser(temp).getFirstName());
+                  lastName.setText(userTbl.getUser(temp).getLastName());  
+                }
+            };
+        }
+        };
+        combo_box.setOnAction(comboHandler);
         
 
         //read from autosave
