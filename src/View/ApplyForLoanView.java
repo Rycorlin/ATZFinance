@@ -36,6 +36,11 @@ public class ApplyForLoanView extends Application
     private Stage stage;
     private TextField firstName;
     private TextField lastName;
+    private TextField addressLine1;
+    private TextField addressLine2;
+    private TextField city;
+    private TextField state;
+    private TextField zip;
     private ChoiceBox loanType;
     private ChoiceBox loanAmount;
     public Button apply;
@@ -44,7 +49,7 @@ public class ApplyForLoanView extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        Scene scene = new Scene(root, 400, 600);
+        Scene scene = new Scene(root, 400, 700);
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setTitle("ATZ Loan Application");
@@ -59,6 +64,16 @@ public class ApplyForLoanView extends Application
                 firstName = new TextField(),
                 new Label("Last Name"),
                 lastName = new TextField(),
+                new Label("Address Line 1"),
+                addressLine1 = new TextField(),
+                new Label("Address Line 2"),
+                addressLine2 = new TextField(),
+                new Label("City"),
+                city = new TextField(),
+                new Label("State"),
+                state = new TextField(),
+                 new Label("Zip Code"),
+                zip = new TextField(),
                 new Label("Loan Type"),
                 loanType = new ChoiceBox(),
                 new Label("Loan Amount"),
@@ -75,6 +90,11 @@ public class ApplyForLoanView extends Application
             loanApp = (LoanApplication) oin.readObject();
             firstName.setText(loanApp.getfName());
             lastName.setText(loanApp.getlName());
+            addressLine1.setText((loanApp.getAddress1()));
+            addressLine2.setText((loanApp.getAddress2()));
+            city.setText(loanApp.getCity());
+            state.setText(loanApp.getState());
+            zip.setText((loanApp.getZipCode()));
             loanType.setValue(loanApp.getLoanType());
             loanAmount.setValue(loanApp.getLoanAmount());
         } catch (Exception e) {
@@ -201,7 +221,7 @@ public class ApplyForLoanView extends Application
 
     public void setloanAmount(ChoiceBox ploanAmount)
     {
-        this.loanAmount = loanAmount;
+        this.loanAmount = ploanAmount;
     }
 
     public Button getApply()
