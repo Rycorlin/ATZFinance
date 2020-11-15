@@ -5,9 +5,7 @@
  */
 package Controller;
 
-import View.LoginView;
 import Model.CreditQuery;
-import Model.Customer;
 import Model.IncidentReport;
 import Model.User;
 import Model.LoanOfficer;
@@ -15,8 +13,8 @@ import Model.LoanTemplate;
 import java.util.ArrayList;
 import Model.TechSupport;
 import Model.LoanTransaction;
-import Model.carLoan;
-import Model.personalLoan;
+import Model.CarLoan;
+import Model.PersonalLoan;
 
 
 /**
@@ -60,10 +58,10 @@ public class TestHarness
          ////// LOANTEMPLATE TESTING ////////////////////////////////////////////////////////////////////////
         System.out.println("<<Loan TESTING>>");
         System.out.println("Personal Loan Example");
-        personalLoan pl1 = new personalLoan(718, 2, 3);
+        PersonalLoan pl1 = new PersonalLoan(718, 2, 3);
         System.out.println("your personal loan interest rate is " + pl1.setInterestRate() + "%, your term length is " + pl1.setTerm() + "months, your amount borrowed is " + pl1.setAmount());
         System.out.println("Car Loan Example");
-        carLoan cl1 = new carLoan(615, 3, 2);
+        CarLoan cl1 = new CarLoan(615, 3, 2);
         System.out.println("your car loan is for $" + cl1.setAmount() + " at an interest rate of " + cl1.setInterestRate() + "% for " + cl1.setTerm() + "months");
         System.out.println("-------------------------------");
       
@@ -120,7 +118,7 @@ public class TestHarness
         LoanOfficer lo1 = new LoanOfficer(12345, "Ryan", "OHagan", "rjo2880", "test");
         lo1.setNumLoansActive(10);
         ArrayList<LoanTemplate> historicalLoanTest = new ArrayList<>();
-        personalLoan loanTest1 = new personalLoan(719, 1, 3);
+        PersonalLoan loanTest1 = new PersonalLoan(719, 1, 3);
         historicalLoanTest.add(loanTest1);
         lo1.setHistoricalLoans(historicalLoanTest);
         System.out.println("Performance Data " + lo1.getPerformanceMetrics());

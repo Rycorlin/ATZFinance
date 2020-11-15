@@ -61,10 +61,7 @@ public class UserView extends Application {
             
             backButton.getScene().setRoot(homeviewVBox());  
         });
-        
-        
-        
-        
+
         // Create a TableView with a list of customers
         TableView<User> table = new TableView<>();
         // Add rows to the TableView
@@ -91,8 +88,6 @@ public class UserView extends Application {
                 + "-fx-border-insets: 5;"
                 + "-fx-border-radius: 5;"
                 + "-fx-border-color: blue;");
-
-        
         
         // Create the Scene
         Scene scene = new Scene(root);

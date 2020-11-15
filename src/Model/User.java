@@ -37,22 +37,18 @@ public class User implements Serializable {
     
     /*------------------------------------FACTORY METHOD FOR UPGRADING THE "USER" TYPE TO A SPECIFIC USER TYPE.-----------------------------------------*/
     //Bret Easley
-    public User upgradeUser(User previousUser, String userType)
-    {
-        if(userType == "Customer")
-        {
+    public User upgradeUser(User previousUser, String userType) {
+        if(userType == "Customer") {
             //Customer newCustomer = new Customer(previousUser.firstName,previousUser.lastName,previousUser.userName,previousUser.socialSecurityNumber, false);       //Ryan M. added Boolean just to keep moving along my code must fix later
            // return newCustomer;
         }
         
-        if(userType == "TechSupport")
-        {
+        if(userType == "TechSupport") {
            // TechSupport newTS = new TechSupport(previousUser.firstName,previousUser.lastName,previousUser.userName,previousUser.socialSecurityNumber);
            // return newTS;
         }
         
-        if(userType == "LoanOfficer")
-        {
+        if(userType == "LoanOfficer") {
            // int employeeID = 0; //This will likely be a sequential number in the future, just leaving it as zero to properly create the factory method.
           //  LoanOfficer newLO = new LoanOfficer(employeeID,previousUser.firstName,previousUser.lastName,previousUser.userName,previousUser.socialSecurityNumber);
             

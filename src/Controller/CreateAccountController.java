@@ -24,8 +24,7 @@ public class CreateAccountController {
     public void setup() {
         //Action on click "Create Account" for new account sends to LoginController
         createAccountView.register.setOnAction((ActionEvent event) -> {
-            if(validUsername() && validPassword()) {
-
+            if (validUsername() && validPassword()) {
                 User newUser = new User(createAccountView.getFirstName(), createAccountView.getLastName(), createAccountView.getUsername(),
                         createAccountView.getPassword());
                 UserTable.addUser(newUser);
@@ -39,11 +38,13 @@ public class CreateAccountController {
         String p1 = createAccountView.getPassword();
         String p2 = createAccountView.getConfirmPassword();
 
-        if(p1 == null || p2 == null) {
+        //make sure the user has entered something in the text fields
+        if (p1 == null || p2 == null) {
             return false;
         }
 
-        if(!p1.equals(p2)) {
+        //passwords do not match
+        if (!p1.equals(p2)) {
             createAccountView.passwordMatchError.setVisible(true);
             return false;
         }
@@ -64,8 +65,9 @@ public class CreateAccountController {
         return true;
     }
 
+    //checks the stored HashSet of usernames to see if it is available
     private boolean validUsername() {
-        if(UserTable.getUsernameSet().contains(createAccountView.getUsername())) {
+        if (UserTable.getUsernameSet().contains(createAccountView.getUsername())) {
             createAccountView.usernameError.setVisible(true);
             return false;
         }

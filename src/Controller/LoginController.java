@@ -27,7 +27,7 @@ public class LoginController {
     private LoginView loginView;
     private HomeView hv;
     private CreateAccountView newAccount;
-    Stage stage;
+    private Stage stage;
 
     public LoginController(String[] args) {
         Application.launch(LoginView.class, args);
@@ -49,29 +49,24 @@ public class LoginController {
     }
 
     public boolean login(String username, String password, Stage primaryStage) {
-        ArrayList<User> userList = UserTable.getUserList();
-        
         //Error if no users exist
-        if (userList.size() < 1) {
+        if (UserTable.getSize() < 1) {
             loginView.getLblMessage().setText("Incorrect user or pw.");
             loginView.getLblMessage().setTextFill(Color.RED);
         }
 
-        for (int i = 0; i < userList.size(); i++) {
-
-            if (UserTable.getUser(i).getUserName().equalsIgnoreCase(loginView.getCheckUser()) && UserTable.getUser(i).getPassword().equals(loginView.getCheckPw())) {
+        for(User user : UserTable.getUsers()) {
+            if (user.getUserName().equalsIgnoreCase(loginView.getCheckUser()) && user.getPassword().equals(loginView.getCheckPw())) {
                 loginView.getLblMessage().setTextFill(Color.GREEN);
                 hv = new HomeView(primaryStage);
-                System.out.println("YES");
+
                 return true;
-
             } else {
-
                 loginView.getLblMessage().setText("Incorrect user or pw.");
                 loginView.getLblMessage().setTextFill(Color.RED);
-
             }
         }
+
         loginView.getTxtUserName().setText("");
         loginView.getPf().setText("");
         return false;

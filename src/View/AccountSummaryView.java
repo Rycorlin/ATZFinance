@@ -35,7 +35,7 @@ import javax.imageio.ImageIO;
  */
 class AccountSummaryView {
 
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
 
         // BOTTOM BAR / BUTTON
         BorderPane borderpane = new BorderPane();
@@ -135,7 +135,5 @@ class AccountSummaryView {
         stage.setTitle("Account Summary");
         // Display the Stage
         stage.show();
-
     }
-
 }
