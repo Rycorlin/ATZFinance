@@ -24,7 +24,7 @@ public class CreateAccountController {
     public void setup() {
         //Action on click "Create Account" for new account sends to LoginController
         createAccountView.register.setOnAction((ActionEvent event) -> {
-            if (validUsername() && validPassword()) {
+            if (validUsername() && validPassword() && validNames()) {
                 User newUser = new User(createAccountView.getFirstName(), createAccountView.getLastName(), createAccountView.getUsername(),
                         createAccountView.getPassword());
                 UserTable.addUser(newUser);
@@ -72,6 +72,34 @@ public class CreateAccountController {
             return false;
         }
         createAccountView.usernameError.setVisible(false);
+        return true;
+    }
+    
+        private boolean validNames() {
+        String fn = createAccountView.getFirstName();
+        String ln = createAccountView.getLastName();
+
+        if (fn == null || ln == null) {
+            return false;
+        }
+
+        Pattern p = Pattern.compile("[^a-z]", Pattern.CASE_INSENSITIVE);
+        Matcher m1 = p.matcher(fn);
+        Matcher m2 = p.matcher(ln);
+        boolean b1 = m1.find();
+        boolean b2 = m2.find();
+
+        if (b1)
+        {
+        createAccountView.nameNumberError.setVisible(true);
+        return false;
+        }
+        
+        if (b2)
+        {
+        createAccountView.nameNumberError.setVisible(true);
+        return false;
+        }
         return true;
     }
 
