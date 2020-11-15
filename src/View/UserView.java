@@ -31,8 +31,7 @@ public class UserView extends Application {
         Application.launch(args);
     }
 
-    
-    
+
     @SuppressWarnings("unchecked")
     @Override
     public void start(Stage stage) {
