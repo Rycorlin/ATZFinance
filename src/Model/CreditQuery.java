@@ -28,7 +28,6 @@ public class CreditQuery {
         connection.setRequestMethod("GET");
         StringBuffer response;
         if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-            
             try ( // success
                     BufferedReader br = new BufferedReader(new InputStreamReader(
                             connection.getInputStream()))) {

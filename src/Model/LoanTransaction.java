@@ -15,15 +15,12 @@ public class LoanTransaction {
     private static LoanTransaction loanTransaction;
     
     private LoanTransaction(){}
-    
-    
-    
+
     public LoanTransaction getInstanceOfLoanTransaction(/*LoanTemplate loanTemp*/){
        // loanTransaction.loan = loanTemp;
         return loanTransaction;
     }
-    
-    
+
     //TODO: Write a Loan type check function to check type of loan received as
     // argument and initialize loan object to that type, proceed with below 
     // functions as normal depending on this loan type.
@@ -50,6 +47,7 @@ public class LoanTransaction {
     public void creditAccount(LoanTemplate loan, double credit) {
         double tempBalance = loan.setAmount();
 }
+
     public void increaseBalance(LoanTemplate loan, double credit) {
         double tempBalance = loan.setAmount();
         loan.setBalanceDue(tempBalance - credit);

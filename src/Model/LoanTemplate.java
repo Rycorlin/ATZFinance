@@ -9,14 +9,12 @@ package Model;
  *
  * @author xxani
  */
-public abstract class LoanTemplate
-{
-    public final void buildLoan()
-    {
-    setInterestRate();
-    setTerm();
-    setAmount();
+public abstract class LoanTemplate {
 
+    public final void buildLoan() {
+        setInterestRate();
+        setTerm();
+        setAmount();
     }
     
     public abstract double setInterestRate();

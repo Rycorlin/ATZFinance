@@ -29,8 +29,7 @@ import java.io.*;
  *
  * @author xxanim
  */
-public class ApplyForLoanView extends Application
-{
+public class ApplyForLoanView extends Application {
 
     private StackPane root = new StackPane();
     private Stage stage;
@@ -43,13 +42,12 @@ public class ApplyForLoanView extends Application
     private TextField zip;
     private ChoiceBox loanType;
     private TextField loanAmount;
-    public Button apply;
-    public Button back;
-    LoanApplication loanApp;
+    private Button apply;
+    private Button back;
+    private LoanApplication loanApp;
 
     @Override
-    public void start(Stage primaryStage) throws Exception
-    {
+    public void start(Stage primaryStage) {
         Scene scene = new Scene(root, 400, 700);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -125,9 +123,7 @@ public class ApplyForLoanView extends Application
 
         root.getChildren().addAll(vBox);
 
-        apply.setOnAction((ActionEvent event) ->
-        {
-
+        apply.setOnAction((ActionEvent event) -> {
             loanApp = new LoanApplication();
             save();
 
@@ -151,13 +147,10 @@ public class ApplyForLoanView extends Application
             tyStage.showAndWait();
 
             HomeView hv = new HomeView(primaryStage);
-
         });
-        
-         back.setOnAction((ActionEvent event) ->
-        {
-            HomeView hv = new HomeView(primaryStage);
 
+        back.setOnAction((ActionEvent event) -> {
+            HomeView hv = new HomeView(primaryStage);
         });
     }
 
@@ -171,74 +164,32 @@ public class ApplyForLoanView extends Application
         }
     }
 
-    public StackPane getRoot()
-    {
-        return root;
-    }
+    public StackPane getRoot() { return root; }
 
-    public void setRoot(StackPane root)
-    {
-        this.root = root;
-    }
+    public void setRoot(StackPane root) { this.root = root; }
 
-    public Stage getStage()
-    {
-        return stage;
-    }
+    public Stage getStage() { return stage; }
 
-    public void setStage(Stage stage)
-    {
-        this.stage = stage;
-    }
+    public void setStage(Stage stage) { this.stage = stage; }
 
-    public TextField getFirstName()
-    {
-        return firstName;
-    }
+    public TextField getFirstName() { return firstName; }
 
-    public void setFirstName(TextField firstName)
-    {
-        this.firstName = firstName;
-    }
+    public void setFirstName(TextField firstName) { this.firstName = firstName; }
 
-    public TextField getLastName()
-    {
-        return lastName;
-    }
+    public TextField getLastName() { return lastName; }
 
-    public void setLastName(TextField lastName)
-    {
-        this.lastName = lastName;
-    }
+    public void setLastName(TextField lastName) { this.lastName = lastName; }
 
-    public ChoiceBox getLoanType()
-    {
-        return loanType;
-    }
+    public ChoiceBox getLoanType() { return loanType; }
 
-    public void setLoanType(ChoiceBox loanType)
-    {
-        this.loanType = loanType;
-    }
+    public void setLoanType(ChoiceBox loanType) { this.loanType = loanType; }
 
-    public TextField getloanAmount()
-    {
-        return loanAmount;
-    }
+    public TextField getloanAmount() { return loanAmount; }
 
-    public void setloanAmount(TextField ploanAmount)
-    {
-        this.loanAmount = ploanAmount;
-    }
+    public void setloanAmount(TextField ploanAmount) { this.loanAmount = ploanAmount; }
 
-    public Button getApply()
-    {
-        return apply;
-    }
+    public Button getApply() { return apply; }
 
-    public void setApply(Button apply)
-    {
-        this.apply = apply;
-    }
+    public void setApply(Button apply) { this.apply = apply; }
 
 }

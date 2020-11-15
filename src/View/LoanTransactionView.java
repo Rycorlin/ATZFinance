@@ -97,8 +97,6 @@ public class LoanTransactionView implements ItemListener {
         yearComboBox.getItems().addAll(yearMonth.getYear());
         yearComboBox.setValue(yearMonth.getYear());
 
-        
-        
         GridPane grid = new GridPane();
 
         grid.setVgap(4);
@@ -108,9 +106,7 @@ public class LoanTransactionView implements ItemListener {
         DatePicker d = new DatePicker(); 
         // Select date
         grid.add(new Label("Select Date: "), 0, 0);
-        
-        
-        
+
         grid.add(d, 1, 0);
         
         //grid.add(monthComboBox, 1, 0);

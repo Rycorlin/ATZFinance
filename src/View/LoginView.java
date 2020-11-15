@@ -266,6 +266,4 @@ public class LoginView extends Application {
     public void setNewAccount(Hyperlink newAccount) {
         this.newAccount = newAccount;
     }
-    
-
 }
