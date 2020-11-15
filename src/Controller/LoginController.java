@@ -1,12 +1,17 @@
 package Controller;
 
+import Model.LoanApplication;
 import View.CreateAccountView;
 import View.HomeView;
 import View.LoginView;
 import Model.Customer;
 import Model.User;
 import Model.UserTable;
+
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -22,22 +27,29 @@ public class LoginController {
     private LoginView loginView;
     private HomeView hv;
     private CreateAccountView newAccount;
-    private UserTable uTable = new UserTable();
     Stage stage;
-    ArrayList<User> al = new ArrayList();
 
     public LoginController(String[] args) {
-
         Application.launch(LoginView.class, args);
     }
 
     public LoginController(LoginView loginView, Stage stage) {
         this.loginView = loginView;
         this.stage = stage;
+
+        //read users from save and update UserTable
+        try {
+            ObjectInputStream oin = new ObjectInputStream(new FileInputStream("users.ser"));
+            UserTable.setUserList((ArrayList<User>)oin.readObject());
+            oin = new ObjectInputStream(new FileInputStream("usernames.ser"));
+            UserTable.setUsernameSet((HashSet<String>)oin.readObject());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean login(String username, String password, Stage primaryStage) {
-        ArrayList<User> userList = uTable.getUsers();
+        ArrayList<User> userList = UserTable.getUserList();
         
         //Error if no users exist
         if (userList.size() < 1) {
@@ -47,7 +59,7 @@ public class LoginController {
 
         for (int i = 0; i < userList.size(); i++) {
 
-            if (uTable.getUser(i).getUserName().equalsIgnoreCase(loginView.getCheckUser()) && uTable.getUser(i).getPassword().equals(loginView.getCheckPw())) {
+            if (UserTable.getUser(i).getUserName().equalsIgnoreCase(loginView.getCheckUser()) && UserTable.getUser(i).getPassword().equals(loginView.getCheckPw())) {
                 loginView.getLblMessage().setTextFill(Color.GREEN);
                 hv = new HomeView(primaryStage);
                 System.out.println("YES");
@@ -86,7 +98,7 @@ public class LoginController {
     }*/
     //From loginview open up new CreateAccountView UI when creating new account
     public void createAcount(Stage primaryStage) throws Exception {
-        newAccount = new CreateAccountView(uTable);
+        newAccount = new CreateAccountView();
         newAccount.start(primaryStage);
     }
 }

@@ -5,8 +5,12 @@
  */
 package Model;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import static java.util.Collections.list;
+
+import java.util.HashSet;
 import java.util.Iterator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,23 +23,29 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class UserTable {
 
-    private static ArrayList<User> userList = new ArrayList<User>();
+    private static ArrayList<User> userList = new ArrayList<>();
+    //so we can check if username is taken using O(1) instead of O(n)
+    private static HashSet<String> usernameSet = new HashSet<>();
 
-    public  UserTable() {
-        //userList = new ArrayList<User>();
-    }
-
-    public void addUser(User user) {
+    public static void addUser(User user) {
         userList.add(user);
+        usernameSet.add(user.getUserName());
+
+        //update stored data
+        try {
+            ObjectOutputStream ous = new ObjectOutputStream(new FileOutputStream("users.ser"));
+            ous.writeObject(userList);
+            ous = new ObjectOutputStream(new FileOutputStream("usernames.ser"));
+            ous.writeObject(usernameSet);
+            ous.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public User getUser(int i) {
-        return userList.get(i);
-    }
+    public static User getUser(int i) { return userList.get(i); }
 
-    public int getSize() {
-        return userList.size();
-    }
+    public static int getSize() { return userList.size(); }
 
     // Returns an observable list of persons
     public static ObservableList<User> getPersonList() {
@@ -76,18 +86,13 @@ public class UserTable {
         return socialCol;
     }
 
-    public static ArrayList<User> getUserList() {
-        return userList;
-    }
+    public static ArrayList<User> getUserList() { return userList; }
     
-    public ArrayList<User> getUsers()
-    {
-        return userList;
-    }
+    public static ArrayList<User> getUsers() { return userList; }
 
-    public void setUserList(ArrayList<User> userList) {
-        this.userList = userList;
-    }
-    
+    public static void setUserList(ArrayList<User> userList) { UserTable.userList = userList; }
 
+    public static void setUsernameSet(HashSet<String> usernameSet) { UserTable.usernameSet = usernameSet; }
+
+    public static HashSet<String> getUsernameSet() { return usernameSet; }
 }

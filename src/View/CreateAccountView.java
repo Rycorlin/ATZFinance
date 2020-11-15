@@ -16,6 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -25,10 +26,8 @@ import javafx.stage.Stage;
 public class CreateAccountView extends Application {
 
     private StackPane root = new StackPane();
-    private Stage stage;
     private TextField firstName;
     private CreateAccountController createAccountController;
-    private UserTable uTable;
     public TextField lastName;
     public TextField userName;
     public PasswordField password;
@@ -36,10 +35,10 @@ public class CreateAccountView extends Application {
     public Button register;
     public Label passwordMatchError;
     public Label passwordSecurityError;
+    public Label usernameError;
 
-    public CreateAccountView(UserTable uTable) {
+    public CreateAccountView() {
         super();
-        this.uTable = uTable;
     }
 
     @Override
@@ -62,6 +61,7 @@ public class CreateAccountView extends Application {
                 lastName = new TextField(),
                 new Label("Your Username"),
                 userName = new TextField(),
+                usernameError = new Label("Username is taken"),
                 new Label("Password must be 8+ characters"),
                 new Label("It also must contain a number and an uppercase letter"),
                 new Label("Your Password"),
@@ -72,11 +72,17 @@ public class CreateAccountView extends Application {
                 passwordSecurityError = new Label("Password does not meet security requirements"),
                 register = new Button("REGISTER"));
         root.getChildren().addAll(vBox);
+
         passwordMatchError.setVisible(false);
         passwordSecurityError.setVisible(false);
+        usernameError.setVisible(false);
+
+        passwordMatchError.setTextFill(Color.RED);
+        passwordSecurityError.setTextFill(Color.RED);
+        usernameError.setTextFill(Color.RED);
 
         //create conroller and pass user table to it
-        createAccountController = new CreateAccountController(this, primaryStage, uTable);
+        createAccountController = new CreateAccountController(this, primaryStage);
     }
     
     public String getFirstName()
