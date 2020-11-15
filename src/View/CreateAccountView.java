@@ -33,6 +33,7 @@ public class CreateAccountView extends Application {
     public PasswordField password;
     public PasswordField confirmPass;
     public Button register;
+    public Label nameNumberError;
     public Label passwordMatchError;
     public Label passwordSecurityError;
     public Label usernameError;
@@ -68,15 +69,18 @@ public class CreateAccountView extends Application {
                 password = new PasswordField(),
                 new Label("Confirm Password"),
                 confirmPass = new PasswordField(),
+                nameNumberError = new Label("No numbers/Special characters in First/Last name"),
                 passwordMatchError = new Label("Passwords do not match"),
                 passwordSecurityError = new Label("Password does not meet security requirements"),
                 register = new Button("REGISTER"));
         root.getChildren().addAll(vBox);
-
+        
+        nameNumberError.setVisible(false);
         passwordMatchError.setVisible(false);
         passwordSecurityError.setVisible(false);
         usernameError.setVisible(false);
-
+        
+        nameNumberError.setTextFill(Color.RED);
         passwordMatchError.setTextFill(Color.RED);
         passwordSecurityError.setTextFill(Color.RED);
         usernameError.setTextFill(Color.RED);
