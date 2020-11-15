@@ -21,38 +21,43 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
 import java.io.*;
 
 /**
  *
  * @author xxanim
  */
-public class ApplyForLoanView extends Application
-{
+public class ApplyForLoanView extends Application {
 
     private StackPane root = new StackPane();
     private Stage stage;
     private TextField firstName;
     private TextField lastName;
-    private ChoiceBox loanType;
-    private ChoiceBox loanAmount;
+    private ChoiceBox loanType = new ChoiceBox();
+    private TextField loanAmount;
     public Button apply;
+    public Button back;
     LoanApplication loanApp;
+  
+        
 
     @Override
     public void start(Stage primaryStage) throws Exception
     {
+             
         Scene scene = new Scene(root, 400, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setTitle("ATZ Loan Application");
+        
+       
 
         VBox vBox = new VBox();
 
         vBox.setSpacing(8);
         vBox.setPadding(new Insets(10, 10, 10, 10));
+   
+        
 
         vBox.getChildren().addAll(
                 new Label("First Name"),
@@ -60,14 +65,17 @@ public class ApplyForLoanView extends Application
                 new Label("Last Name"),
                 lastName = new TextField(),
                 new Label("Loan Type"),
-                loanType = new ChoiceBox(),
-                new Label("Loan Amount"),
-                loanAmount = new ChoiceBox(),
-                apply = new Button("APPLY"));
+                loanType,
+                new Label("Please Enter Requested Loan Amount"),
+                loanAmount = new TextField(),
+                apply = new Button("APPLY"),
+                back = new Button("BACK"));
 
-        loanType.setItems(FXCollections.observableArrayList("Personal Loan", "Car Loan"));
-        loanAmount.setItems(FXCollections.observableArrayList("500", "1000", "2000", "3000", "4000", "5000", "6000", "7000", "8000", "10000", "15000", "20000", "30000", "40000"));
+        
+  
+       loanType.setItems(FXCollections.observableArrayList("Personal", "Car"));
 
+        
 
         //read from autosave
         try {
@@ -76,7 +84,7 @@ public class ApplyForLoanView extends Application
             firstName.setText(loanApp.getfName());
             lastName.setText(loanApp.getlName());
             loanType.setValue(loanApp.getLoanType());
-            loanAmount.setValue(loanApp.getLoanAmount());
+            
         } catch (Exception e) {
             loanApp = new LoanApplication();
         }
@@ -97,8 +105,8 @@ public class ApplyForLoanView extends Application
             loanApp.setLoanType(newValue.toString());
             save();
         });
-        loanAmount.valueProperty().addListener((observable, oldValue, newValue) -> {
-            loanApp.setLoanAmount(newValue.toString());
+        loanAmount.textProperty().addListener((observable, oldValue, newValue) -> {
+            loanApp.setfName(newValue);
             save();
         });
 
@@ -132,6 +140,14 @@ public class ApplyForLoanView extends Application
             HomeView hv = new HomeView(primaryStage);
 
         });
+        
+         back.setOnAction((ActionEvent event) ->
+        {
+            HomeView hv = new HomeView(primaryStage);
+
+        });
+        
+       
     }
 
     private void save() {
@@ -194,7 +210,7 @@ public class ApplyForLoanView extends Application
         this.loanType = loanType;
     }
 
-    public ChoiceBox getloanAmount()
+    public TextField getloanAmount()
     {
         return loanAmount;
     }
