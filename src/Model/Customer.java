@@ -26,7 +26,7 @@ public class Customer extends User{
      *
      * @return A integer representing the customer ID
      */
-    public int getcustomerID() {
+    public int getCustomerID() {
         return customerID;
     }
 
@@ -35,7 +35,7 @@ public class Customer extends User{
      *
      * @param newID Sets the identification number for the customer
      */
-    public void setcustomerID(int newID) {
+    public void setCustomerID(int newID) {
         customerID = newID;
     }
 

@@ -190,12 +190,12 @@ public class ApplyForLoanView extends Application
         this.apply = apply;
     }
 
-    public ComboBox getCombo_box()
+    public ComboBox getComboBox()
     {
         return combo_box;
     }
 
-    public void setCombo_box(ComboBox combo_box)
+    public void setComboBox(ComboBox combo_box)
     {
         this.combo_box = combo_box;
     }
@@ -290,12 +290,12 @@ public class ApplyForLoanView extends Application
         this.loanApp = loanApp;
     }
 
-    public VBox getvBox()
+    public VBox getVBox()
     {
         return vBox;
     }
 
-    public void setvBox(VBox vBox)
+    public void setVBox(VBox vBox)
     {
         this.vBox = vBox;
     }

@@ -81,7 +81,7 @@ public class LoginController {
 
     
     //From loginview open up new CreateAccountView UI when creating new account
-    public void createAcount(Stage primaryStage) throws Exception {
+    public void createAccount(Stage primaryStage) throws Exception {
         newAccount = new CreateAccountView();
         newAccount.start(primaryStage);
     }

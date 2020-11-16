@@ -122,7 +122,7 @@ public class LoginView extends Application {
         getNewAccountHyperLink().setOnAction((ActionEvent event) -> {
             
             try {
-                loginController.createAcount(primaryStage);
+                loginController.createAccount(primaryStage);
             } catch (Exception ex) {
                 Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
             }

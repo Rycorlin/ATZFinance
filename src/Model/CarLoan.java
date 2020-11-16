@@ -158,12 +158,12 @@ public class CarLoan extends LoanTemplate {
         this.interestRate = interestRate;
     }
 
-    public int getTerm_Length_In_Months()
+    public int getTermLengthInMonths()
     {
         return term_Length_In_Months;
     }
 
-    public void setTerm_Length_In_Months(int term_Length_In_Months) {
+    public void setTermLengthInMonths(int term_Length_In_Months) {
         this.term_Length_In_Months = term_Length_In_Months;
     }
 
