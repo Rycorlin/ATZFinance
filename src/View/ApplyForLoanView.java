@@ -32,7 +32,8 @@ import javafx.scene.control.ComboBox;
  *
  * @author xxanim
  */
-public class ApplyForLoanView extends Application {
+public class ApplyForLoanView extends Application
+{
 
     private StackPane root = new StackPane();
     private Stage stage;
@@ -45,26 +46,31 @@ public class ApplyForLoanView extends Application {
     private TextField zip;
     private ChoiceBox loanType;
     private TextField loanAmount;
-    private Button apply;
-    private Button back;
+    public Button apply;
+    public Button back;
     private LoanApplication loanApp;
     private UserTable userTbl;
+    private ComboBox combo_box;
+    private VBox vBox;
 
+    //initial scene is launched
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage)
+    {
         Scene scene = new Scene(root, 400, 775);
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setTitle("ATZ Loan Application");
-        
-        ComboBox combo_box = 
-                     new ComboBox(FXCollections.observableArrayList(userTbl.getUsernames()));       
 
+        
+        ComboBox combo_box
+                = new ComboBox(FXCollections.observableArrayList(userTbl.getUsernames()));
         VBox vBox = new VBox();
 
         vBox.setSpacing(8);
         vBox.setPadding(new Insets(10, 10, 10, 10));
-
+        
+        //This vBox hold the main form.
         vBox.getChildren().addAll(
                 new Label("Choose User"),
                 combo_box,
@@ -80,7 +86,7 @@ public class ApplyForLoanView extends Application {
                 city = new TextField(),
                 new Label("State"),
                 state = new TextField(),
-                 new Label("Zip Code"),
+                new Label("Zip Code"),
                 zip = new TextField(),
                 new Label("Loan Type"),
                 loanType = new ChoiceBox(),
@@ -91,26 +97,28 @@ public class ApplyForLoanView extends Application {
 
         loanType.setItems(FXCollections.observableArrayList("Personal Loan", "Car Loan"));
         
-        EventHandler<ActionEvent> comboHandler = new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent event) 
+        //this event allows the combo box to be automatically populated with the users information
+        EventHandler<ActionEvent> comboHandler = new EventHandler<ActionEvent>()
         {
-            for (String string: userTbl.getUsernames())
+            @Override
+            public void handle(ActionEvent event)
             {
-                if ( (string.contains(combo_box.getValue().toString())))
+                for (String string : getUserTbl().getUsernames())
                 {
-                  int temp = userTbl.getUsernames().indexOf(string);
-                  firstName.setText(userTbl.getUser(temp).getFirstName());
-                  lastName.setText(userTbl.getUser(temp).getLastName());  
-                }
-            };
-        }
+                    if ((string.contains(combo_box.getValue().toString())))
+                    {
+                        int temp = getUserTbl().getUsernames().indexOf(string);
+                        firstName.setText(getUserTbl().getUser(temp).getFirstName());
+                        lastName.setText(getUserTbl().getUser(temp).getLastName());
+                    }
+                };
+            }
         };
         combo_box.setOnAction(comboHandler);
-        
 
         //read from autosave
-        try {
+        try
+        {
             ObjectInputStream oin = new ObjectInputStream(new FileInputStream("loanappsave.ser"));
             loanApp = (LoanApplication) oin.readObject();
             firstName.setText(loanApp.getfName());
@@ -122,15 +130,18 @@ public class ApplyForLoanView extends Application {
             zip.setText((loanApp.getZipCode()));
             loanType.setValue(loanApp.getLoanType());
             loanAmount.setText(loanApp.getLoanAmount());
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             loanApp = new LoanApplication();
         }
 
-        firstName.textProperty().addListener((observable, oldValue, newValue) -> {
+        firstName.textProperty().addListener((observable, oldValue, newValue) ->
+        {
             loanApp.setfName(newValue);
             save();
         });
-        lastName.textProperty().addListener((observable, oldValue, newValue) -> {
+        lastName.textProperty().addListener((observable, oldValue, newValue) ->
+        {
             loanApp.setlName(newValue);
             save();
         });
@@ -138,18 +149,21 @@ public class ApplyForLoanView extends Application {
 //            loanApp.setLoanType(newValue);
 //            save();
 //        });
-        loanType.valueProperty().addListener((observable, oldValue, newValue) -> {
+        loanType.valueProperty().addListener((observable, oldValue, newValue) ->
+        {
             loanApp.setLoanType(newValue.toString());
             save();
         });
-        loanAmount.textProperty().addListener((observable, oldValue, newValue) -> {
+        loanAmount.textProperty().addListener((observable, oldValue, newValue) ->
+        {
             loanApp.setlName(newValue);
             save();
         });
 
         root.getChildren().addAll(vBox);
 
-        apply.setOnAction((ActionEvent event) -> {
+        apply.setOnAction((ActionEvent event) ->
+        {
             loanApp = new LoanApplication();
             save();
 
@@ -175,47 +189,203 @@ public class ApplyForLoanView extends Application {
             HomeView hv = new HomeView(primaryStage);
         });
 
-        back.setOnAction((ActionEvent event) -> {
+        back.setOnAction((ActionEvent event) ->
+        {
             HomeView hv = new HomeView(primaryStage);
         });
     }
 
-    private void save() {
-        try {
+    private void save()
+    {
+        try
+        {
             ObjectOutputStream ous = new ObjectOutputStream(new FileOutputStream("loanappsave.ser"));
             ous.writeObject(loanApp);
             ous.close();
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
 
-    public StackPane getRoot() { return root; }
+    public StackPane getRoot()
+    {
+        return root;
+    }
 
-    public void setRoot(StackPane root) { this.root = root; }
+    public void setRoot(StackPane root)
+    {
+        this.root = root;
+    }
 
-    public Stage getStage() { return stage; }
+    public Stage getStage()
+    {
+        return stage;
+    }
 
-    public void setStage(Stage stage) { this.stage = stage; }
+    public void setStage(Stage stage)
+    {
+        this.stage = stage;
+    }
 
-    public TextField getFirstName() { return firstName; }
+    public TextField getFirstName()
+    {
+        return firstName;
+    }
 
-    public void setFirstName(TextField firstName) { this.firstName = firstName; }
+    public void setFirstName(TextField firstName)
+    {
+        this.firstName = firstName;
+    }
 
-    public TextField getLastName() { return lastName; }
+    public TextField getLastName()
+    {
+        return lastName;
+    }
 
-    public void setLastName(TextField lastName) { this.lastName = lastName; }
+    public void setLastName(TextField lastName)
+    {
+        this.lastName = lastName;
+    }
 
-    public ChoiceBox getLoanType() { return loanType; }
+    public ChoiceBox getLoanType()
+    {
+        return loanType;
+    }
 
-    public void setLoanType(ChoiceBox loanType) { this.loanType = loanType; }
+    public void setLoanType(ChoiceBox loanType)
+    {
+        this.loanType = loanType;
+    }
 
-    public TextField getloanAmount() { return loanAmount; }
+    public TextField getloanAmount()
+    {
+        return loanAmount;
+    }
 
-    public void setloanAmount(TextField ploanAmount) { this.loanAmount = ploanAmount; }
+    public void setloanAmount(TextField ploanAmount)
+    {
+        this.loanAmount = ploanAmount;
+    }
 
-    public Button getApply() { return apply; }
+    public Button getApply()
+    {
+        return apply;
+    }
 
-    public void setApply(Button apply) { this.apply = apply; }
+    public void setApply(Button apply)
+    {
+        this.apply = apply;
+    }
+
+    public ComboBox getCombo_box()
+    {
+        return combo_box;
+    }
+
+    public void setCombo_box(ComboBox combo_box)
+    {
+        this.combo_box = combo_box;
+    }
+
+    public UserTable getUserTbl()
+    {
+        return userTbl;
+    }
+
+    public void setUserTbl(UserTable userTbl)
+    {
+        this.userTbl = userTbl;
+    }
+
+    public TextField getAddressLine1()
+    {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(TextField addressLine1)
+    {
+        this.addressLine1 = addressLine1;
+    }
+
+    public TextField getAddressLine2()
+    {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(TextField addressLine2)
+    {
+        this.addressLine2 = addressLine2;
+    }
+
+    public TextField getCity()
+    {
+        return city;
+    }
+
+    public void setCity(TextField city)
+    {
+        this.city = city;
+    }
+
+    public TextField getState()
+    {
+        return state;
+    }
+
+    public void setState(TextField state)
+    {
+        this.state = state;
+    }
+
+    public TextField getZip()
+    {
+        return zip;
+    }
+
+    public void setZip(TextField zip)
+    {
+        this.zip = zip;
+    }
+
+    public TextField getLoanAmount()
+    {
+        return loanAmount;
+    }
+
+    public void setLoanAmount(TextField loanAmount)
+    {
+        this.loanAmount = loanAmount;
+    }
+
+    public Button getBack()
+    {
+        return back;
+    }
+
+    public void setBack(Button back)
+    {
+        this.back = back;
+    }
+
+    public LoanApplication getLoanApp()
+    {
+        return loanApp;
+    }
+
+    public void setLoanApp(LoanApplication loanApp)
+    {
+        this.loanApp = loanApp;
+    }
+
+    public VBox getvBox()
+    {
+        return vBox;
+    }
+
+    public void setvBox(VBox vBox)
+    {
+        this.vBox = vBox;
+    }
 
 }

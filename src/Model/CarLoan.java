@@ -9,6 +9,8 @@ package Model;
  *
  * @author xxani
  */
+
+//This class holds the specifications for a car loan
 public class CarLoan extends LoanTemplate {
 
     private double balance_due;

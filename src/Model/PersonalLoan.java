@@ -9,6 +9,8 @@ package Model;
  *
  * @author xxani
  */
+
+//This class holds the specifications for a personal loan
 public class PersonalLoan extends LoanTemplate {
 
     private int creditScore;
