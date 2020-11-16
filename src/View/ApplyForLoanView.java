@@ -5,13 +5,13 @@
  */
 package View;
 
+import Controller.ApplyForLoanController;
 import Model.LoanApplication;
 import Model.UserTable;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -19,12 +19,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
-import java.io.*;
 import javafx.event.EventHandler;
 import javafx.scene.control.ComboBox;
 
@@ -52,6 +48,7 @@ public class ApplyForLoanView extends Application
     private UserTable userTbl;
     private ComboBox combo_box;
     private VBox vBox;
+    private ApplyForLoanController applyForLoanController;
 
     //initial scene is launched
     @Override
@@ -96,6 +93,9 @@ public class ApplyForLoanView extends Application
                 back = new Button("BACK"));
 
         loanType.setItems(FXCollections.observableArrayList("Personal Loan", "Car Loan"));
+        root.getChildren().addAll(vBox);
+        
+        applyForLoanController = new ApplyForLoanController(this, primaryStage);
         
         //this event allows the combo box to be automatically populated with the users information
         EventHandler<ActionEvent> comboHandler = new EventHandler<ActionEvent>()
@@ -115,99 +115,11 @@ public class ApplyForLoanView extends Application
             }
         };
         combo_box.setOnAction(comboHandler);
-
-        //read from autosave
-        try
-        {
-            ObjectInputStream oin = new ObjectInputStream(new FileInputStream("loanappsave.ser"));
-            loanApp = (LoanApplication) oin.readObject();
-            firstName.setText(loanApp.getfName());
-            lastName.setText(loanApp.getlName());
-            addressLine1.setText((loanApp.getAddress1()));
-            addressLine2.setText((loanApp.getAddress2()));
-            city.setText(loanApp.getCity());
-            state.setText(loanApp.getState());
-            zip.setText((loanApp.getZipCode()));
-            loanType.setValue(loanApp.getLoanType());
-            loanAmount.setText(loanApp.getLoanAmount());
-        } catch (Exception e)
-        {
-            loanApp = new LoanApplication();
-        }
-
-        firstName.textProperty().addListener((observable, oldValue, newValue) ->
-        {
-            loanApp.setfName(newValue);
-            save();
-        });
-        lastName.textProperty().addListener((observable, oldValue, newValue) ->
-        {
-            loanApp.setlName(newValue);
-            save();
-        });
-//        loanType.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-//            loanApp.setLoanType(newValue);
-//            save();
-//        });
-        loanType.valueProperty().addListener((observable, oldValue, newValue) ->
-        {
-            loanApp.setLoanType(newValue.toString());
-            save();
-        });
-        loanAmount.textProperty().addListener((observable, oldValue, newValue) ->
-        {
-            loanApp.setlName(newValue);
-            save();
-        });
-
-        root.getChildren().addAll(vBox);
-
-        apply.setOnAction((ActionEvent event) ->
-        {
-            loanApp = new LoanApplication();
-            save();
-
-            Stage tyStage = new Stage();
-            tyStage.initModality(Modality.APPLICATION_MODAL);
-            tyStage.setTitle("Thank You");
-            tyStage.setMinWidth(250);
-            tyStage.setAlwaysOnTop(true);
-
-            Label label = new Label();
-            label.setText("Thank you, your application is now being processed.");
-            Button closeButton = new Button("OK");
-            closeButton.setOnAction(e -> tyStage.close());
-
-            VBox layout = new VBox(10);
-            layout.getChildren().addAll(label, closeButton);
-            layout.setAlignment(Pos.CENTER);
-
-            Scene tyScene = new Scene(layout);
-            tyStage.setScene(tyScene);
-            tyStage.showAndWait();
-
-            HomeView hv = new HomeView(primaryStage);
-        });
-
-        back.setOnAction((ActionEvent event) ->
-        {
-            HomeView hv = new HomeView(primaryStage);
-        });
+    
     }
-
-    private void save()
-    {
-        try
-        {
-            ObjectOutputStream ous = new ObjectOutputStream(new FileOutputStream("loanappsave.ser"));
-            ous.writeObject(loanApp);
-            ous.close();
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
+    
+    
+    
     public StackPane getRoot()
     {
         return root;
