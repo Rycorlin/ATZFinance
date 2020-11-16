@@ -9,6 +9,8 @@ package Model;
  *
  * @author xxani
  */
+
+//this template was designed to give standardization to loan types
 public abstract class LoanTemplate {
 
     public final void buildLoan() {
