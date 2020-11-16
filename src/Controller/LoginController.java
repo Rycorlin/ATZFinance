@@ -29,10 +29,12 @@ public class LoginController {
     private CreateAccountView newAccount;
     private Stage stage;
 
+    //Launches the LoginView view
     public LoginController(String[] args) {
         Application.launch(LoginView.class, args);
     }
-
+    
+    //Accepts a view and a stage for LoginController
     public LoginController(LoginView loginView, Stage stage) {
         this.loginView = loginView;
         this.stage = stage;
@@ -47,7 +49,8 @@ public class LoginController {
             e.printStackTrace();
         }
     }
-
+    
+    //The method for a user logging in with credentials 
     public boolean login(String username, String password, Stage primaryStage) {
         //Error if no users exist
         if (UserTable.getSize() < 1) {
@@ -76,21 +79,7 @@ public class LoginController {
         return username.equalsIgnoreCase(user) && password.equals(pw);
     }
 
-    //Done in HomeView atm because cant get button to work from here - RM
-    /* public void logoff()
-    {
-       
-       
-       hv.logoutButton.setOnAction((ActionEvent event) ->
-       {
-           System.out.println("Hey");
-           loginView.start(stage);
-           
-           
-           
-       });
-        
-    }*/
+    
     //From loginview open up new CreateAccountView UI when creating new account
     public void createAcount(Stage primaryStage) throws Exception {
         newAccount = new CreateAccountView();

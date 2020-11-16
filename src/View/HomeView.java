@@ -153,7 +153,7 @@ public class HomeView {
             try {
                 // Go to Summary View
                 sv.start(stage);
-            } catch (IOException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
             }
         });

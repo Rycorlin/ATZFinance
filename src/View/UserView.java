@@ -27,9 +27,6 @@ import static View.HomeView.homeviewVBox;
  */
 public class UserView extends Application {
 
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
 
 
     @SuppressWarnings("unchecked")
