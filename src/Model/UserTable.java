@@ -8,7 +8,10 @@ package Model;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -20,35 +23,26 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class UserTable {
 
-    private static ArrayList<User> userList = new ArrayList<>();
-    //so we can check if username is taken using O(1) instead of O(n)
-    private static HashSet<String> usernameSet = new HashSet<>();
+    private static Map<String, User> userMap = new HashMap<>();
 
     public static void addUser(User user) {
-        userList.add(user);
-        usernameSet.add(user.getUserName());
+        userMap.put(user.getUserName(), user);
 
         //update stored data
         try {
             ObjectOutputStream ous = new ObjectOutputStream(new FileOutputStream("users.ser"));
-            ous.writeObject(userList);
-            ous = new ObjectOutputStream(new FileOutputStream("usernames.ser"));
-            ous.writeObject(usernameSet);
+            ous.writeObject(userMap);
             ous.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static User getUser(int i) { return userList.get(i); }
-
-    public static int getSize() { return userList.size(); }
+    public static int getSize() { return userMap.size(); }
 
     // Returns an observable list of persons
     public static ObservableList<User> getPersonList() {
-
-        //return userList.addAll(FXCollections.observableArrayList());
-        return FXCollections.<User>observableArrayList(getUserList());
+        return FXCollections.<User>observableArrayList(new ArrayList<>(getUserMap().values()));
     }
 
     // Returns User First Name TableColumn
@@ -83,24 +77,11 @@ public class UserTable {
         return socialCol;
     }
 
-    public static ArrayList<User> getUserList() { return userList; }
-    
-    public static ArrayList<User> getUsers() { return userList; }
+    public static Map<String, User> getUserMap() {
+        return userMap;
+    }
 
-    public static void setUserList(ArrayList<User> userList) { UserTable.userList = userList; }
-
-    public static void setUsernameSet(HashSet<String> usernameSet) { UserTable.usernameSet = usernameSet; }
-
-    public static HashSet<String> getUsernameSet() { return usernameSet; }
-    
-    public static ArrayList<String> getUsernames() 
-    { 
-      ArrayList<String> userArray = new ArrayList<>();
-      for (User user: userList){
-          String temp = user.getFirstName() + " "+ user.getLastName() + " (" + user.getUserName() + ")";
-          
-          userArray.add(temp);
-      }
-      return userArray;
-     }
+    public static void setUserMap(Map<String, User> userMap) {
+        UserTable.userMap = userMap;
+    }
 }

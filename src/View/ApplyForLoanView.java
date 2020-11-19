@@ -7,6 +7,7 @@ package View;
 
 import Controller.ApplyForLoanController;
 import Model.LoanApplication;
+import Model.User;
 import Model.UserTable;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -45,7 +46,6 @@ public class ApplyForLoanView extends Application
     public Button apply;
     public Button back;
     private LoanApplication loanApp;
-    private UserTable userTbl;
     private ComboBox combo_box;
     private VBox vBox;
     private ApplyForLoanController applyForLoanController;
@@ -60,8 +60,8 @@ public class ApplyForLoanView extends Application
         primaryStage.setTitle("ATZ Loan Application");
 
         
-        ComboBox combo_box
-                = new ComboBox(FXCollections.observableArrayList(userTbl.getUsernames()));
+        ComboBox comboBox
+                = new ComboBox(FXCollections.observableArrayList(UserTable.getUserMap().keySet()));
         VBox vBox = new VBox();
 
         vBox.setSpacing(8);
@@ -70,7 +70,7 @@ public class ApplyForLoanView extends Application
         //This vBox hold the main form.
         vBox.getChildren().addAll(
                 new Label("Choose User"),
-                combo_box,
+                comboBox,
                 new Label("First Name"),
                 firstName = new TextField(),
                 new Label("Last Name"),
@@ -98,28 +98,19 @@ public class ApplyForLoanView extends Application
         applyForLoanController = new ApplyForLoanController(this, primaryStage);
         
         //this event allows the combo box to be automatically populated with the users information
-        EventHandler<ActionEvent> comboHandler = new EventHandler<ActionEvent>()
-        {
+        EventHandler<ActionEvent> comboHandler = new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event)
-            {
-                for (String string : getUserTbl().getUsernames())
-                {
-                    if ((string.contains(combo_box.getValue().toString())))
-                    {
-                        int temp = getUserTbl().getUsernames().indexOf(string);
-                        firstName.setText(getUserTbl().getUser(temp).getFirstName());
-                        lastName.setText(getUserTbl().getUser(temp).getLastName());
-                    }
-                };
+            public void handle(ActionEvent event) {
+                if (UserTable.getUserMap().containsKey(comboBox.getValue().toString())) {
+                    User temp = UserTable.getUserMap().get(comboBox.getValue().toString());
+                    firstName.setText(temp.getFirstName());
+                    lastName.setText(temp.getLastName());
+                }
             }
         };
-        combo_box.setOnAction(comboHandler);
-    
+        comboBox.setOnAction(comboHandler);
     }
-    
-    
-    
+
     public StackPane getRoot()
     {
         return root;
@@ -198,16 +189,6 @@ public class ApplyForLoanView extends Application
     public void setComboBox(ComboBox combo_box)
     {
         this.combo_box = combo_box;
-    }
-
-    public UserTable getUserTbl()
-    {
-        return userTbl;
-    }
-
-    public void setUserTbl(UserTable userTbl)
-    {
-        this.userTbl = userTbl;
     }
 
     public TextField getAddressLine1()

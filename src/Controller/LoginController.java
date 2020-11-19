@@ -11,6 +11,7 @@ import Model.UserTable;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,9 +43,7 @@ public class LoginController {
         //read users from save and update UserTable
         try {
             ObjectInputStream oin = new ObjectInputStream(new FileInputStream("users.ser"));
-            UserTable.setUserList((ArrayList<User>)oin.readObject());
-            oin = new ObjectInputStream(new FileInputStream("usernames.ser"));
-            UserTable.setUsernameSet((HashSet<String>)oin.readObject());
+            UserTable.setUserMap((HashMap<String, User>)oin.readObject());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -58,16 +57,14 @@ public class LoginController {
             loginView.getLblMessage().setTextFill(Color.RED);
         }
 
-        for(User user : UserTable.getUsers()) {
-            if (user.getUserName().equalsIgnoreCase(loginView.getCheckUser()) && user.getPassword().equals(loginView.getCheckPw())) {
-                loginView.getLblMessage().setTextFill(Color.GREEN);
-                hv = new HomeView(primaryStage);
+        if (UserTable.getUserMap().containsKey(username) && UserTable.getUserMap().get(username).getPassword().equals(password)) {
+            loginView.getLblMessage().setTextFill(Color.GREEN);
+            hv = new HomeView(primaryStage);
 
-                return true;
-            } else {
-                loginView.getLblMessage().setText("Incorrect user or pw.");
-                loginView.getLblMessage().setTextFill(Color.RED);
-            }
+            return true;
+        } else {
+            loginView.getLblMessage().setText("Incorrect user or pw.");
+            loginView.getLblMessage().setTextFill(Color.RED);
         }
 
         loginView.getTxtUserName().setText("");
