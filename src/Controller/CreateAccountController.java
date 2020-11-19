@@ -67,7 +67,7 @@ public class CreateAccountController {
 
     //checks the stored HashSet of usernames to see if it is available
     private boolean validUsername() {
-        if (UserTable.getUsernameSet().contains(createAccountView.getUsername())) {
+        if (UserTable.getUserMap().keySet().contains(createAccountView.getUsername())) {
             createAccountView.usernameError.setVisible(true);
             return false;
         }

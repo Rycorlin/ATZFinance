@@ -26,17 +26,13 @@ import javafx.stage.Stage;
  *
  * @author xxani
  */
-public class ApplyForLoanController
-{
+public class ApplyForLoanController {
 
     ApplyForLoanView applyForLoanView;
     Stage primaryStage;
     LoanApplication loanApp;
-    UserTable userTbl;
- 
 
-    public ApplyForLoanController(ApplyForLoanView applyForLoanView, Stage primaryStage)
-    {
+    public ApplyForLoanController(ApplyForLoanView applyForLoanView, Stage primaryStage) {
         this.applyForLoanView = applyForLoanView;
         this.primaryStage = primaryStage;
 
@@ -46,12 +42,11 @@ public class ApplyForLoanController
         this.apply();
         this.back();
     }
+
     //method to automatically save data
-    private void autoSave()
-    {
+    private void autoSave() {
         //read from autosave
-        try
-        {
+        try {
             ObjectInputStream oin = new ObjectInputStream(new FileInputStream("loanappsave.ser"));
             loanApp = (LoanApplication) oin.readObject();
             applyForLoanView.getFirstName().setText(loanApp.getfName());
@@ -63,42 +58,31 @@ public class ApplyForLoanController
             applyForLoanView.getZip().setText((loanApp.getZipCode()));
             applyForLoanView.getLoanType().setValue(loanApp.getLoanType());
             applyForLoanView.getLoanAmount().setText(loanApp.getLoanAmount());
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             loanApp = new LoanApplication();
         }
 
-        applyForLoanView.getFirstName().textProperty().addListener((observable, oldValue, newValue) ->
-        {
+        applyForLoanView.getFirstName().textProperty().addListener((observable, oldValue, newValue) -> {
             loanApp.setfName(newValue);
             save();
         });
-        applyForLoanView.getLastName().textProperty().addListener((observable, oldValue, newValue) ->
-        {
+        applyForLoanView.getLastName().textProperty().addListener((observable, oldValue, newValue) -> {
             loanApp.setlName(newValue);
             save();
         });
-//        loanType.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-//            loanApp.setLoanType(newValue);
-//            save();
-//        });
-        applyForLoanView.getLoanType().valueProperty().addListener((observable, oldValue, newValue) ->
-        {
+        applyForLoanView.getLoanType().valueProperty().addListener((observable, oldValue, newValue) -> {
             loanApp.setLoanType(newValue.toString());
             save();
         });
-        applyForLoanView.getLoanAmount().textProperty().addListener((observable, oldValue, newValue) ->
-        {
+        applyForLoanView.getLoanAmount().textProperty().addListener((observable, oldValue, newValue) -> {
             loanApp.setlName(newValue);
             save();
         });
     }
 
     //method to apply
-    private void apply()
-    {
-        applyForLoanView.getApply().setOnAction((ActionEvent event) ->
-        {
+    private void apply() {
+        applyForLoanView.getApply().setOnAction((ActionEvent event) -> {
             loanApp = new LoanApplication();
             save();
 
@@ -127,24 +111,19 @@ public class ApplyForLoanController
     }
 
     //method to return back to the home screen
-    private void back()
-    {
-        applyForLoanView.getBack().setOnAction((ActionEvent event) ->
-        {
+    private void back() {
+        applyForLoanView.getBack().setOnAction((ActionEvent event) -> {
             HomeView hv = new HomeView(primaryStage);
         });
     }
 
 //method to save data to database
-    private void save()
-    {
-        try
-        {
+    private void save() {
+        try {
             ObjectOutputStream ous = new ObjectOutputStream(new FileOutputStream("loanappsave.ser"));
             ous.writeObject(loanApp);
             ous.close();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

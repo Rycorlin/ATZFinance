@@ -24,8 +24,7 @@ import Model.PersonalLoan;
 public class TestHarness
 {
 
-    public static void main(String[] args) throws Exception
-    {
+    public static void main(String[] args) throws Exception {
 
         ////// USER TESTING ////////////////////////////////////////////////////////////////////////
         User u1 = new User("Ryan", "Milici", "Myliu", "test");
