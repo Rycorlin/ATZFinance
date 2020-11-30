@@ -6,6 +6,8 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,6 +19,7 @@ public class User implements Serializable {
     private String lastName;
     private String userName;
     private String password;
+    protected ArrayList<LoanTemplate> loanList = new ArrayList();
     
 
     /**
@@ -26,12 +29,12 @@ public class User implements Serializable {
      * @param userName User name of the user account
      * @param socialSecuritynumber Social security number of the suer
      */
-    public User(String firstName, String lastName, String userName, String password) {
+    public User(String firstName, String lastName, String userName, String password, Loan loan) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.password = password;
-
+        this.loanList.add(loan);
     }
     
     

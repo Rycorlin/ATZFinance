@@ -22,12 +22,13 @@ import javafx.stage.Stage;
 
 public class LoginController {
 
-    private String user = "";
+    private String userName = "";
     private String pw = "";
     private LoginView loginView;
     private HomeView hv;
     private CreateAccountView newAccount;
     private Stage stage;
+    private User user;
 
     //Launches the LoginView view
     public LoginController(String[] args) {
@@ -61,8 +62,7 @@ public class LoginController {
         for(User user : UserTable.getUsers()) {
             if (user.getUserName().equalsIgnoreCase(loginView.getCheckUser()) && user.getPassword().equals(loginView.getCheckPw())) {
                 loginView.getLblMessage().setTextFill(Color.GREEN);
-                hv = new HomeView(primaryStage);
-
+                hv = new HomeView(primaryStage, user);
                 return true;
             } else {
                 loginView.getLblMessage().setText("Incorrect user or pw.");
@@ -76,7 +76,7 @@ public class LoginController {
     }
 
     public boolean login(String username, String password) {
-        return username.equalsIgnoreCase(user) && password.equals(pw);
+        return username.equalsIgnoreCase(userName) && password.equals(pw);
     }
 
     

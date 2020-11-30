@@ -11,7 +11,7 @@ package Model;
  */
 
 //This class holds the specifications for a personal loan
-public class PersonalLoan extends LoanTemplate {
+public class PersonalLoan extends Loan {
 
     private int creditScore;
     private int TermLengthOption;
@@ -85,7 +85,6 @@ public class PersonalLoan extends LoanTemplate {
         return 0;
     }
 
-    @Override
     public double setInterestRate()
     {
         return getInterestRate(creditScore);
@@ -138,6 +137,7 @@ public class PersonalLoan extends LoanTemplate {
         return interestRate;
     }
 
+    @Override
     public void setInterestRate(double interestRate)
     {
         this.interestRate = interestRate;

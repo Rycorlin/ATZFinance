@@ -5,6 +5,7 @@
  */
 package View;
 
+import Model.User;
 import javafx.scene.image.Image;
 import static View.HomeView.homeviewVBox;
 import java.awt.image.BufferedImage;
@@ -34,9 +35,12 @@ import javax.imageio.ImageIO;
  * @author taren
  */
 class AccountSummaryView {
+    
+    User user;
+    
+    public void start(Stage stage, User u) {
 
-    public void start(Stage stage) {
-
+        this.user = u;
         // BOTTOM BAR / BUTTON
         BorderPane borderpane = new BorderPane();
         HBox hbox = new HBox();
@@ -106,7 +110,7 @@ class AccountSummaryView {
         // Return to HomeView
         backButton.setOnAction((ActionEvent event) -> {
             // Why is this line of code necessary?
-            HomeView hv = new HomeView(stage);
+            HomeView hv = new HomeView(stage, this.user);
 
             backButton.getScene().setRoot(homeviewVBox());
         });

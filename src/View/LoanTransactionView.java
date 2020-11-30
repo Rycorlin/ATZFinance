@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.LoanTransactionController;
+import Model.User;
 import static View.HomeView.homeviewVBox;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.YearMonth;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -32,12 +35,28 @@ import javafx.stage.Stage;
  *
  * @author taren
  */
-public class LoanTransactionView implements ItemListener {
+public class LoanTransactionView extends Application implements ItemListener {
 
-    LoanTransactionView() {
+    private User user;
+    
+//    BorderPane borderpane;
+//    HBox hbox;
+//    Button backButton;
+//    Button payLoanButton;
+//    TextField paymentField;
+//    ComboBox dayComboBox;
+//    ComboBox monthComboBox;
+//    ComboBox yearComboBox;
+//    GridPane gridPane;
+//    DatePicker datePicker;
+//    YearMonth yearMonth;
+//    int daysInMonth;
+//    String paymentAmount;
+//    VBox root;
+//    Scene scene;
+//    LoanTransactionController loanTransactionController;
 
-    }
-
+    @Override
     public void start(Stage stage) throws IOException {
 
         // BOTTOM BAR / BUTTON
@@ -138,7 +157,7 @@ public class LoanTransactionView implements ItemListener {
         
         // Return to HomeView on back button click
         backButton.setOnAction((ActionEvent event) -> {
-            HomeView hv = new HomeView(stage);
+            HomeView hv = new HomeView(stage, this.user);
             backButton.getScene().setRoot(homeviewVBox());
         });
 

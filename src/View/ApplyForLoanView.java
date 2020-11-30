@@ -7,6 +7,7 @@ package View;
 
 import Controller.ApplyForLoanController;
 import Model.LoanApplication;
+import Model.User;
 import Model.UserTable;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -49,6 +50,7 @@ public class ApplyForLoanView extends Application
     private ComboBox combo_box;
     private VBox vBox;
     private ApplyForLoanController applyForLoanController;
+    User user;
 
     //initial scene is launched
     @Override
@@ -95,7 +97,7 @@ public class ApplyForLoanView extends Application
         loanType.setItems(FXCollections.observableArrayList("Personal Loan", "Car Loan"));
         root.getChildren().addAll(vBox);
         
-        applyForLoanController = new ApplyForLoanController(this, primaryStage);
+        applyForLoanController = new ApplyForLoanController(this, primaryStage, this.user);
         
         //this event allows the combo box to be automatically populated with the users information
         EventHandler<ActionEvent> comboHandler = new EventHandler<ActionEvent>()

@@ -5,6 +5,7 @@
  */
 package View;
 
+import Model.User;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,11 +33,13 @@ import javafx.stage.Stage;
 public class HomeView {
 
     public Button logoutButton;
+    User user;
 
     private LoanTransactionView loanTransactionView = new LoanTransactionView();
 
-    public HomeView(Stage primaryStage) {
+    public HomeView(Stage primaryStage, User u) {
         //Stage stage = new Stage();
+        this.user = u;
         Stage stage = primaryStage;
         stage.setTitle("ATZ Finance Login");
 
@@ -88,7 +91,7 @@ public class HomeView {
         // Moved this hyperlink stuff into Homeview so I can use the 
         // stage to start my LoanTransactionView.
         VBox v = homeviewVBox();
-
+        
         Hyperlink options[] = new Hyperlink[] {
             new Hyperlink("Loan 1"),
             new Hyperlink("Loan 2"),
@@ -148,11 +151,11 @@ public class HomeView {
 
             //System.out.print("test");
             //UserView uv = new UserView(stage, border, hbox);
-            AccountSummaryView sv = new AccountSummaryView();
+            AccountSummaryView accountSummaryView = new AccountSummaryView();
 
             try {
                 // Go to Summary View
-                sv.start(stage);
+                accountSummaryView.start(stage, this.user);
             } catch (Exception ex) {
                 Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -185,9 +188,11 @@ public class HomeView {
         vbox.setPadding(new Insets(10));
         vbox.setSpacing(8);
 
-        Text title = new Text("Data");
+        Text title = new Text("Loans:");
+        Text payLoan = new Text("Click on a loan to pay...");
         title.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         vbox.getChildren().add(title);
+        vbox.getChildren().add(payLoan);
 
         return vbox;
     }

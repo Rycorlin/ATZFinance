@@ -8,7 +8,7 @@ import java.util.*;
  */
 public class TechSupport extends User {
 
-    private User nullTest = new User("nullTest", "nullTest", "nullTest", "test");
+    //private User nullTest = new User("nullTest", "nullTest", "nullTest", "test", Loan l);
 
     /**
      *
@@ -18,8 +18,8 @@ public class TechSupport extends User {
      * @param userName
      * @param socialSecurityNumber
      */
-    public TechSupport(String fName, String lName, String userName, String password) {
-        super(fName, lName, userName, password);
+    public TechSupport(String fName, String lName, String userName, String password, Loan l) {
+        super(fName, lName, userName, password, l);
     }
 
     /**

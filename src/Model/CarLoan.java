@@ -11,7 +11,7 @@ package Model;
  */
 
 //This class holds the specifications for a car loan
-public class CarLoan extends LoanTemplate {
+public class CarLoan extends Loan {
 
     private double balance_due;
 
@@ -100,7 +100,6 @@ public class CarLoan extends LoanTemplate {
         return 0;
     }
 
-    @Override
     public double setInterestRate()
     {
         return getInterestRate(creditScore);

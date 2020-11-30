@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Loan;
 import Model.User;
 import Model.UserTable;
 import View.CreateAccountView;
@@ -25,11 +26,13 @@ public class CreateAccountController {
         //Action on click "Create Account" for new account sends to LoginController
         createAccountView.register.setOnAction((ActionEvent event) -> {
             if (validUsername() && validPassword() && validNames()) {
+                Loan loanToUser = new Loan();
+                loanToUser.setBalanceDue(1000);
                 User newUser = new User(createAccountView.getFirstName(), createAccountView.getLastName(), createAccountView.getUsername(),
-                        createAccountView.getPassword());
+                        createAccountView.getPassword(), loanToUser);
                 UserTable.addUser(newUser);
 
-                new HomeView(stage);
+                new HomeView(stage, newUser);
             }
         });
     }
