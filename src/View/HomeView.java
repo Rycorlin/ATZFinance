@@ -44,8 +44,8 @@ public class HomeView {
         stage = primaryStage;
         stage.setTitle("ATZ Finance Login");
         
-        //BRET USER TESTING - Displays user's first and last name, and how much is on their first loan (Which we have set up as a default loan.)
-        System.out.println("User "+user.getFirstName()+" "+user.getLastName()+" has a loan balance on loan 1 of: $"+user.getLoanList().get(0).getBalanceDue());
+//        //BRET USER TESTING - Displays user's first and last name, and how much is on their first loan (Which we have set up as a default loan.)
+//        System.out.println("User "+user.getFirstName()+" "+user.getLastName()+" has a loan balance on loan 1 of: $"+user.getLoanList().get(0).getBalanceDue());
         
         BorderPane border = new BorderPane();
 
