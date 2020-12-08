@@ -1,4 +1,4 @@
-    /*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -24,6 +24,12 @@ public class PersonalLoan extends Loan {
         this.creditScore = creditScore;
         this.TermLengthOption = TermLengthOption;
         this.loanAmountOption = loanAmountOption;
+    }
+    
+    @Override
+    public String loanType()
+    {
+        return "Personal Loan";
     }
 
     public double getInterestRate(int creditScore) {
@@ -90,14 +96,14 @@ public class PersonalLoan extends Loan {
         return getInterestRate(creditScore);
     }
 
-    @Override
-    public int setTerm()
+    @Override  
+    public int getTerm()
     {
         return getTerm(TermLengthOption);
     }
 
     @Override
-    public double setAmount()
+    public double getAmount()
     {
         return getAmount(loanAmountOption);
     }

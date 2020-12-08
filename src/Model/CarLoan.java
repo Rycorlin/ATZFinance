@@ -13,18 +13,26 @@ package Model;
 //This class holds the specifications for a car loan
 public class CarLoan extends Loan {
 
-    private double balance_due;
+    
 
     public CarLoan(int creditScore, int TermLengthOption, int loanAmountOption) {
         this.creditScore = creditScore;
         this.TermLengthOption = TermLengthOption;
         this.loanAmountOption = loanAmountOption;
     }
+    
+    @Override
+    public String loanType()
+    {
+        return "Car Loan";
+    }
+    
     private int creditScore;
     private int TermLengthOption;
     private int loanAmountOption;
     private double interestRate;
     private int term_Length_In_Months;
+    private double balance_due;
   
 
     public double getInterestRate(int creditScore) {
@@ -106,13 +114,13 @@ public class CarLoan extends Loan {
     }
 
     @Override
-    public int setTerm()
+    public int getTerm()
     {
         return getTerm(TermLengthOption);
     }
 
     @Override
-    public double setAmount()
+    public double getAmount()
     {
         return getAmount(loanAmountOption);
     }

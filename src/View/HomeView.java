@@ -34,15 +34,19 @@ public class HomeView {
 
     public Button logoutButton;
     User user;
+    Stage stage;
 
     private LoanTransactionView loanTransactionView = new LoanTransactionView();
 
     public HomeView(Stage primaryStage, User u) {
         //Stage stage = new Stage();
         this.user = u;
-        Stage stage = primaryStage;
+        stage = primaryStage;
         stage.setTitle("ATZ Finance Login");
-
+        
+        //BRET USER TESTING - Displays user's first and last name, and how much is on their first loan (Which we have set up as a default loan.)
+        System.out.println("User "+user.getFirstName()+" "+user.getLastName()+" has a loan balance on loan 1 of: $"+user.getLoanList().get(0).getBalanceDue());
+        
         BorderPane border = new BorderPane();
 
         HBox hbox = new HBox();
@@ -114,7 +118,7 @@ public class HomeView {
             });
         }
 
-        System.out.println(options[0].getText());
+        //System.out.println(options[0].getText());
         for (int i = 0; i < 4; i++) {
             VBox.setMargin(options[i], new Insets(0, 0, 0, 8));
             v.getChildren().add(options[i]);
@@ -182,6 +186,7 @@ public class HomeView {
         gridPane.setHgap(5);
         gridPane.setVgap(5);
     }
+    
 
     public static VBox homeviewVBox() {
         VBox vbox = new VBox();

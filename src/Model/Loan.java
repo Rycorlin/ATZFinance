@@ -14,17 +14,24 @@ import java.io.Serializable;
 public class Loan extends LoanTemplate implements Serializable {
 
     @Override
+    public String loanType() {
+        return "Basic Loan";
+    }
+
+    
+    /*
+    @Override
     public void setInterestRate(double rate) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int setTerm() {
+    public void setTerm() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public double setAmount() {
+    public void setAmount() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -32,5 +39,6 @@ public class Loan extends LoanTemplate implements Serializable {
     public void setBalanceDue(double balance) {
         this.balanceDue = balance;
     }
+    */
     
 }

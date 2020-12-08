@@ -33,7 +33,7 @@ public class LoanTransaction {
     //"Loan" will have to be changed to a specific loan type ie personal or car
     
     public void makePayment(LoanTemplate loan, double payment) {
-        double tempBalance = loan.setAmount();
+        double tempBalance = loan.getAmount();
         loan.setBalanceDue(tempBalance - payment);
     }
 
@@ -45,11 +45,11 @@ public class LoanTransaction {
      */
 
     public void creditAccount(LoanTemplate loan, double credit) {
-        double tempBalance = loan.setAmount();
+        double tempBalance = loan.getAmount();
 }
 
     public void increaseBalance(LoanTemplate loan, double credit) {
-        double tempBalance = loan.setAmount();
+        double tempBalance = loan.getAmount();
         loan.setBalanceDue(tempBalance - credit);
     }
 }
