@@ -5,8 +5,6 @@
  */
 package View;
 
-import Controller.LoanTransactionController;
-import Model.Loan;
 import Model.LoanTemplate;
 import Model.User;
 import static View.HomeView.homeviewVBox;
@@ -14,16 +12,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.YearMonth;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -33,9 +27,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.awt.event.*;  
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import javafx.scene.layout.Region;
 
 /**
  *
@@ -57,6 +51,10 @@ public class LoanTransactionView extends Application implements ItemListener, Ac
 
         // BOTTOM BAR / BUTTON
         BorderPane borderpane = new BorderPane();
+        
+        //Setting the stage size
+        stage.setWidth(400);
+        stage.setHeight(275);
         
         // Loan balance label
         Label loanBalance = new Label();
@@ -93,10 +91,15 @@ public class LoanTransactionView extends Application implements ItemListener, Ac
         
         // item, column, row
         // Add Loan ID
-        grid.add(new Label("Loan ID: "+loan.getLoanID()),0,0);
+        Label loanID = new Label("Loan ID: " +loan.getLoanID());
+        grid.add(loanID, 0, 0);
         
         // Add loan type
-        grid.add(new Label("Loan Type: " + loan.getLoanType()),0,1);
+        Label loanType = new Label("Loan Type: " + loan.getLoanType());
+        //loanType.setMinHeight(Region.USE_PREF_SIZE);
+        grid.add(loanType, 0, 1);
+        
+        
         
         // Add loan balance
         loanBalance.setText("Balance: $" + decim.format(loan.getBalanceDue()));

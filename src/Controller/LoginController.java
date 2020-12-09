@@ -47,7 +47,7 @@ public class LoginController {
             oin = new ObjectInputStream(new FileInputStream("usernames.ser"));
             UserTable.setUsernameSet((HashSet<String>)oin.readObject());
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("");
         }
     }
     
