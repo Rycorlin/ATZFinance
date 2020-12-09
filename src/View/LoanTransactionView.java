@@ -10,6 +10,7 @@ import Model.Loan;
 import Model.LoanTemplate;
 import Model.User;
 import static View.HomeView.homeviewVBox;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
@@ -32,12 +33,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.awt.event.*;  
 
 /**
  *
  * @author taren
  */
-public class LoanTransactionView extends Application implements ItemListener {
+public class LoanTransactionView extends Application implements ItemListener, ActionListener {
 
     private User user;
     private LoanTemplate loan;
@@ -72,6 +74,9 @@ public class LoanTransactionView extends Application implements ItemListener {
         BorderPane borderpane = new BorderPane();
         HBox hbox = new HBox();
 
+        // Loan balance label
+        Label loanBalance = new Label();
+        
         hbox.setPadding(new Insets(15, 12, 15, 12));
         hbox.setSpacing(5);
         hbox.setStyle("-fx-background-color: #336699;");
@@ -84,6 +89,8 @@ public class LoanTransactionView extends Application implements ItemListener {
         
         // Pay loan Button
         final Button payLoanButton = new Button("Pay Loan");
+        // payLoanButton.ActionPerformed HERE
+        
         // Text field for payment total
         final TextField paymentField = new TextField("");
 
@@ -131,30 +138,27 @@ public class LoanTransactionView extends Application implements ItemListener {
         grid.setHgap(10);
         grid.setPadding(new Insets(5, 5, 5, 5));
         
+        // item, column, row
+        // Add Loan ID
+        grid.add(new Label("Loan ID: "+loan.getLoanID()),0,0);
         
-        /*****************************************THESE NEED TO BE CHANGED TO LOOK PRETTY!! *******************************/
-        grid.add(new Label("User: "+user.getFirstName()+" "+user.getLastName()),0,0);
-        grid.add(new Label("Loan ID: #"+loan.getLoanID()),0,0);
-        //grid.add(new Label("Loan Type "+loan.getLoanType()),0,0);
-        //LOAN TYPE NEEDS TO EXIST!! Pretty sure Taren has done this on another branch. had to comment out as it was giving a null pointer
+        // Add loan type
+        grid.add(new Label("Loan Type: " + loan.getLoanType()),0,1);
         
-        /******************************************************************************************************************/
+        // Add loan balance
+        loanBalance.setText("Balance: " + loan.getBalanceDue());
+        grid.add(loanBalance, 0, 2);
         
-        DatePicker d = new DatePicker(); 
-        // Select date
-        grid.add(new Label("Select Date: "), 0, 0);
-
-        grid.add(d, 1, 0);
+        // Date picker
+        DatePicker datePicker = new DatePicker(); 
+        grid.add(new Label("Select Date: "), 0, 3);
+        grid.add(datePicker, 1, 3);
         
-        //grid.add(monthComboBox, 1, 0);
-        //grid.add(dayComboBox, 2, 0);
-        //grid.add(yearComboBox, 3, 0);
-
         // Input payment amount
-        grid.add(new Label("Payment Amount: "), 0, 1);
-        grid.add(paymentField, 1, 1, 3, 1);
+        grid.add(new Label("Payment Amount: "), 0, 4);
+        grid.add(paymentField, 1, 4, 3, 1);
         // Pay loan
-        grid.add(payLoanButton, 0, 3);
+        grid.add(payLoanButton, 0, 5);
 
         // Set borderpane Top to grid.
         borderpane.setTop(grid);
@@ -167,7 +171,7 @@ public class LoanTransactionView extends Application implements ItemListener {
         // THIS LocalDate variable will need to be stored as a payment in the LOAN object. We need to modify the loan
         // object to handle this. (Include a list of payments and their dates within the loan object? Or a dictionary with Dictionary<Payment, Date>?
         // Something like this.
-        LocalDate i = d.getValue(); 
+        LocalDate i = datePicker.getValue(); 
         
         payLoanButton.setOnAction((ActionEvent event) -> {
             loan.setBalanceDue(loan.getBalanceDue()-Double.parseDouble(paymentField.getText()));
@@ -209,6 +213,11 @@ public class LoanTransactionView extends Application implements ItemListener {
 
     @Override
     public void itemStateChanged(ItemEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void actionPerformed(java.awt.event.ActionEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

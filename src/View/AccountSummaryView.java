@@ -114,7 +114,6 @@ class AccountSummaryView {
         
         
      
-        Text loanBalance = new Text("");
         int counter = 2;
         for (LoanTemplate loan : user.getLoanList()){
             Text newText = new Text();

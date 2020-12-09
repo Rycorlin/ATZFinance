@@ -131,7 +131,7 @@ public class HomeView {
 
             //System.out.print("test");
             //UserView uv = new UserView(stage, border, hbox);
-            UserView uv = new UserView();
+            UserView uv = new UserView(user);
 
             uv.start(stage);
 

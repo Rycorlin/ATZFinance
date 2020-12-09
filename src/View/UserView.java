@@ -27,8 +27,11 @@ import static View.HomeView.homeviewVBox;
  */
 public class UserView extends Application {
     User user;
-
-
+    
+    UserView(User u){
+        this.user = u;
+    }
+    
     @SuppressWarnings("unchecked")
     @Override
     public void start(Stage stage) {
