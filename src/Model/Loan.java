@@ -161,7 +161,7 @@ public class Loan extends LoanTemplate implements Serializable
      @Override
     public String getLoanType()
     {
-        return loanType.toString();
+        return loanType;
     }
 
 }

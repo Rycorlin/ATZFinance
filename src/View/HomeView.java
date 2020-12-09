@@ -96,10 +96,9 @@ public class HomeView {
         VBox v = homeviewVBox();
         
         Hyperlink options[] = new Hyperlink[] {
-            new Hyperlink("Loan 1"),
-            new Hyperlink("Loan 2"),
-            new Hyperlink("Loan 3"),
-            new Hyperlink("Loan 4")
+            new Hyperlink("Loan #" + String.valueOf(user.getLoanList().get(0).getLoanID()) + ", " + user.getLoanList().get(0).getLoanType()),
+            new Hyperlink("Loan #" + String.valueOf(user.getLoanList().get(1).getLoanID()) + ", " + user.getLoanList().get(1).getLoanType()),
+            new Hyperlink("Loan #" + String.valueOf(user.getLoanList().get(2).getLoanID()) + ", " + user.getLoanList().get(2).getLoanType())    
         };
 
         for (Hyperlink link : options) {
@@ -118,7 +117,7 @@ public class HomeView {
         }
 
         //System.out.println(options[0].getText());
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             VBox.setMargin(options[i], new Insets(0, 0, 0, 8));
             v.getChildren().add(options[i]);
         }

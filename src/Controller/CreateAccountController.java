@@ -40,6 +40,10 @@ public class CreateAccountController {
                 newUser.addLoanToUser(loan2);
                 newUser.addLoanToUser(loan3);
                 
+                loanToUser.setLoanType("Personal Loan");
+                loan2.setLoanType("Car Loan");
+                loan3.setLoanType("Personal Loan");
+                
                 UserTable.addUser(newUser);
                 
                 new HomeView(stage, newUser);
