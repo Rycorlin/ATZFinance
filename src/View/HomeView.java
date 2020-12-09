@@ -154,7 +154,7 @@ public class HomeView {
         // Apply for loan logic
         applyForLoanButton.setOnAction((ActionEvent event) -> {
 
-            ApplyForLoanView apv = new ApplyForLoanView();
+            ApplyForLoanView apv = new ApplyForLoanView(user);
 
             try {
                 apv.start(stage);
