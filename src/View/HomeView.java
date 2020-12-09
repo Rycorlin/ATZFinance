@@ -73,7 +73,8 @@ public class HomeView {
         hboxBot.getChildren().addAll(logoutButton);
 
         Button userListButton = new Button("User list");
-
+        hbox.getChildren().addAll(userListButton);
+        
         //Apply For Loan
         Button applyForLoanButton = new Button("Apply For Loan");
         hbox.getChildren().addAll(applyForLoanButton);
@@ -185,7 +186,7 @@ public class HomeView {
         title.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         vbox.getChildren().add(title);
         vbox.getChildren().add(payLoan);
-
+        
         return vbox;
     }
 }
