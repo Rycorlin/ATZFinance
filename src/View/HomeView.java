@@ -5,7 +5,9 @@
  */
 package View;
 
+import Model.User;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -32,14 +34,19 @@ import javafx.stage.Stage;
 public class HomeView {
 
     public Button logoutButton;
+    User user;
+    Stage stage;
 
-    private LoanTransactionView loanTransactionView = new LoanTransactionView();
 
-    public HomeView(Stage primaryStage) {
+    public HomeView(Stage primaryStage, User u) {
         //Stage stage = new Stage();
-        Stage stage = primaryStage;
+        this.user = u;
+        stage = primaryStage;
         stage.setTitle("ATZ Finance Login");
-
+        
+//        //BRET USER TESTING - Displays user's first and last name, and how much is on their first loan (Which we have set up as a default loan.)
+//        System.out.println("User "+user.getFirstName()+" "+user.getLastName()+" has a loan balance on loan 1 of: $"+user.getLoanList().get(0).getBalanceDue());
+        
         BorderPane border = new BorderPane();
 
         HBox hbox = new HBox();
@@ -61,46 +68,34 @@ public class HomeView {
 
         logoutButton.setPrefSize(150, 20);
 
-        //Button buttonPayment = new Button("Make a Payment");
-        //buttonPayment.setPrefSize(150, 20);
         hbox.getChildren().addAll(buttonSummary);
 
         hboxBot.getChildren().addAll(logoutButton);
 
         Button userListButton = new Button("User list");
-        //buttonPayment.setPrefSize(150, 20);
-
-        Button testTwoButton = new Button("Test 2");
-        //buttonPayment.setPrefSize(150, 20);
-        hbox.getChildren().addAll(userListButton, testTwoButton);
 
         //Apply For Loan
         Button applyForLoanButton = new Button("Apply For Loan");
-        //buttonPayment.setPrefSize(150, 20);
         hbox.getChildren().addAll(applyForLoanButton);
 
         HBox.setHgrow(buttonSummary, Priority.ALWAYS);
-        //HBox.setHgrow(buttonPayment, Priority.ALWAYS);
 
-        //bp.setPadding(new Insets(10, 50, 50, 50));
         border.setTop(hbox);
 
         // Moved this hyperlink stuff into Homeview so I can use the 
         // stage to start my LoanTransactionView.
-        VBox v = homeviewVBox();
+        VBox vBox = homeviewVBox();
+        ArrayList<Hyperlink> listOfLoansHyperlinks = new ArrayList();
+        listOfLoansHyperlinks.add(new Hyperlink("Loan #" + String.valueOf(user.getLoanList().get(0).getLoanID()) + ", " + user.getLoanList().get(0).getLoanType()));
+        listOfLoansHyperlinks.add(new Hyperlink("Loan #" + String.valueOf(user.getLoanList().get(1).getLoanID()) + ", " + user.getLoanList().get(1).getLoanType()));
+        listOfLoansHyperlinks.add(new Hyperlink("Loan #" + String.valueOf(user.getLoanList().get(2).getLoanID()) + ", " + user.getLoanList().get(2).getLoanType()));
+        
 
-        Hyperlink options[] = new Hyperlink[] {
-            new Hyperlink("Loan 1"),
-            new Hyperlink("Loan 2"),
-            new Hyperlink("Loan 3"),
-            new Hyperlink("Loan 4")
-        };
-
-        for (Hyperlink link : options) {
+        for (Hyperlink link : listOfLoansHyperlinks) {
             link.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    LoanTransactionView ltv = new LoanTransactionView();
+                    LoanTransactionView ltv = new LoanTransactionView(user.getLoanList().get(listOfLoansHyperlinks.indexOf((link))),user);
                     try {
                         // Go to Summary View
                         ltv.start(stage);
@@ -111,22 +106,19 @@ public class HomeView {
             });
         }
 
-        System.out.println(options[0].getText());
-        for (int i = 0; i < 4; i++) {
-            VBox.setMargin(options[i], new Insets(0, 0, 0, 8));
-            v.getChildren().add(options[i]);
+        for (int i = 0; i < listOfLoansHyperlinks.size(); i++) {
+            VBox.setMargin(listOfLoansHyperlinks.get(i), new Insets(0, 0, 0, 8));
+            vBox.getChildren().add(listOfLoansHyperlinks.get(i));
         }
 
-        border.setLeft(v);
+        border.setLeft(vBox);
 
         border.setBottom(hboxBot);
 
-        //Action for btnLogin
+        // User list view
         userListButton.setOnAction((ActionEvent event) -> {
 
-            //System.out.print("test");
-            //UserView uv = new UserView(stage, border, hbox);
-            UserView uv = new UserView();
+            UserView uv = new UserView(user);
 
             uv.start(stage);
 
@@ -148,16 +140,17 @@ public class HomeView {
 
             //System.out.print("test");
             //UserView uv = new UserView(stage, border, hbox);
-            AccountSummaryView sv = new AccountSummaryView();
+            AccountSummaryView accountSummaryView = new AccountSummaryView(user);
 
             try {
                 // Go to Summary View
-                sv.start(stage);
+                accountSummaryView.start(stage, this.user);
             } catch (Exception ex) {
                 Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-
+        
+        // Apply for loan logic
         applyForLoanButton.setOnAction((ActionEvent event) -> {
 
             ApplyForLoanView apv = new ApplyForLoanView();
@@ -179,15 +172,19 @@ public class HomeView {
         gridPane.setHgap(5);
         gridPane.setVgap(5);
     }
-
+    
+    
+    // View for homeView
     public static VBox homeviewVBox() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10));
         vbox.setSpacing(8);
 
-        Text title = new Text("Data");
+        Text title = new Text("Loans:");
+        Text payLoan = new Text("Click on a loan to pay...");
         title.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         vbox.getChildren().add(title);
+        vbox.getChildren().add(payLoan);
 
         return vbox;
     }

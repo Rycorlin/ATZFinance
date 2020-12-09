@@ -5,22 +5,50 @@
  */
 package Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author xxani
  */
 
 //this template was designed to give standardization to loan types
-public abstract class LoanTemplate {
-
-    public final void buildLoan() {
-        setInterestRate();
-        setTerm();
-        setAmount();
+public abstract class LoanTemplate implements Serializable {
+    
+    protected double balanceDue;
+    private double interestRate;
+    private int term;
+    private int loanID;
+    
+    
+    public final void buildLoan(double rate) {
+        getInterestRate();
+        getTerm();
+        getAmount();
     }
     
-    public abstract double setInterestRate();
-    public abstract int setTerm();
-    public abstract double setAmount();
+    public abstract void setInterestRate(double rate);
+    public abstract void setInterestRateAuto();
+    public abstract void setTermLengthInMonths(int TermLengthOption);
+    public abstract void setAmount(int loanAmountOption);
     public abstract void setBalanceDue(double n);
+    public abstract void setLoanType(String type);
+    
+    
+    public abstract double getInterestRate();
+    public abstract int getTerm();
+    public abstract double getAmount();
+    public abstract double getBalanceDue();
+    public abstract String getLoanType();
+
+    public void setLoanID(int id)
+    {
+        loanID = id;
+    }
+    
+    public int getLoanID()
+    {
+        return loanID;
+    }
+
 }

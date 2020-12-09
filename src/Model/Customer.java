@@ -10,12 +10,11 @@ public class Customer extends User{
 
     private int customerID;
     private int numLoansActive;
-    private ArrayList<LoanTemplate> activeLoanArray = new ArrayList<>();
     private int creditScore;
     private boolean latePayment = false;
 
-    public Customer(String firstName, String lastName, String userName, String password, boolean latePayment) {
-        super(firstName,lastName,userName,password);
+    public Customer(String firstName, String lastName, String userName, String password, boolean latePayment, Loan l) {
+        super(firstName,lastName,userName,password, l);
         this.latePayment = latePayment;
         
     }
@@ -58,11 +57,11 @@ public class Customer extends User{
     }
 
     public ArrayList<LoanTemplate> getActiveLoanArray() {
-        return activeLoanArray;
+        return super.loanList;
     }
 
     public void setActiveLoanArray(ArrayList<LoanTemplate> loanArray) {
-        activeLoanArray = loanArray;
+        super.loanList = loanArray;
     }
 
     /**

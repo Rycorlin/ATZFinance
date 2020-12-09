@@ -26,9 +26,12 @@ import static View.HomeView.homeviewVBox;
  * @author rycor
  */
 public class UserView extends Application {
-
-
-
+    User user;
+    
+    UserView(User u){
+        this.user = u;
+    }
+    
     @SuppressWarnings("unchecked")
     @Override
     public void start(Stage stage) {
@@ -54,7 +57,7 @@ public class UserView extends Application {
         // Return to HomeView
         backButton.setOnAction((ActionEvent event) -> {
             // Why is this line of code necessary?
-            HomeView hv = new HomeView(stage);
+            HomeView hv = new HomeView(stage, this.user);
             
             backButton.getScene().setRoot(homeviewVBox());  
         });
@@ -91,7 +94,7 @@ public class UserView extends Application {
         // Add the Scene to the Stage
         stage.setScene(scene);
         // Set the Title of the Stage
-        stage.setTitle("ATZ Finance");
+        stage.setTitle("User List");
         // Display the Stage
         stage.show();
     }

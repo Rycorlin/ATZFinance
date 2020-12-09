@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Loan;
 import Model.User;
 import Model.UserTable;
 import View.CreateAccountView;
@@ -25,11 +26,35 @@ public class CreateAccountController {
         //Action on click "Create Account" for new account sends to LoginController
         createAccountView.register.setOnAction((ActionEvent event) -> {
             if (validUsername() && validPassword() && validNames()) {
+                
+                // Set some default loans for the purpose of displaying the project.
+                Loan loan1 = new Loan();
+                loan1.setBalanceDue(1000);
+                loan1.setInterestRate(5.5);
+                loan1.setTermLengthInMonths(60);
+                
+                Loan loan2 = new Loan();
+                loan2.setBalanceDue(2000);
+                loan2.setInterestRate(2.9);
+                loan1.setTermLengthInMonths(180);
+                
+                Loan loan3 = new Loan();
+                loan3.setBalanceDue(3000);
+                loan3.setInterestRate(8.1);
+                loan1.setTermLengthInMonths(36);
+                
                 User newUser = new User(createAccountView.getFirstName(), createAccountView.getLastName(), createAccountView.getUsername(),
-                        createAccountView.getPassword());
+                        createAccountView.getPassword(), loan1);
+                newUser.addLoanToUser(loan2);
+                newUser.addLoanToUser(loan3);
+                
+                loan1.setLoanType("Personal Loan");
+                loan2.setLoanType("Car Loan");
+                loan3.setLoanType("Personal Loan");
+                
                 UserTable.addUser(newUser);
-
-                new HomeView(stage);
+                
+                new HomeView(stage, newUser);
             }
         });
     }

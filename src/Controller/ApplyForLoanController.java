@@ -1,11 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Controller;
 
+import Model.Loan;
 import Model.LoanApplication;
+import Model.User;
 import Model.UserTable;
 import View.ApplyForLoanView;
 import View.HomeView;
@@ -26,16 +24,21 @@ import javafx.stage.Stage;
  *
  * @author xxani
  */
-public class ApplyForLoanController {
 
+public class ApplyForLoanController
+{
+    // Maybe we check if this user already has this type of loan? etc.
+    User user;
+    
     ApplyForLoanView applyForLoanView;
     Stage primaryStage;
     LoanApplication loanApp;
 
-    public ApplyForLoanController(ApplyForLoanView applyForLoanView, Stage primaryStage) {
-        this.applyForLoanView = applyForLoanView;
-        this.primaryStage = primaryStage;
-
+    public ApplyForLoanController(ApplyForLoanView view, Stage stage, User u)
+    {
+        this.applyForLoanView = view;
+        this.primaryStage = stage;
+        this.user = u; 
         this.save();
         this.autoSave();
 
@@ -105,15 +108,17 @@ public class ApplyForLoanController {
             tyStage.setScene(tyScene);
             tyStage.showAndWait();
 
-            HomeView hv = new HomeView(primaryStage);
+            HomeView hv = new HomeView(primaryStage, user);
 
         });
     }
 
     //method to return back to the home screen
-    private void back() {
-        applyForLoanView.getBack().setOnAction((ActionEvent event) -> {
-            HomeView hv = new HomeView(primaryStage);
+    private void back()
+    {
+        applyForLoanView.getBack().setOnAction((ActionEvent event) ->
+        {
+            HomeView hv = new HomeView(primaryStage, this.user);
         });
     }
 
