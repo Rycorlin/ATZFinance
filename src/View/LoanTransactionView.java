@@ -6,6 +6,8 @@
 package View;
 
 import Controller.LoanTransactionController;
+import Model.Loan;
+import Model.LoanTemplate;
 import Model.User;
 import static View.HomeView.homeviewVBox;
 import java.awt.event.ItemEvent;
@@ -38,6 +40,7 @@ import javafx.stage.Stage;
 public class LoanTransactionView extends Application implements ItemListener {
 
     private User user;
+    private LoanTemplate loan;
     
 //    BorderPane borderpane;
 //    HBox hbox;
@@ -56,6 +59,12 @@ public class LoanTransactionView extends Application implements ItemListener {
 //    Scene scene;
 //    LoanTransactionController loanTransactionController;
 
+    public LoanTransactionView(LoanTemplate l1, User u1)
+    {
+        loan = l1;
+        user = u1;
+    }
+    
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -122,6 +131,15 @@ public class LoanTransactionView extends Application implements ItemListener {
         grid.setHgap(10);
         grid.setPadding(new Insets(5, 5, 5, 5));
         
+        
+        /*****************************************THESE NEED TO BE CHANGED TO LOOK PRETTY!! *******************************/
+        grid.add(new Label("User: "+user.getFirstName()+" "+user.getLastName()),0,0);
+        grid.add(new Label("Loan ID: #"+loan.getLoanID()),0,0);
+        //grid.add(new Label("Loan Type "+loan.getLoanType()),0,0);
+        //LOAN TYPE NEEDS TO EXIST!! Pretty sure Taren has done this on another branch. had to comment out as it was giving a null pointer
+        
+        /******************************************************************************************************************/
+        
         DatePicker d = new DatePicker(); 
         // Select date
         grid.add(new Label("Select Date: "), 0, 0);
@@ -152,7 +170,9 @@ public class LoanTransactionView extends Application implements ItemListener {
         LocalDate i = d.getValue(); 
         
         payLoanButton.setOnAction((ActionEvent event) -> {
-            // Store the payment amount and the date of payment.
+            loan.setBalanceDue(loan.getBalanceDue()-Double.parseDouble(paymentField.getText()));
+            System.out.println("Subtracting $"+Double.parseDouble(paymentField.getText())+" from loan balance.");
+            System.out.println("New loan balance: "+loan.getBalanceDue());
         });
         
         // Return to HomeView on back button click

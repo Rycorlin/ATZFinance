@@ -6,6 +6,7 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.Random;
 
 /**
  *
@@ -31,6 +32,9 @@ public class Loan extends LoanTemplate implements Serializable
 
     public Loan()
     {
+        Random rand = new Random();
+        setLoanID(rand.nextInt(10000));
+        System.out.println("LoanID set to "+getLoanID());
     }
     
     
