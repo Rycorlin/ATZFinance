@@ -5,8 +5,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -147,11 +145,6 @@ public class LoginView extends Application {
         Scene scene = new Scene(bp);
         scene.getStylesheets().add(getClass().getClassLoader().getResource("login.css").toExternalForm());
         primaryStage.setScene(scene);
-        /*primaryStage.titleProperty().bind(
-                 scene.widthProperty().asString().
-                 concat(" : ").
-                 concat(scene.heightProperty().asString()));*/
-        //primaryStage.setResizable(false);
         primaryStage.show();
     }
 
