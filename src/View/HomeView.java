@@ -155,7 +155,7 @@ public class HomeView {
 
             //System.out.print("test");
             //UserView uv = new UserView(stage, border, hbox);
-            AccountSummaryView accountSummaryView = new AccountSummaryView();
+            AccountSummaryView accountSummaryView = new AccountSummaryView(user);
 
             try {
                 // Go to Summary View

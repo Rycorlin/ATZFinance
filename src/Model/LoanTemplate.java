@@ -30,7 +30,7 @@ public abstract class LoanTemplate implements Serializable {
     public abstract void setTerm(int TermLengthOption);
     public abstract void setAmount(int loanAmountOption);
     public abstract void setBalanceDue(double n);
-    public abstract void setLoanType(Loan type);
+    public abstract void setLoanType(String type);
     
     public abstract double getInterestRate();
     public abstract int getTerm();

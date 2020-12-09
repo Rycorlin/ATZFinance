@@ -8,6 +8,7 @@ package Model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  *
@@ -135,6 +136,15 @@ public class User implements Serializable {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public void addLoanToUser(LoanTemplate loan){
+        this.loanList.add(loan);
+    }
+    
+    public void removeLoanFromUser(int ID){
+        // Do this later
+        throw new NotImplementedException();
     }
     
     public ArrayList<LoanTemplate> getLoanList()

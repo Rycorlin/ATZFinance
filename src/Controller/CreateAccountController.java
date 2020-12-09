@@ -28,10 +28,20 @@ public class CreateAccountController {
             if (validUsername() && validPassword() && validNames()) {
                 Loan loanToUser = new Loan();
                 loanToUser.setBalanceDue(1000);
+                
+                Loan loan2 = new Loan();
+                loan2.setBalanceDue(2000);
+                
+                Loan loan3 = new Loan();
+                loan3.setBalanceDue(3000);
+                
                 User newUser = new User(createAccountView.getFirstName(), createAccountView.getLastName(), createAccountView.getUsername(),
                         createAccountView.getPassword(), loanToUser);
+                newUser.addLoanToUser(loan2);
+                newUser.addLoanToUser(loan3);
+                
                 UserTable.addUser(newUser);
-
+                
                 new HomeView(stage, newUser);
             }
         });

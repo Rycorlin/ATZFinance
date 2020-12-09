@@ -18,15 +18,15 @@ public class Loan extends LoanTemplate implements Serializable
     private double interestRate;
     private double loanAmount;
     private int term_Length_In_Months;
-    private Loan loanType;
+    private String loanType;
 
-    public Loan(int creditScore, double interestRate, double loanAmount, int term_Length_In_Months, Loan loan)
+    public Loan(int creditScore, double interestRate, double loanAmount, int term_Length_In_Months, String loan)
     {
         this.creditScore = creditScore;
         this.interestRate = interestRate;
         this.loanAmount = loanAmount;
         this.term_Length_In_Months = term_Length_In_Months;
-        this.loanType = loanType;
+        this.loanType = loan;
     }
 
     public Loan()
@@ -124,8 +124,7 @@ public class Loan extends LoanTemplate implements Serializable
         this.balanceDue = balance;
     }
     
-    @Override
-    public void setLoanType(Loan type)
+    public void setLoanType(String type)
     {
         this.loanType = type;
     }

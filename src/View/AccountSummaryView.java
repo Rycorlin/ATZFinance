@@ -5,11 +5,14 @@
  */
 package View;
 
+import Model.Loan;
+import Model.LoanTemplate;
 import Model.User;
 import javafx.scene.image.Image;
 import static View.HomeView.homeviewVBox;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -37,10 +40,31 @@ import javax.imageio.ImageIO;
 class AccountSummaryView {
     
     User user;
+    String accountHolderName;
+    
+    AccountSummaryView(User u){
+        user = u;
+    }
     
     public void start(Stage stage, User u) {
-
+        System.out.println(user.getFirstName());
         this.user = u;
+        
+        
+        // Process name.
+        int firstNameLength = user.getFirstName().length();
+        int lastNameLength = user.getLastName().length();
+        String firstName = user.getFirstName().substring(0,1).toUpperCase() + user.getFirstName().substring(1, firstNameLength);
+        String lastName = user.getLastName().substring(0,1).toUpperCase() + user.getLastName().substring(1, lastNameLength);
+        accountHolderName = firstName + " " + lastName;
+        
+        // Loans Held
+        ArrayList<Loan> loanList = new ArrayList();
+        
+        for (LoanTemplate loan : user.getLoanList()){
+            
+        }
+        
         // BOTTOM BAR / BUTTON
         BorderPane borderpane = new BorderPane();
         HBox hbox = new HBox();
@@ -62,45 +86,49 @@ class AccountSummaryView {
         grid.setPadding(new Insets(0, 10, 0, 10));
 
         // Category in column 2, row 1
-        Text category = new Text("Sales:");
+        Text category = new Text("Account Holder:");
         GridPane.setVgrow(category, Priority.ALWAYS);
         category.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         grid.add(category, 1, 0);
 
         // Title in column 3, row 1
-        Text chartTitle = new Text("Current Year");
+        Text chartTitle = new Text(accountHolderName);
         GridPane.setHgrow(chartTitle, Priority.ALWAYS);
         chartTitle.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         grid.add(chartTitle, 2, 0);
 
-        //Image loanIcon = new Image("../../loanIcon.png", true);
-        // Subtitle in columns 2-3, row 2
-        Text chartSubtitle = new Text("Goods and Services");
-        grid.add(chartSubtitle, 1, 1, 2, 1);
-
-        // House icon in column 1, rows 1-2
-        // Image moneyBags = new Image("../../../moneyBags.png", true);
-        //ImageView imageHouse = new ImageView(moneyBags);
-        Text chartSub2 = new Text("Loan terms");
-        grid.add(chartSub2, 0, 0, 1, 2);
-
-        // Left label in column 1 (bottom), row 3
-        Text goodsPercent = new Text("Goods\n80%");
-        GridPane.setValignment(goodsPercent, VPos.BOTTOM);
-        grid.add(goodsPercent, 0, 2);
-
-        // Chart in columns 2-3, row 3
-        //TODO FIX THESE IMAGES
-        //ImageView imageChart;
-        //Image dollarSign = new Image("/moneyBags.png", true);
-        //imageChart = new ImageView(dollarSign);
-        Text chartSub3 = new Text("Accountholder Info");
-        grid.add(chartSub3, 1, 2, 2, 1);
-
-        // Right label in column 4 (top), row 3
-        Text servicesPercent = new Text("Services\n20%");
-        GridPane.setValignment(servicesPercent, VPos.TOP);
-        grid.add(servicesPercent, 3, 2);
+        // Set Row for loan descriptions
+        // item, column, row
+        Text loans = new Text("Loan ID:");
+        grid.add(loans, 0, 1);
+        
+        Text loanType = new Text("Loan Type: ");
+        grid.add(loanType, 1, 1);
+        
+        Text balanceDue = new Text("Balance Due:");
+        grid.add(balanceDue, 2, 1);
+        
+        Text interestRate = new Text("Interest Rate:");
+        grid.add(interestRate, 3, 1);
+        
+        
+        
+     
+        Text loanBalance = new Text("");
+        int counter = 2;
+        for (LoanTemplate loan : user.getLoanList()){
+            Text newText = new Text();
+            newText.setText(String.valueOf(loan.getBalanceDue()));
+            grid.add(newText, 2, counter);
+            counter++;
+        }
+        
+        
+//        
+//        //GridPane.setConstraints(label, 2, 0); // column=2 row=0
+//        loanBalance.setText(String.valueOf(user.getLoanList().get(0).getBalanceDue()));
+//        grid.add(loanBalance, 0, 2);
+        
 
         // Set borderpane Top to grid.
         borderpane.setTop(grid);
