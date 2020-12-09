@@ -11,7 +11,6 @@ import Model.UserTable;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,7 +43,9 @@ public class LoginController {
         //read users from save and update UserTable
         try {
             ObjectInputStream oin = new ObjectInputStream(new FileInputStream("users.ser"));
-            UserTable.setUserMap((HashMap<String, User>)oin.readObject());
+            UserTable.setUserList((ArrayList<User>)oin.readObject());
+            oin = new ObjectInputStream(new FileInputStream("usernames.ser"));
+            UserTable.setUsernameSet((HashSet<String>)oin.readObject());
         } catch (Exception e) {
             e.printStackTrace();
         }
