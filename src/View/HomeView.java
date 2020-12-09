@@ -36,7 +36,6 @@ public class HomeView {
     User user;
     Stage stage;
 
-    private LoanTransactionView loanTransactionView = new LoanTransactionView();
 
     public HomeView(Stage primaryStage, User u) {
         //Stage stage = new Stage();
@@ -107,7 +106,7 @@ public class HomeView {
             link.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    LoanTransactionView ltv = new LoanTransactionView();
+                    LoanTransactionView ltv = new LoanTransactionView(user.getLoanList().get(0),user);
                     try {
                         // Go to Summary View
                         ltv.start(stage);
