@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import static View.HomeView.homeviewVBox;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -41,6 +42,9 @@ class AccountSummaryView {
     
     User user;
     String accountHolderName;
+    
+    // Decimal formatting for money
+    DecimalFormat decim = new DecimalFormat("0.00");
     
     AccountSummaryView(User u){
         user = u;
@@ -113,22 +117,29 @@ class AccountSummaryView {
         
         
         
-     
+        // Iterate through loans and populate display
         int counter = 2;
         for (LoanTemplate loan : user.getLoanList()){
-            Text newText = new Text();
-            newText.setText(String.valueOf(loan.getBalanceDue()));
-            grid.add(newText, 2, counter);
+            Text loanBalanceText = new Text();
+            Text loanIDText = new Text();
+            Text loanTypeText = new Text();
+            Text loanInterestRateText = new Text();
+            
+            
+            loanIDText.setText(String.valueOf(loan.getLoanID()));
+            loanTypeText.setText(String.valueOf(loan.getLoanType()));
+            loanBalanceText.setText("$" + String.valueOf(decim.format(loan.getBalanceDue())));
+            loanInterestRateText.setText(String.valueOf(loan.getInterestRate()));
+            
+            grid.add(loanIDText, 0, counter);
+            grid.add(loanTypeText, 1, counter);
+            grid.add(loanBalanceText, 2, counter);
+            grid.add(loanInterestRateText, 3, counter);
+            
             counter++;
+            
         }
         
-        
-//        
-//        //GridPane.setConstraints(label, 2, 0); // column=2 row=0
-//        loanBalance.setText(String.valueOf(user.getLoanList().get(0).getBalanceDue()));
-//        grid.add(loanBalance, 0, 2);
-        
-
         // Set borderpane Top to grid.
         borderpane.setTop(grid);
 

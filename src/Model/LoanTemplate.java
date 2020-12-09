@@ -28,7 +28,8 @@ public abstract class LoanTemplate implements Serializable {
     }
     
     public abstract void setInterestRate(double rate);
-    public abstract void setTerm(int TermLengthOption);
+    public abstract void setInterestRateAuto();
+    public abstract void setTermLengthInMonths(int TermLengthOption);
     public abstract void setAmount(int loanAmountOption);
     public abstract void setBalanceDue(double n);
     public abstract void setLoanType(String type);

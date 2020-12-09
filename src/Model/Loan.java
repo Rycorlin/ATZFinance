@@ -8,19 +8,15 @@ package Model;
 import java.io.Serializable;
 import java.util.Random;
 
-/**
- *
- * @author taren
- */
 public class Loan extends LoanTemplate implements Serializable
 {
-
     private int creditScore;
     private double interestRate;
     private double loanAmount;
     private int term_Length_In_Months;
     private String loanType;
 
+    
     public Loan(int creditScore, double interestRate, double loanAmount, int term_Length_In_Months, String loan)
     {
         this.creditScore = creditScore;
@@ -36,11 +32,9 @@ public class Loan extends LoanTemplate implements Serializable
         setLoanID(rand.nextInt(10000));
         System.out.println("LoanID set to "+getLoanID());
     }
-    
-    
 
     @Override
-    public void setInterestRate(double rate)
+    public void setInterestRateAuto()
     {
         if (creditScore >= 0 || creditScore <= 589)
         {
@@ -64,9 +58,9 @@ public class Loan extends LoanTemplate implements Serializable
     }
 
     @Override
-    public void setTerm(int TermLengthOption)
+    public void setTermLengthInMonths(int term)
     {
-        switch (TermLengthOption) {
+        switch (term) {
             case 1:
                 this.term_Length_In_Months = 36;
             case 2:
@@ -128,6 +122,7 @@ public class Loan extends LoanTemplate implements Serializable
         this.balanceDue = balance;
     }
     
+    @Override
     public void setLoanType(String type)
     {
         this.loanType = type;
@@ -162,6 +157,11 @@ public class Loan extends LoanTemplate implements Serializable
     public String getLoanType()
     {
         return loanType;
+    }
+
+    @Override
+    public void setInterestRate(double rate) {
+        this.interestRate = rate;
     }
 
 }

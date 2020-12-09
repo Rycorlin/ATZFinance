@@ -25,8 +25,5 @@ public class PaymentController {
         
     }
     
-    // - model : Loan
-    // setLoanAmt
-    
     
 }

@@ -34,6 +34,8 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.awt.event.*;  
+import java.text.DecimalFormat;
+import java.time.LocalDate;
 
 /**
  *
@@ -43,23 +45,6 @@ public class LoanTransactionView extends Application implements ItemListener, Ac
 
     private User user;
     private LoanTemplate loan;
-    
-//    BorderPane borderpane;
-//    HBox hbox;
-//    Button backButton;
-//    Button payLoanButton;
-//    TextField paymentField;
-//    ComboBox dayComboBox;
-//    ComboBox monthComboBox;
-//    ComboBox yearComboBox;
-//    GridPane gridPane;
-//    DatePicker datePicker;
-//    YearMonth yearMonth;
-//    int daysInMonth;
-//    String paymentAmount;
-//    VBox root;
-//    Scene scene;
-//    LoanTransactionController loanTransactionController;
 
     public LoanTransactionView(LoanTemplate l1, User u1)
     {
@@ -72,19 +57,25 @@ public class LoanTransactionView extends Application implements ItemListener, Ac
 
         // BOTTOM BAR / BUTTON
         BorderPane borderpane = new BorderPane();
-        HBox hbox = new HBox();
-
+        
         // Loan balance label
         Label loanBalance = new Label();
         
+        // Buttons
+        Button backButton = new Button("Back");
+        backButton.setPrefSize(150, 20);
+        
+        // Decimal formatting for money
+        DecimalFormat decim = new DecimalFormat("0.00");
+
+        
+        // Hbox
+        HBox hbox = new HBox();
         hbox.setPadding(new Insets(15, 12, 15, 12));
         hbox.setSpacing(5);
         hbox.setStyle("-fx-background-color: #336699;");
         hbox.setAlignment(Pos.BOTTOM_LEFT);
-        Button backButton = new Button("Back");
-        backButton.setPrefSize(150, 20);
         hbox.getChildren().addAll(backButton);
-
         HBox.setHgrow(backButton, Priority.ALWAYS);
         
         // Pay loan Button
@@ -93,44 +84,6 @@ public class LoanTransactionView extends Application implements ItemListener, Ac
         
         // Text field for payment total
         final TextField paymentField = new TextField("");
-
-        // Combo box for Month
-        final ComboBox monthComboBox = new ComboBox();
-        monthComboBox.getItems().addAll(
-                "January",
-                "February",
-                "March",
-                "April",
-                "May",
-                "June",
-                "July",
-                "August",
-                "September",
-                "October",
-                "November",
-                "December"
-        );
-        monthComboBox.setValue("January");
-
-        // Days in month, Combo box for days
-        final ComboBox dayComboBox = new ComboBox();
-        YearMonth yearMonth = YearMonth.of(2020, Month.JANUARY);
-        int daysInMonth = yearMonth.lengthOfMonth();
-
-        // Populate days
-        for (int i = 1; i < daysInMonth + 1; i++) {
-            dayComboBox.getItems().addAll(i);
-        }
-
-        // Default day = 1
-        dayComboBox.setValue("1");
-
-        // Combo box for Year (Always stays at current year)
-        final ComboBox yearComboBox = new ComboBox();
-
-        // add year
-        yearComboBox.getItems().addAll(yearMonth.getYear());
-        yearComboBox.setValue(yearMonth.getYear());
 
         GridPane grid = new GridPane();
 
@@ -146,11 +99,12 @@ public class LoanTransactionView extends Application implements ItemListener, Ac
         grid.add(new Label("Loan Type: " + loan.getLoanType()),0,1);
         
         // Add loan balance
-        loanBalance.setText("Balance: " + loan.getBalanceDue());
+        loanBalance.setText("Balance: $" + decim.format(loan.getBalanceDue()));
         grid.add(loanBalance, 0, 2);
         
         // Date picker
-        DatePicker datePicker = new DatePicker(); 
+        LocalDate date = LocalDate.now();  
+        DatePicker datePicker = new DatePicker(date); 
         grid.add(new Label("Select Date: "), 0, 3);
         grid.add(datePicker, 1, 3);
         
@@ -177,6 +131,10 @@ public class LoanTransactionView extends Application implements ItemListener, Ac
             loan.setBalanceDue(loan.getBalanceDue()-Double.parseDouble(paymentField.getText()));
             System.out.println("Subtracting $"+Double.parseDouble(paymentField.getText())+" from loan balance.");
             System.out.println("New loan balance: "+loan.getBalanceDue());
+            
+            // Reset balance due
+            loanBalance.setText("Balance: $" + decim.format(loan.getBalanceDue()));
+            
         });
         
         // Return to HomeView on back button click
