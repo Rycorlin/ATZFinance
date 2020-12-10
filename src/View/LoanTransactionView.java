@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package View;
 
 import Model.LoanTemplate;
@@ -27,13 +22,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.awt.event.*;  
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 /**
  *
- * @author taren
+ * class responsible for displaying the loan transactions
  */
 public class LoanTransactionView extends Application implements ItemListener, ActionListener {
 

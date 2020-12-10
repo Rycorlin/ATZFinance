@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package View;
 
 import Controller.CreateAccountController;
-import Model.UserTable;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -21,7 +15,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author rycor
+ * class responsible for displaying the creation of an account
  */
 public class CreateAccountView extends Application {
 

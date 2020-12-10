@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package View;
 
 import Controller.ApplyForLoanController;
@@ -27,7 +22,7 @@ import javafx.scene.control.ComboBox;
 
 /**
  *
- * @author xxanim
+ * class responsible for displaying the loan application
  */
 public class ApplyForLoanView extends Application
 {

@@ -4,10 +4,6 @@
  * and open the template in the editor.
  */
 package Controller;
-import Model.CreditQuery;
-import View.LoginView;
-import javafx.application.Application;
-// Gitignore test
 
 /**
  *

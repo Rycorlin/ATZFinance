@@ -1,24 +1,23 @@
 package Controller;
 
-import Model.LoanApplication;
 import View.CreateAccountView;
 import View.HomeView;
 import View.LoginView;
-import Model.Customer;
 import Model.User;
 import Model.UserTable;
-
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+
+/**
+ *
+ * Controller for the LoginView.  Takes information from LoginView and passes it to User and UserList
+ */
 
 public class LoginController {
 

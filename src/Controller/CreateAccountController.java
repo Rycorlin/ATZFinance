@@ -5,11 +5,14 @@ import Model.User;
 import Model.UserTable;
 import View.CreateAccountView;
 import View.HomeView;
-import View.LoginView;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
-
 import java.util.regex.*;
+
+/**
+ *
+ * Controller for the CreateAccountView.  Takes information from that view and adds loans to user
+ */
 
 public class CreateAccountController {
 
@@ -22,8 +25,8 @@ public class CreateAccountController {
         setup();
     }
 
+    //This is where the user is set up when "Create Account" is clicked. Currently 3 loans are automatically generated for all users as a proof of concept.
     public void setup() {
-        //Action on click "Create Account" for new account sends to LoginController
         createAccountView.register.setOnAction((ActionEvent event) -> {
             if (validUsername() && validPassword() && validNames()) {
                 
@@ -59,6 +62,7 @@ public class CreateAccountController {
         });
     }
 
+    //Determines if the password meets the standards given.
     private boolean validPassword() {
         String p1 = createAccountView.getPassword();
         String p2 = createAccountView.getConfirmPassword();
@@ -100,7 +104,8 @@ public class CreateAccountController {
         return true;
     }
     
-        private boolean validNames() {
+    //Checks to make sure that first and last name are not already taken.
+    private boolean validNames() {
         String fn = createAccountView.getFirstName();
         String ln = createAccountView.getLastName();
 
