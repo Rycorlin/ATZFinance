@@ -18,6 +18,12 @@ import java.net.URL;
  * Source:
  * https://www.journaldev.com/7148/java-httpurlconnection-example-java-http-request-get-post
  */
+
+/**
+ *
+ * A class that pulls the user's credit score
+ */
+
 public class CreditQuery {
     
     private static final String GET_URL = "http://www.randomnumberapi.com/api/v1.0/random?min=450&max=850&count=1";

@@ -10,7 +10,12 @@ package Model;
  * @author xxani
  */
 
-//This class holds the specifications for a personal loan
+/**
+ *
+ * A class that holds holds the specifications for a personal loan.
+ */
+
+
 public class PersonalLoan extends Loan {
 
     public PersonalLoan(int creditScore, double interestRate, double loanAmount, int term_Length_In_Months, String loan)

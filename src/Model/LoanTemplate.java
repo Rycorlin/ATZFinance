@@ -12,12 +12,13 @@ import java.io.Serializable;
  * @author xxani
  */
 
-//this template was designed to give standardization to loan types
+/**
+ *
+ * A class that acts as a template to give structure to loans.
+ */
 public abstract class LoanTemplate implements Serializable {
     
     protected double balanceDue;
-    private double interestRate;
-    private int term;
     private int loanID;
     
     

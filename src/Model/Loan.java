@@ -8,6 +8,12 @@ package Model;
 import java.io.Serializable;
 import java.util.Random;
 
+/**
+ *
+ * A class that defines a loan.
+ */
+
+
 public class Loan extends LoanTemplate implements Serializable
 {
     private int creditScore;
@@ -15,6 +21,15 @@ public class Loan extends LoanTemplate implements Serializable
     private double loanAmount;
     private int term_Length_In_Months;
     private String loanType;
+    
+    /**
+     *
+     * @param creditScore credit score of the user
+     * @param interestRate interest rate of the loan
+     * @param loanAmount the amount of the loan
+     * @param term_Length_In_Months the length of the loan in months
+     * @param loanType the type of loan
+     */
 
     
     public Loan(int creditScore, double interestRate, double loanAmount, int term_Length_In_Months, String loan)
@@ -33,6 +48,7 @@ public class Loan extends LoanTemplate implements Serializable
         System.out.println("LoanID set to "+getLoanID());
     }
 
+    // utilizes a user's credit score to determine the interest rate for their loan
     @Override
     public void setInterestRateAuto()
     {
@@ -57,6 +73,7 @@ public class Loan extends LoanTemplate implements Serializable
         }
     }
 
+    //defines the length of time the user will be paying off his loan
     @Override
     public void setTermLengthInMonths(int term)
     {
@@ -83,6 +100,8 @@ public class Loan extends LoanTemplate implements Serializable
         
     }
 
+    
+    // this method sets the amount the loan will be opened for
     @Override
     public void setAmount(int loanAmountOption)
     {
@@ -116,11 +135,14 @@ public class Loan extends LoanTemplate implements Serializable
         }
     }
 
+    // this method will set the amount the user owes
     @Override
     public void setBalanceDue(double balance)
     {
         this.balanceDue = balance;
     }
+    
+    // this method defines the type of loan the user has
     
     @Override
     public void setLoanType(String type)

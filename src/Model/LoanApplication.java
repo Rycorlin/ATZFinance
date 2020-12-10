@@ -2,6 +2,11 @@ package Model;
 
 import java.io.Serializable;
 
+/**
+ *
+ * A class that holds holds the information from a loan application
+ */
+
 public class LoanApplication implements Serializable {
 
     private String fName, lName, loanType, loanAmount, addressLine1, addressLine2, city, state, zipCode;
