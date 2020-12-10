@@ -5,8 +5,6 @@
  */
 package View;
 
-import Controller.LoanTransactionController;
-import Model.Loan;
 import Model.LoanTemplate;
 import Model.User;
 import static View.HomeView.homeviewVBox;
@@ -14,16 +12,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.YearMonth;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

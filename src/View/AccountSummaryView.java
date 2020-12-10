@@ -170,7 +170,6 @@ class AccountSummaryView {
                 out.println("Username: " + user.getUserName());
                 
                 out.println("");
-                out.println("");
                 out.println("Loans:");
                 
                 for (LoanTemplate loan : user.getLoanList()){
@@ -180,6 +179,7 @@ class AccountSummaryView {
                     out.println("Type: " + loan.getLoanType());
                     out.println("Balance: " + loan.getBalanceDue());
                     out.println("Interest Rate : " + loan.getInterestRate());
+                    out.println("");
                 }
                 
                 System.out.println("Report Generated");
@@ -214,6 +214,7 @@ class AccountSummaryView {
         // Set the Title of the Stage
         stage.setTitle("Account Summary");
         // Display the Stage
+        stage.setWidth(525);
         stage.show();
     }
     
