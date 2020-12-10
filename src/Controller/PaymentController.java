@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Controller;
 
 import Model.LoanTemplate;
@@ -12,7 +8,7 @@ import java.util.List;
 
 /**
  *
- * @author taren
+ * class designated to handle the payment of loans
  */
 public class PaymentController {
     

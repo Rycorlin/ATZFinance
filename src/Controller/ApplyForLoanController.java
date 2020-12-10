@@ -1,10 +1,8 @@
 
 package Controller;
 
-import Model.Loan;
 import Model.LoanApplication;
 import Model.User;
-import Model.UserTable;
 import View.ApplyForLoanView;
 import View.HomeView;
 import java.io.FileInputStream;
@@ -22,18 +20,18 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author xxani
+ * Controller for the ApplyForLoanView.  Takes information from that view and adds loans to user
  */
 
 public class ApplyForLoanController
 {
-    // Maybe we check if this user already has this type of loan? etc.
     User user;
     
     ApplyForLoanView applyForLoanView;
     Stage primaryStage;
     LoanApplication loanApp;
 
+    //Constructor
     public ApplyForLoanController(ApplyForLoanView view, Stage stage, User u)
     {
         this.applyForLoanView = view;
@@ -46,9 +44,9 @@ public class ApplyForLoanController
         this.back();
     }
 
-    //method to automatically save data
+    //Method to automatically save data
     private void autoSave() {
-        //read from autosave
+        //Read from autosave
         try {
             ObjectInputStream oin = new ObjectInputStream(new FileInputStream("loanappsave.ser"));
             loanApp = (LoanApplication) oin.readObject();
@@ -83,7 +81,7 @@ public class ApplyForLoanController
         });
     }
 
-    //method to apply
+    //Method to apply
     private void apply() {
         applyForLoanView.getApply().setOnAction((ActionEvent event) -> {
             loanApp = new LoanApplication();
@@ -113,7 +111,7 @@ public class ApplyForLoanController
         });
     }
 
-    //method to return back to the home screen
+    //Method to return back to the home screen
     private void back()
     {
         applyForLoanView.getBack().setOnAction((ActionEvent event) ->
@@ -122,7 +120,7 @@ public class ApplyForLoanController
         });
     }
 
-//method to save data to database
+//Method to save data to database
     private void save() {
         try {
             ObjectOutputStream ous = new ObjectOutputStream(new FileOutputStream("loanappsave.ser"));
