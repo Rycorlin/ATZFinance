@@ -11,7 +11,9 @@ import Model.User;
 import javafx.scene.image.Image;
 import static View.HomeView.homeviewVBox;
 import java.awt.image.BufferedImage;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
@@ -42,6 +44,7 @@ class AccountSummaryView {
     
     User user;
     String accountHolderName;
+    String accountHolderNameNoSpaces;
     
     // Decimal formatting for money
     DecimalFormat decim = new DecimalFormat("0.00");
@@ -61,6 +64,7 @@ class AccountSummaryView {
         String firstName = user.getFirstName().substring(0,1).toUpperCase() + user.getFirstName().substring(1, firstNameLength);
         String lastName = user.getLastName().substring(0,1).toUpperCase() + user.getLastName().substring(1, lastNameLength);
         accountHolderName = firstName + " " + lastName;
+        accountHolderNameNoSpaces = firstName + lastName;
         
         // Loans Held
         ArrayList<Loan> loanList = new ArrayList();
@@ -80,6 +84,10 @@ class AccountSummaryView {
         Button backButton = new Button("Back");
         backButton.setPrefSize(150, 20);
         hbox.getChildren().addAll(backButton);
+        
+        Button generateReportButton = new Button("Generate Report");
+        generateReportButton.setPrefSize(150,20);
+        hbox.getChildren().addAll(generateReportButton);
 
         HBox.setHgrow(backButton, Priority.ALWAYS);
 
@@ -153,6 +161,36 @@ class AccountSummaryView {
             backButton.getScene().setRoot(homeviewVBox());
         });
 
+        generateReportButton.setOnAction((ActionEvent event) -> {
+
+            try (PrintWriter out = new PrintWriter(accountHolderNameNoSpaces + "AccountStatement.txt")) {
+                
+                out.println("First name: " + user.getFirstName());
+                out.println("Last name: " + user.getLastName());
+                out.println("Username: " + user.getUserName());
+                
+                out.println("");
+                out.println("");
+                out.println("Loans:");
+                
+                for (LoanTemplate loan : user.getLoanList()){
+                    
+                    
+                    out.println("Loan ID: " + loan.getLoanID());
+                    out.println("Type: " + loan.getLoanType());
+                    out.println("Balance: " + loan.getBalanceDue());
+                    out.println("Interest Rate : " + loan.getInterestRate());
+                }
+                
+                System.out.println("Report Generated");
+
+            } catch (FileNotFoundException ex) {
+                System.out.println("File already exists");
+            }
+
+        });
+        
+        
         // Create the VBox
         VBox root = new VBox();
         // Set alignment
@@ -177,5 +215,9 @@ class AccountSummaryView {
         stage.setTitle("Account Summary");
         // Display the Stage
         stage.show();
+    }
+    
+    public void printLoans(){
+        
     }
 }

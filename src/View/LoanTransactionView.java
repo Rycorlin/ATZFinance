@@ -55,6 +55,11 @@ public class LoanTransactionView extends Application implements ItemListener, Ac
     @Override
     public void start(Stage stage) throws IOException {
 
+        //Setting the stage size
+        stage.setWidth(450);
+        stage.setHeight(325);
+
+        
         // BOTTOM BAR / BUTTON
         BorderPane borderpane = new BorderPane();
         

@@ -31,26 +31,26 @@ public class CreateAccountController {
                 Loan loan1 = new Loan();
                 loan1.setBalanceDue(1000);
                 loan1.setInterestRate(5.5);
-                loan1.setTermLengthInMonths(60);
+                loan1.setTermLengthInMonths(4);
                 
                 Loan loan2 = new Loan();
                 loan2.setBalanceDue(2000);
                 loan2.setInterestRate(2.9);
-                loan1.setTermLengthInMonths(180);
+                loan1.setTermLengthInMonths(8);
                 
                 Loan loan3 = new Loan();
                 loan3.setBalanceDue(3000);
                 loan3.setInterestRate(8.1);
-                loan1.setTermLengthInMonths(36);
+                loan1.setTermLengthInMonths(1);
                 
                 User newUser = new User(createAccountView.getFirstName(), createAccountView.getLastName(), createAccountView.getUsername(),
                         createAccountView.getPassword(), loan1);
                 newUser.addLoanToUser(loan2);
                 newUser.addLoanToUser(loan3);
                 
-                loan1.setLoanType("Personal Loan");
-                loan2.setLoanType("Car Loan");
-                loan3.setLoanType("Personal Loan");
+                loan1.setLoanType("Personal");
+                loan2.setLoanType("Car");
+                loan3.setLoanType("Personal");
                 
                 UserTable.addUser(newUser);
                 
