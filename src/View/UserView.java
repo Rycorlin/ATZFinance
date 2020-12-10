@@ -32,22 +32,24 @@ public class UserView extends Application {
     public void start(Stage stage) {
         
         
-        // Adding bottom bar and back button
+        // Borderpane, HBox and Buttons logic
         BorderPane borderpane = new BorderPane();
         HBox hbox = new HBox();
         
+        // HBox settings
         hbox.setPadding(new Insets(15, 12, 15, 12));
         hbox.setSpacing(5);
         hbox.setStyle("-fx-background-color: #336699;");
         
         Button backButton = new Button("Back");
         backButton.setPrefSize(150, 20);
-        hbox.getChildren().addAll(backButton);
         
+        // Hbox add children, settings
+        hbox.getChildren().addAll(backButton);
         HBox.setHgrow(backButton, Priority.ALWAYS);
         
+        // Add HBox to borderpane
         borderpane.setBottom(hbox);
-        
         
         // Return to HomeView
         backButton.setOnAction((ActionEvent event) -> {
@@ -59,8 +61,10 @@ public class UserView extends Application {
 
         // Create a TableView with a list of customers
         TableView<User> table = new TableView<>();
+        
         // Add rows to the TableView
         table.getItems().addAll(UserTable.getPersonList());
+        
         // Add columns to the TableView
         table.getColumns().addAll(UserTable.getFirstNameColumn(),
                 UserTable.getLastNameColumn(), UserTable.getUserNameColumn());
@@ -73,6 +77,7 @@ public class UserView extends Application {
 
         // Create the VBox
         VBox root = new VBox();
+        
         // Add the Table, and the borderpane to the VBox
         root.getChildren().addAll(table, borderpane);
 
@@ -86,10 +91,13 @@ public class UserView extends Application {
         
         // Create the Scene
         Scene scene = new Scene(root);
+        
         // Add the Scene to the Stage
         stage.setScene(scene);
+        
         // Set the Title of the Stage
         stage.setTitle("User List");
+        
         // Display the Stage
         stage.show();
     }

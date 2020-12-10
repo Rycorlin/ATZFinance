@@ -38,12 +38,16 @@ public class CreateAccountView extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        
+        // Set the scene / Stage
         Scene scene = new Scene(root, 400, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setTitle("ATZ User Registration");
         primaryStage.setAlwaysOnTop(true);
 
+        
+        // VBox settings
         VBox vBox = new VBox();
 
         vBox.setSpacing(8);
@@ -69,6 +73,8 @@ public class CreateAccountView extends Application {
                 register = new Button("REGISTER"));
         root.getChildren().addAll(vBox);
         
+        
+        // GUI visual settings for password errors
         nameNumberError.setVisible(false);
         passwordMatchError.setVisible(false);
         passwordSecurityError.setVisible(false);
@@ -83,6 +89,7 @@ public class CreateAccountView extends Application {
         createAccountController = new CreateAccountController(this, primaryStage);
     }
     
+    // Getters and setters
     public String getFirstName()
     {
         return firstName.getText();

@@ -120,7 +120,7 @@ public class ApplyForLoanView extends Application
     }
     
     
-    
+    // Setters and getters
     public StackPane getRoot()
     {
         return root;

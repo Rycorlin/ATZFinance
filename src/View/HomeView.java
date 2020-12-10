@@ -32,18 +32,17 @@ public class HomeView {
     User user;
     Stage stage;
 
-
+    // Run homeview
     public HomeView(Stage primaryStage, User u) {
-        //Stage stage = new Stage();
+
         this.user = u;
         stage = primaryStage;
         stage.setTitle("ATZ Finance Login");
         
-//        //BRET USER TESTING - Displays user's first and last name, and how much is on their first loan (Which we have set up as a default loan.)
-//        System.out.println("User "+user.getFirstName()+" "+user.getLastName()+" has a loan balance on loan 1 of: $"+user.getLoanList().get(0).getBalanceDue());
-        
+        // Borderpane
         BorderPane border = new BorderPane();
 
+        // Hbox and settings
         HBox hbox = new HBox();
         HBox hboxBot = new HBox();
 
@@ -56,17 +55,16 @@ public class HomeView {
         hboxBot.setStyle("-fx-background-color: #336699;");
         hboxBot.setAlignment(Pos.BOTTOM_LEFT);
 
+        // Buttons
         Button buttonSummary = new Button("Account Summary");
         buttonSummary.setPrefSize(150, 20);
 
         logoutButton = new Button("Log off");
-
         logoutButton.setPrefSize(150, 20);
 
+        // add buttons to Hbox
         hbox.getChildren().addAll(buttonSummary);
-
         hboxBot.getChildren().addAll(logoutButton);
-
         Button userListButton = new Button("User list");
         hbox.getChildren().addAll(userListButton);
         
@@ -77,16 +75,18 @@ public class HomeView {
         HBox.setHgrow(buttonSummary, Priority.ALWAYS);
 
         border.setTop(hbox);
-
-        // Moved this hyperlink stuff into Homeview so I can use the 
-        // stage to start my LoanTransactionView.
+        
+        // VBox
         VBox vBox = homeviewVBox();
+        
+        // ArrayList of hyperlinks (loans associated with user)
         ArrayList<Hyperlink> listOfLoansHyperlinks = new ArrayList();
         listOfLoansHyperlinks.add(new Hyperlink("Loan #" + String.valueOf(user.getLoanList().get(0).getLoanID()) + ", " + user.getLoanList().get(0).getLoanType()));
         listOfLoansHyperlinks.add(new Hyperlink("Loan #" + String.valueOf(user.getLoanList().get(1).getLoanID()) + ", " + user.getLoanList().get(1).getLoanType()));
         listOfLoansHyperlinks.add(new Hyperlink("Loan #" + String.valueOf(user.getLoanList().get(2).getLoanID()) + ", " + user.getLoanList().get(2).getLoanType()));
         
-
+        
+        // Open that specific loan when clicked
         for (Hyperlink link : listOfLoansHyperlinks) {
             link.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -102,40 +102,33 @@ public class HomeView {
             });
         }
 
+        // VBox settings
         for (int i = 0; i < listOfLoansHyperlinks.size(); i++) {
             VBox.setMargin(listOfLoansHyperlinks.get(i), new Insets(0, 0, 0, 8));
             vBox.getChildren().add(listOfLoansHyperlinks.get(i));
         }
-
+        
+        // Border settings
         border.setLeft(vBox);
-
         border.setBottom(hboxBot);
 
-        // User list view
+        // Run user list view
         userListButton.setOnAction((ActionEvent event) -> {
-
             UserView uv = new UserView(user);
-
             uv.start(stage);
 
         });
 
-        //Action for btnLogin
+        // User Logout view
         logoutButton.setOnAction((ActionEvent event) -> {
-
-            //System.out.print("test");
-            //UserView uv = new UserView(stage, border, hbox);
             LoginView lv = new LoginView();
-
             lv.start(primaryStage);
 
         });
 
-        //Action for btnLogin
+        // Run Account Summary View
         buttonSummary.setOnAction((ActionEvent event) -> {
 
-            //System.out.print("test");
-            //UserView uv = new UserView(stage, border, hbox);
             AccountSummaryView accountSummaryView = new AccountSummaryView(user);
 
             try {
@@ -146,7 +139,7 @@ public class HomeView {
             }
         });
         
-        // Apply for loan logic
+        // Run Apply for Loan View
         applyForLoanButton.setOnAction((ActionEvent event) -> {
 
             ApplyForLoanView apv = new ApplyForLoanView(user);
@@ -158,6 +151,7 @@ public class HomeView {
             }
         });
 
+        // Set the Scene
         Scene scene = new Scene(border);
         stage.setScene(scene);
         stage.show();
@@ -170,7 +164,7 @@ public class HomeView {
     }
     
     
-    // View for homeView
+    // VBox for homeView
     public static VBox homeviewVBox() {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10));

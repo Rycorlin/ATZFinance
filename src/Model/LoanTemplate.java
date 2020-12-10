@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * A class that acts as a template to give structure to loans.
+ * An class that acts as a template to give structure to loans.
  */
 public abstract class LoanTemplate implements Serializable {
     

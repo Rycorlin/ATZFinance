@@ -120,7 +120,7 @@ public class ApplyForLoanController
         });
     }
 
-//Method to save data to database
+//Method to save data to file
     private void save() {
         try {
             ObjectOutputStream ous = new ObjectOutputStream(new FileOutputStream("loanappsave.ser"));
